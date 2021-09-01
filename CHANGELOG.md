@@ -22,10 +22,12 @@
 ----
 
 ## 0.4.1
-<h2>Tulsi++ 0.4.0 🔨 </h2>
+<h2>Tulsi++ 0.4.1 🔨 </h2>
 <h4>What's new:</h4> 
 <ol> 
     <li>Improve check-for-update logic</li>
+    <li>Update icon style to big sur</li>
+    <li>Add CI build mode</li>
 </ol> 
 
 ----
