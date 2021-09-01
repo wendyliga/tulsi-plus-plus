@@ -4,7 +4,6 @@
 load(
     ":version.bzl",
     "TULSI_VERSION_MINOR",
-    "TULSI_VERSION_MAJOR",
     "TULSI_VERSIONINFO_LONG",
     "fill_info_plist",
 )
@@ -59,6 +58,13 @@ filegroup(
     ],
 )
 
+config_setting(
+    name = "is_ci",
+    define_values = {
+        "is_ci": "1",
+    }
+)
+
 macos_application(
     name = "tulsi",
     additional_contents = {
@@ -67,7 +73,10 @@ macos_application(
     app_icons = ["//src/Tulsi:Icon"],
     bundle_id = "com.wendyliga.TulsiPlusPlus",
     bundle_name = "Tulsi++",
-    provisioning_profile = '//src/provisioning_profile:Direct_com.wendyliga.TulsiPlusPlus.provisionprofile',
+    provisioning_profile = select({
+        "//:is_ci": '//src/provisioning_profile:Direct_com.wendyliga.TulsiPlusPlus.provisionprofile',
+        "//conditions:default": None,
+    }),
     infoplists = [":Info.plist"],
     minimum_os_version = "10.13",
     strings = [":strings"],

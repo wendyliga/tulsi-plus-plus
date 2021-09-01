@@ -13,6 +13,8 @@ lane :release do
   workspace_path = (sh "bazel info workspace").delete("\n")
   bazel_bin = workspace_path + "/bazel-bin"
   
+  ENV["IS_CI"] = is_ci
+
   # build
   sh "make -f ../Makefile build"
 
