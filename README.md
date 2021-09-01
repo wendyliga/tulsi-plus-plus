@@ -1,4 +1,4 @@
-# Tulsi++ - an Xcode Project Generator For Bazel
+# Tulsi++ - Xcode Project Generator For Bazel
 
 <p align="center"><img width="200" src="src/Tulsi/Assets.xcassets/AppIcon.appiconset/tulsi_plus_plus.png"></p>
 
