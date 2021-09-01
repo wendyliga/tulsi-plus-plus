@@ -20,3 +20,12 @@
 </ol> 
 
 ----
+
+## 0.4.1
+<h2>Tulsi++ 0.4.0 🔨 </h2>
+<h4>What's new:</h4> 
+<ol> 
+    <li>Improve check-for-update logic</li>
+</ol> 
+
+----

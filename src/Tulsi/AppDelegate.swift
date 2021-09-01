@@ -40,6 +40,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     let version = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
     LogMessage.postSyslog("Tulsi UI: version \(version)")
+    
+    // config updater
+    updaterController.updater.automaticallyChecksForUpdates = true
+    updaterController.updater.updateCheckInterval = TimeInterval(24 * 60 * 60) // 1 day
   }
 
   func applicationDidFinishLaunching(_ notification: Notification) {
@@ -50,6 +54,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     checkForUpdatesMenuItem.target = updaterController
     checkForUpdatesMenuItem.action = #selector(SPUStandardUpdaterController.checkForUpdates(_:))
     updaterController.startUpdater()
+    
+    // check on startup
+    updaterController.updater.checkForUpdatesInBackground()
   }
 
   func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
