@@ -19,7 +19,9 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+    - name: Setup Keychain
+      run: bundle exec fastlane setup
     - name: Fetch Provisioning Profile
-      uses: bundle exec fastlane certificates      
+      run: bundle exec fastlane certificates      
     - name: Build
       run: make build xcode=${{ matrix.xcode }}
