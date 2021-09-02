@@ -32,3 +32,13 @@
 </ol> 
 
 ----
+
+## 0.4.2
+<h2>Tulsi++ 0.4.2 🔨 </h2>
+<h4>What's new:</h4> 
+<ol> 
+    <li>New file will be located on correct folder. thanks to <a src="https://github.com/ahmadnbl">@ahmadnbl</a></li>
+    <li>up several gems dependency version because of vurnability issues detected by dependabot</li>
+</ol> 
+
+----

@@ -3,6 +3,27 @@
     <channel>
         <title>Tulsi++</title>
         <item>
+            <title>0.4.2</title>
+            <pubDate>Thu, 02 Sep 2021 17:17:23 +0700</pubDate>
+            <sparkle:version>0.4.2</sparkle:version>
+            <sparkle:shortVersionString>0.4.2</sparkle:shortVersionString>
+            <description><![CDATA[<h2>Tulsi++ 0.4.2 🔨 </h2>
+<h4>What's new:</h4> 
+<ol> 
+    <li>New file will be located on correct folder. thanks to <a src="https://github.com/ahmadnbl">@ahmadnbl</a></li>
+    <li>up several gems dependency version because of vurnability issues detected by dependabot</li>
+</ol> 
+]]></description>
+            <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
+            <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/tulsi_plus_plus_0_4_2.dmg" length="2641426" type="application/octet-stream" sparkle:edSignature="Ec/EQkjCsrQrhQhWLxlRWA68GtBQKUJB4xqa0e9dRqX6nq2yZ8YCKzA3oCki0MojF96qNCimJSPZ8+xOIy+LAw=="/>
+            <sparkle:deltas>
+                <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.4.2-0.4.1.delta" sparkle:deltaFrom="0.4.1" length="107566" type="application/octet-stream" sparkle:edSignature="06VepQfHsskc5lp/XoVhdp7trgh1mhNQimyx4HVh8zxZAJhDNAUkxBu1D3FEdrtcpDC71sZLJo20AqRu2CGlDg=="/>
+                <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.4.2-0.4.1.delta" sparkle:deltaFrom="0.4.1" length="107566" type="application/octet-stream" sparkle:edSignature="06VepQfHsskc5lp/XoVhdp7trgh1mhNQimyx4HVh8zxZAJhDNAUkxBu1D3FEdrtcpDC71sZLJo20AqRu2CGlDg=="/>
+                <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.4.2-0.4.0.delta" sparkle:deltaFrom="0.4.0" length="622969" type="application/octet-stream" sparkle:edSignature="HC7xc+Pm2YFEB4hYNG3GDjmTfiH9cKzgSFepwKmO6AQYnZuS81pOmKrfxiew/57oerwxZN6KrYs2BfKVWDmNBA=="/>
+                <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.4.2-0.4.0.delta" sparkle:deltaFrom="0.4.0" length="622969" type="application/octet-stream" sparkle:edSignature="HC7xc+Pm2YFEB4hYNG3GDjmTfiH9cKzgSFepwKmO6AQYnZuS81pOmKrfxiew/57oerwxZN6KrYs2BfKVWDmNBA=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>0.4.1</title>
             <pubDate>Thu, 02 Sep 2021 08:38:49 +0700</pubDate>
             <sparkle:version>0.4.1</sparkle:version>
@@ -17,7 +38,7 @@
 </ol> 
 ]]></description>
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
-            <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/tulsi_plus_plus_0_4_1.dmg" length="2640794" type="application/octet-stream" sparkle:edSignature="QYWfAMu0c0kR2Y+69y1j5/k/KLHFEXXzwaqJp6iZZgMLX8YWIijj/UFUczCPwTL+scBYhvhtNWu1wCA1Z7RgBQ=="/>
+            <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/tulsi_plus_plus_0_4_1.zip" length="2919531" type="application/octet-stream" sparkle:edSignature="CKNAykSaKsF5ilYAKyfK5xhs4iaTmVeyMK1C5AjhqvAvnt0G6NzEZmHOt+1gN+KDl0/0N7+361gJ2Lt1OWQ4CQ=="/>
             <sparkle:deltas>
                 <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.4.1-0.4.0.delta" sparkle:deltaFrom="0.4.0" length="617419" type="application/octet-stream" sparkle:edSignature="WLYjG7gLrWz2WdBzEvjohTfnYrcueTm5+iV3zwYdVMUoz+F7wyKtj0U2E2e3Sc3GIru71GeUs5WaAbHEuv3FBA=="/>
                 <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.4.1-0.4.0.delta" sparkle:deltaFrom="0.4.0" length="617419" type="application/octet-stream" sparkle:edSignature="WLYjG7gLrWz2WdBzEvjohTfnYrcueTm5+iV3zwYdVMUoz+F7wyKtj0U2E2e3Sc3GIru71GeUs5WaAbHEuv3FBA=="/>
