@@ -13,6 +13,9 @@ lane :release do
   workspace_path = (sh "bazel info workspace").delete("\n")
   bazel_bin = workspace_path + "/bazel-bin"
   
+  # set env value, so build could use CI mode
+  ENV["IS_CI"] = is_ci ? "is_ci" : ""
+
   # build
   sh "make -f ../Makefile build"
 
