@@ -145,7 +145,7 @@ GEM
       domain_name (~> 0.5)
     httpclient (2.8.3)
     jmespath (1.4.0)
-    json (2.1.0)
+    json (2.5.1)
     jwt (2.1.0)
     memoist (0.16.0)
     mini_magick (4.11.0)
@@ -204,6 +204,7 @@ GEM
 
 PLATFORMS
   universal-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   fastlane
