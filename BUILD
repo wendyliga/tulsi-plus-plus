@@ -73,10 +73,6 @@ macos_application(
     app_icons = ["//src/Tulsi:Icon"],
     bundle_id = "com.wendyliga.TulsiPlusPlus",
     bundle_name = "Tulsi++",
-    provisioning_profile = select({
-        "//:is_ci": '//src/provisioning_profile:Direct_com.wendyliga.TulsiPlusPlus.provisionprofile',
-        "//conditions:default": None,
-    }),
     infoplists = [":Info.plist"],
     minimum_os_version = "10.13",
     strings = [":strings"],
