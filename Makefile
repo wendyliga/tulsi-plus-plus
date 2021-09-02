@@ -14,11 +14,11 @@ _is_ci=${IS_CI}
 
 define build_script
 	$(if $(filter $(1),is_ci), \
-		@$(_bazel_path) build //:tulsi -s \
+		@$(_bazel_path) build //:tulsi \
+			--config=ci -s \
 			--use_top_level_targets_for_symlinks \
 			--xcode_version=${_xcode_version}, \
-		@$(_bazel_path) build //:tulsi -s \
-			--config=ci \
+		@$(_bazel_path) build //:tulsi \
 			--use_top_level_targets_for_symlinks \
 			--xcode_version=${_xcode_version} \
 	)
@@ -40,7 +40,7 @@ build: clean
 	@echo is_ci=$(if $(_is_ci), true, false)
 	@echo ====================================	
 
-	$(if $(_is_ci), $(call build_script, is_ci), $(call build_script, default))
+	$(if $(_is_ci), $(call build_script, is_ci), $(call build_script))
 
 	@$(_bazel_path) build //:tulsi -s \
 	--use_top_level_targets_for_symlinks \
