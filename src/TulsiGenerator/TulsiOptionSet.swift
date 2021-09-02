@@ -338,7 +338,7 @@ public class TulsiOptionSet: Equatable {
     addBoolOption(.PathFiltersApplyToTestSources, .Generic, true)
     addBoolOption(.ProjectPrioritizesSwift, .Generic, true)
     addBoolOption(.SwiftForcesdSYMs, .Generic, false)
-    addBoolOption(.ProjectGenerationUseRealFilePath, .Generic, false)
+    addBoolOption(.ProjectGenerationUseRealFilePath, .Generic, true)
     addBoolOption(.TreeArtifactOutputs, .Generic, true)
     addBoolOption(.Use64BitWatchSimulator, .Generic, false)
     addBoolOption(.DisableCustomLLDBInit, .Generic, false)

@@ -40,15 +40,12 @@ final class BazelXcodeProjectPatcher {
 
   // Rewrites the path for file references that it believes to be relative to Bazel's exec root.
   // This should be called before patching external references.
-  private func patchFileReference(file: PBXFileReference, url: URL, workspaceRootURL: URL, useRealGroupsPath: Bool) {
+  private func patchFileReference(file: PBXFileReference, url: URL, workspaceRootURL: URL) {
     // We only want to modify the path if the current path doesn't point to a valid file.
     guard !fileManager.fileExists(atPath: url.path) else { return }
 
     // Don't patch anything that isn't group relative.
     guard file.sourceTree == .Group else { return }
-    
-    // Don't patch anything if use real path for Groups
-    guard !useRealGroupsPath else { return }
 
     // Remove .xcassets that are not present. Unfortunately, Xcode's handling of .xcassets has
     // quite a number of issues with Tulsi and readonly files.
@@ -90,9 +87,10 @@ final class BazelXcodeProjectPatcher {
       if let group = ref as? PBXGroup {
         // Queue up all children of the group so we can find all of their FileReferences.
         queue.append(contentsOf: group.children)
-      } else if let file = ref as? PBXFileReference,
+      } else if !useRealGroupsPath, // Don't patch anything if use real path for Groups
+                let file = ref as? PBXFileReference,
                 let fileURL = URL(string: file.path!, relativeTo: workspaceRootURL) {
-        self.patchFileReference(file: file, url: fileURL, workspaceRootURL: workspaceRootURL, useRealGroupsPath: useRealGroupsPath)
+        self.patchFileReference(file: file, url: fileURL, workspaceRootURL: workspaceRootURL)
       }
     }
   }
