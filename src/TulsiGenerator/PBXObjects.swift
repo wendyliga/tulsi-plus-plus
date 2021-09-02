@@ -1119,6 +1119,9 @@ final class PBXProject: PBXObjectProtocol {
 
   /// The root group for this project.
   let mainGroup: PBXGroup
+    
+  /// Determining should we generate project by using real Groups path or just use dummy path
+  let useRealGroupsPath: Bool
 
   /// Map of target name to target instance.
   var targetByName = [String: PBXTarget]()
@@ -1157,13 +1160,14 @@ final class PBXProject: PBXObjectProtocol {
     return "Project object"
   }
 
-  init(name: String, mainGroup: PBXGroup? = nil) {
+  init(name: String, mainGroup: PBXGroup? = nil, useRealGroupsPath: Bool) {
     if mainGroup != nil {
       self.mainGroup = mainGroup!
     } else {
       self.mainGroup = PBXGroup(name: "mainGroup", path: nil, sourceTree: .SourceRoot, parent: nil)
     }
     self.name = name
+    self.useRealGroupsPath = useRealGroupsPath
   }
 
   func createNativeTarget(_ name: String,
@@ -1353,8 +1357,15 @@ final class PBXProject: PBXObjectProtocol {
         let variantGroup = group.getOrCreateChildVariantGroupByName(name)
         accessedGroups.insert(variantGroup)
 
+        let targetPath: String
+        if useRealGroupsPath {
+          targetPath = currentComponent
+        } else {
+          targetPath = path
+        }
+          
         let fileRef = variantGroup.getOrCreateFileReferenceBySourceTree(.Group,
-                                                                        path: path,
+                                                                        path: targetPath,
                                                                         name: lprojName)
         if let ext = name.pbPathExtension, let uti = DirExtensionToUTI[ext] {
           fileRef.fileTypeOverride = uti
@@ -1364,7 +1375,13 @@ final class PBXProject: PBXObjectProtocol {
 
       // This will naively create a bundle grouping rather than including the per-locale strings.
       if let ext = currentComponent.pbPathExtension, let uti = DirExtensionToUTI[ext] {
-        let partialPath = components[0...i].joined(separator: "/")
+        let partialPath: String
+        if useRealGroupsPath {
+            partialPath = currentComponent
+        } else {
+            partialPath = components[0...i].joined(separator: "/")
+        }
+        
         let fileRef = group.getOrCreateFileReferenceBySourceTree(.Group, path: partialPath)
         fileRef.fileTypeOverride = uti
 
@@ -1375,11 +1392,26 @@ final class PBXProject: PBXObjectProtocol {
 
       // Create a subgroup for this simple path component.
       let groupName = currentComponent.isEmpty ? "/" : currentComponent
-      group = group.getOrCreateChildGroupByName(groupName, path: nil)
+      let groupPath: String?
+      
+      if useRealGroupsPath {
+        groupPath = currentComponent
+      } else {
+        groupPath = nil
+      }
+        
+      group = group.getOrCreateChildGroupByName(groupName, path: groupPath)
       accessedGroups.insert(group)
     }
+      
+    let fileRefPath: String
+    if useRealGroupsPath, let lastPath = components.last {
+        fileRefPath = lastPath
+    } else {
+        fileRefPath = path
+    }
 
-    let fileRef = group.getOrCreateFileReferenceBySourceTree(.Group, path: path)
+    let fileRef = group.getOrCreateFileReferenceBySourceTree(.Group, path: fileRefPath)
     return (accessedGroups, fileRef)
   }
 }

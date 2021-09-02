@@ -76,7 +76,8 @@ final class BazelXcodeProjectPatcher {
 
   // Handles patching PBXFileReferences that are not present on disk. This should be called before
   // calling patchExternalRepositoryReferences.
-  func patchBazelRelativeReferences(_ xcodeProject: PBXProject,
+  func patchBazelRelativeReferences(_ useRealGroupsPath: Bool,
+                                    _ xcodeProject: PBXProject,
                                     _ workspaceRootURL : URL) {
     // Exclude external references that have yet to be patched in.
     var queue = xcodeProject.mainGroup.children.filter{ $0.name != "external" }
@@ -86,7 +87,8 @@ final class BazelXcodeProjectPatcher {
       if let group = ref as? PBXGroup {
         // Queue up all children of the group so we can find all of their FileReferences.
         queue.append(contentsOf: group.children)
-      } else if let file = ref as? PBXFileReference,
+      } else if !useRealGroupsPath, // Don't patch anything if use real path for Groups
+                let file = ref as? PBXFileReference,
                 let fileURL = URL(string: file.path!, relativeTo: workspaceRootURL) {
         self.patchFileReference(file: file, url: fileURL, workspaceRootURL: workspaceRootURL)
       }

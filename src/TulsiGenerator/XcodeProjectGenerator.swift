@@ -415,7 +415,8 @@ final class XcodeProjectGenerator {
   // Generates a PBXProject and a returns it along with a set of build, test and indexer targets.
   private func buildXcodeProjectWithMainGroup(_ mainGroup: PBXGroup,
                                               stubInfoPlistPaths: StubInfoPlistPaths) throws -> GeneratedProjectInfo {
-    let xcodeProject = PBXProject(name: config.projectName, mainGroup: mainGroup)
+    let useRealGroupsPath: Bool = config.options[.ProjectGenerationUseRealFilePath].commonValueAsBool ?? false
+    let xcodeProject = PBXProject(name: config.projectName, mainGroup: mainGroup, useRealGroupsPath: useRealGroupsPath)
 
     if let enabled = config.options[.SuppressSwiftUpdateCheck].commonValueAsBool, enabled {
       xcodeProject.lastSwiftUpdateCheck = "0710"
@@ -587,7 +588,7 @@ final class XcodeProjectGenerator {
 
     let referencePatcher = BazelXcodeProjectPatcher(fileManager: fileManager)
     profileAction("patching_bazel_relative_references") {
-      referencePatcher.patchBazelRelativeReferences(xcodeProject, workspaceRootURL)
+      referencePatcher.patchBazelRelativeReferences(useRealGroupsPath, xcodeProject, workspaceRootURL)
     }
     profileAction("patching_external_repository_references") {
       referencePatcher.patchExternalRepositoryReferences(xcodeProject)

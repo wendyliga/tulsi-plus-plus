@@ -70,6 +70,10 @@ public enum TulsiOptionKey: String {
 
       // Whether test sources are filtered by the project's path filters.
       PathFiltersApplyToTestSources,
+    
+      // Generating project using real file path instead of dummy path.
+      // Reference: https://github.com/bazelbuild/tulsi/issues/55
+      ProjectGenerationUseRealFilePath,
 
       // Used by Tulsi to improve Bazel-caching of build flags.
       ProjectPrioritizesSwift,
@@ -334,6 +338,7 @@ public class TulsiOptionSet: Equatable {
     addBoolOption(.PathFiltersApplyToTestSources, .Generic, true)
     addBoolOption(.ProjectPrioritizesSwift, .Generic, true)
     addBoolOption(.SwiftForcesdSYMs, .Generic, false)
+    addBoolOption(.ProjectGenerationUseRealFilePath, .Generic, true)
     addBoolOption(.TreeArtifactOutputs, .Generic, true)
     addBoolOption(.Use64BitWatchSimulator, .Generic, false)
     addBoolOption(.DisableCustomLLDBInit, .Generic, false)
