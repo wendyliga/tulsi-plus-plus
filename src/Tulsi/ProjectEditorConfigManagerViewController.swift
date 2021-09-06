@@ -34,6 +34,7 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
   @IBOutlet var configArrayController: NSArrayController!
   @IBOutlet weak var addRemoveSegmentedControl: NSSegmentedControl!
   @IBOutlet var generateButton: NSButton!
+  @IBOutlet var outputPathControl: NSPathControl!
 
   @objc dynamic var numBazelPackages: Int = 0 {
     didSet {
@@ -57,6 +58,17 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
   @objc dynamic var numSelectedConfigs: Int = 0 {
     didSet {
       updateButtonsState()
+    }
+  }
+  
+  var outputPath: URL? {
+    get {
+      let value = UserDefaults.standard.string(forKey: "output_path")
+      return value.map { URL(string: $0) } ?? nil
+    }
+    set {
+      UserDefaults.standard.set(newValue?.absoluteString, forKey: "output_path")
+      outputPathControl.url = newValue
     }
   }
 
@@ -90,6 +102,7 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
          withKeyPath: "selectedObjects.@count",
          options: nil)
     self.generateButton.keyEquivalent = "\r"
+    self.outputPathControl.url = outputPath
   }
 
   // Toggle the state of the buttons depending on the current selection as well as if any required
@@ -126,12 +139,30 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
         didClickAction(sender)
     }
   }
+    
+  @IBAction func chooseOutputPath(_ sender: AnyObject?) {
+    let panel = NSOpenPanel()
+    panel.title = NSLocalizedString("ProjectGeneration_SelectProjectOutputFolderTitle",
+                                    comment: "Title for open panel through which the user should select where to generate the Xcode project.")
+    panel.message = NSLocalizedString("ProjectGeneration_SelectProjectOutputFolderMessage",
+                                      comment: "Message to show at the top of the Xcode output folder sheet, explaining what to do.")
+
+    panel.prompt = NSLocalizedString("ProjectGeneration_SelectProjectOutputFolderAndGeneratePrompt",
+                                     comment: "Label for the button used to confirm the selected output folder for the generated Xcode project which will also start generating immediately.")
+    panel.canChooseDirectories = true
+    panel.canCreateDirectories = true
+    panel.canChooseFiles = false
+    panel.beginSheetModal(for: self.view.window!) { [weak self] in
+      if $0 == NSApplication.ModalResponse.OK {
+        self?.outputPath = panel.url
+      }
+    }
+  }
 
   @IBAction func doGenerate(_ sender: AnyObject?) {
     guard let configName = configArrayController.selectedObjects.first as? String else { return }
     guard requireValidBazel({ self.doGenerate(sender) }) else { return }
 
-    
     let generatorController = XcodeProjectGenerationProgressViewController()
     generatorController.representedObject = representedObject
     presentAsSheet(generatorController)
@@ -139,7 +170,8 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
     let projectDocument = representedObject as! TulsiProjectDocument
     generatorController.generateProjectForConfigName(
       configName,
-      removePreviousProject: deletePreviousProjectCheckBox.state.rawValue == 1
+      removePreviousProject: deletePreviousProjectCheckBox.state.rawValue == 1,
+      customOutputPath: outputPath
     ) { (projectURL: URL?) in
       self.dismiss(generatorController)
       if let projectURL = projectURL {
