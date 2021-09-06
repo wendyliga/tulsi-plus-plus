@@ -97,7 +97,7 @@ class XcodeProjectGenerationProgressViewController: NSViewController {
         self.generateProjectForConfigName(
           name,
           removePreviousProject: removePreviousProject,
-          customOutputPath: customOutputPath,
+          customOutputPath: url,
           completionHandler: completionHandler
         )
       }
