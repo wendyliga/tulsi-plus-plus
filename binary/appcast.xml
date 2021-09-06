@@ -15,13 +15,13 @@
 </ol> 
 ]]></description>
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
-            <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/tulsi_plus_plus_0_4_4.dmg" length="2654462" type="application/octet-stream" sparkle:edSignature="wyUOoPAZpHNrmiTn52gEeYveXyFMf0/N6I/LNW6eAQ3VSU5/UkOmsJpWbTtTybRpJ0VRUD+QSPFPI2iweb7JCA=="/>
+            <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/tulsi_plus_plus_0_4_4.dmg" length="2654256" type="application/octet-stream" sparkle:edSignature="ifDqHdtLxPuYUJToa4rohxsb1WOCFlclIT2oZE1tcX0tMdpUNfx2yOxRLFfkOq2MAkqEfsVoGvjNbrjee4SzBQ=="/>
             <sparkle:deltas>
-                <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.4.4-0.4.3.delta" sparkle:deltaFrom="0.4.3" length="102627" type="application/octet-stream" sparkle:edSignature="kDwMFjuyHWPImFN8TBBmb7++/0I6TDkKNL1wvmvPipK1p2jSoWAV8nYTZlPAB2KA93mmi+I0jzNSMxfPBvBkAw=="/>
-                <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.4.4-0.4.3.delta" sparkle:deltaFrom="0.4.3" length="102627" type="application/octet-stream" sparkle:edSignature="kDwMFjuyHWPImFN8TBBmb7++/0I6TDkKNL1wvmvPipK1p2jSoWAV8nYTZlPAB2KA93mmi+I0jzNSMxfPBvBkAw=="/>
-                <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.4.4-0.4.2.delta" sparkle:deltaFrom="0.4.2" length="211923" type="application/octet-stream" sparkle:edSignature="uXGYVDO9J8xHXwnboh3mMqrPIp3rdpl1OLPba/YCgDxhkzdKiApbbGVVUCMoW0jzy3O/xxHssbWuLcoIN7HeAw=="/>
-                <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.4.4-0.4.2.delta" sparkle:deltaFrom="0.4.2" length="211923" type="application/octet-stream" sparkle:edSignature="uXGYVDO9J8xHXwnboh3mMqrPIp3rdpl1OLPba/YCgDxhkzdKiApbbGVVUCMoW0jzy3O/xxHssbWuLcoIN7HeAw=="/>
-                <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.4.4-0.4.1.delta" sparkle:deltaFrom="0.4.1" length="243392" type="application/octet-stream" sparkle:edSignature="j1Cbkz1R4wtVfw2LPSjy6fan5k/m+CZguNqhUotkBd073PVlRf9QGnN93MDwL9aPCoLKGV0PmBOWDjrkjBOTAQ=="/>
+                <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.4.4-0.4.3.delta" sparkle:deltaFrom="0.4.3" length="98060" type="application/octet-stream" sparkle:edSignature="WVc4A5fNorST3JFE3vx3mmJ1cqa+mOyaXV0scwS9VjHPriwcbTTt8c4f5150G+EID6EGa9OITCCEJlnkNkklBw=="/>
+                <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.4.4-0.4.3.delta" sparkle:deltaFrom="0.4.3" length="98060" type="application/octet-stream" sparkle:edSignature="WVc4A5fNorST3JFE3vx3mmJ1cqa+mOyaXV0scwS9VjHPriwcbTTt8c4f5150G+EID6EGa9OITCCEJlnkNkklBw=="/>
+                <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.4.4-0.4.2.delta" sparkle:deltaFrom="0.4.2" length="220634" type="application/octet-stream" sparkle:edSignature="k7+nQmjRW790RYrX+W6cnzxAAL7psD3N3uf8MYPFxqf+rz4Xdk3W2Bae3tL1tYlaC/Ud8PuhJbDrdmEXxB18CA=="/>
+                <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.4.4-0.4.2.delta" sparkle:deltaFrom="0.4.2" length="220634" type="application/octet-stream" sparkle:edSignature="k7+nQmjRW790RYrX+W6cnzxAAL7psD3N3uf8MYPFxqf+rz4Xdk3W2Bae3tL1tYlaC/Ud8PuhJbDrdmEXxB18CA=="/>
+                <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.4.4-0.4.1.delta" sparkle:deltaFrom="0.4.1" length="255925" type="application/octet-stream" sparkle:edSignature="9N6TFenSs6bBAP9phMU1XK43Lj4/hv94NRHtnKvdBZoJ3NtXXsR8+MUqjGSTdq4lNjEKibWhIMDyE4ayvjdXCg=="/>
             </sparkle:deltas>
         </item>
         <item>
