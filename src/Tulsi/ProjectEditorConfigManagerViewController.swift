@@ -102,6 +102,7 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
          withKeyPath: "selectedObjects.@count",
          options: nil)
     self.generateButton.keyEquivalent = "\r"
+    self.outputPathControl.url = outputPath
   }
 
   // Toggle the state of the buttons depending on the current selection as well as if any required
