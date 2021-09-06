@@ -172,12 +172,16 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
       configName,
       removePreviousProject: deletePreviousProjectCheckBox.state.rawValue == 1,
       customOutputPath: outputPath
-    ) { (projectURL: URL?) in
+    ) { (projectURL: URL?, newOutputPath: URL?) in
       self.dismiss(generatorController)
       if let projectURL = projectURL {
         LogMessage.postInfo("Opening generated project in Xcode",
                             context: projectDocument.projectName)
         NSWorkspace.shared.open(projectURL)
+      }
+      
+      if let newOutputPath = newOutputPath, newOutputPath != self.outputPath {
+        self.outputPath = newOutputPath
       }
     }
   }

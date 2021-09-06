@@ -3,6 +3,28 @@
     <channel>
         <title>Tulsi++</title>
         <item>
+            <title>0.4.4</title>
+            <pubDate>Mon, 06 Sep 2021 17:00:34 +0700</pubDate>
+            <sparkle:version>0.4.4</sparkle:version>
+            <sparkle:shortVersionString>0.4.4</sparkle:shortVersionString>
+            <description><![CDATA[<h2>Tulsi++ 0.4.4 🔨 </h2>
+<h4>What's new:</h4> 
+<ol> 
+    <li>Fix set directory when generate will never end</li>
+    <li>Improve path set on generate will be saved for future generate</li>
+</ol> 
+]]></description>
+            <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
+            <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/tulsi_plus_plus_0_4_4.dmg" length="2654992" type="application/octet-stream" sparkle:edSignature="bL+qWKWHLvCjApenEMjsD6n5c1i8l4WwbD6Av2rXRvxuN/A4FJbcyHag7plZDzwtWxHO3FycBWYcxUZc/lZyDQ=="/>
+            <sparkle:deltas>
+                <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.4.4-0.4.3.delta" sparkle:deltaFrom="0.4.3" length="105110" type="application/octet-stream" sparkle:edSignature="rMvYfyB1MTiU8gJEUE5b4nJKTQvFIR82R06WD2VdIuWs/b8FLM6u7R3rvHpcBWGtxVrkXheGGoNESlbo0of0Cw=="/>
+                <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.4.4-0.4.3.delta" sparkle:deltaFrom="0.4.3" length="105110" type="application/octet-stream" sparkle:edSignature="rMvYfyB1MTiU8gJEUE5b4nJKTQvFIR82R06WD2VdIuWs/b8FLM6u7R3rvHpcBWGtxVrkXheGGoNESlbo0of0Cw=="/>
+                <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.4.4-0.4.2.delta" sparkle:deltaFrom="0.4.2" length="230663" type="application/octet-stream" sparkle:edSignature="5NOBempIWRpu0PNGCepth28R+EIp8IkTLkWwnyHiLRMyFlcaCbtfFbaGLnBGPjRHY8gNz+JjlT5oB9t9J9LwCw=="/>
+                <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.4.4-0.4.2.delta" sparkle:deltaFrom="0.4.2" length="230663" type="application/octet-stream" sparkle:edSignature="5NOBempIWRpu0PNGCepth28R+EIp8IkTLkWwnyHiLRMyFlcaCbtfFbaGLnBGPjRHY8gNz+JjlT5oB9t9J9LwCw=="/>
+                <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.4.4-0.4.1.delta" sparkle:deltaFrom="0.4.1" length="257541" type="application/octet-stream" sparkle:edSignature="zXqDz6uKm4fJJ5WxqGWEHPSLN3ebsyTb2DOMNsazYghTV09I4a6Ws/tI5bQqw2ovxAGCl1ZLFFaX5plSAG/CBQ=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>0.4.3</title>
             <pubDate>Mon, 06 Sep 2021 14:02:41 +0700</pubDate>
             <sparkle:version>0.4.3</sparkle:version>
@@ -14,7 +36,7 @@
 </ol> 
 ]]></description>
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
-            <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/tulsi_plus_plus_0_4_3.dmg" length="2653665" type="application/octet-stream" sparkle:edSignature="7qqoG495az6dnR/V/CSlF5z+I8TiA3LZKR6nxqK1alAoWL61LWwU/cNUPpycELvXBp6BJY8+j1mk6M7Z1aHoAQ=="/>
+            <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/tulsi_plus_plus_0_4_3.zip" length="2927339" type="application/octet-stream" sparkle:edSignature="aHqrEwsObZmuYlRgs/yNXv++xm2SnO0dUDedmygzCd+EKFRs0CJvgBq0tLSP2ZSzrwY3jd/YDdg1EGVNtH/CDA=="/>
             <sparkle:deltas>
                 <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.4.3-0.4.2.delta" sparkle:deltaFrom="0.4.2" length="218227" type="application/octet-stream" sparkle:edSignature="9LgZ4lEHY3G1SgpzWuyZYDbNCqVyXrTu8tafdR7dylFlGtmDsfJD9udb5OWFa9nYiA9wzmgHOkC/OaOT3dYEAA=="/>
                 <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.4.3-0.4.2.delta" sparkle:deltaFrom="0.4.2" length="218227" type="application/octet-stream" sparkle:edSignature="9LgZ4lEHY3G1SgpzWuyZYDbNCqVyXrTu8tafdR7dylFlGtmDsfJD9udb5OWFa9nYiA9wzmgHOkC/OaOT3dYEAA=="/>
