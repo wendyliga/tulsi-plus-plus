@@ -180,7 +180,7 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
         NSWorkspace.shared.open(projectURL)
       }
       
-      if let newOutputPath = newOutputPath {
+      if let newOutputPath = newOutputPath, newOutputPath != self.outputPath {
         self.outputPath = newOutputPath
       }
     }
