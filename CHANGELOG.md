@@ -51,3 +51,13 @@
 </ol> 
 
 ----
+
+## 0.4.4
+<h2>Tulsi++ 0.4.4 🔨 </h2>
+<h4>What's new:</h4> 
+<ol> 
+    <li>Fix set directory when generate will never end</li>
+    <li>Improve path set on generate will be saved for future generate</li>
+</ol> 
+
+----
