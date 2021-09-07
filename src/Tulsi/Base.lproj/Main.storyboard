@@ -311,8 +311,8 @@
         <scene sceneID="BrN-Vn-AJM">
             <objects>
                 <viewController id="Pgt-4s-lhO" userLabel="Config Manager" customClass="ProjectEditorConfigManagerViewController" customModule="Tulsi" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="GUI-lE-4VX">
-                        <rect key="frame" x="0.0" y="0.0" width="777" height="312"/>
+                    <view key="view" id="GUI-lE-4VX">
+                        <rect key="frame" x="0.0" y="0.0" width="783" height="312"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDw-xa-KaC">
@@ -488,7 +488,7 @@
                                 </connections>
                             </button>
                             <button horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TIj-CZ-t8e">
-                                <rect key="frame" x="676" y="58" width="94" height="32"/>
+                                <rect key="frame" x="650" y="58" width="94" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="kZC-KX-OSj"/>
                                     <constraint firstAttribute="height" constant="20" id="qwy-n8-cdz"/>
@@ -501,9 +501,25 @@
                                     <action selector="doGenerate:" target="Pgt-4s-lhO" id="F2L-0G-7Eb"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hqU-Xt-Uh3">
+                                <rect key="frame" x="737" y="61" width="30" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="hqU-Xt-Uh3" secondAttribute="height" multiplier="1:1" id="VuO-Zi-QnS"/>
+                                    <constraint firstAttribute="width" constant="22" id="aVg-9l-BO5"/>
+                                </constraints>
+                                <buttonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="XtG-iI-RIr">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <color key="contentTintColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                <connections>
+                                    <action selector="openOtherActionMenu:" target="Pgt-4s-lhO" id="Nhq-4n-gN0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="f3L-hZ-yda" firstAttribute="leading" secondItem="GUI-lE-4VX" secondAttribute="leading" constant="20" symbolic="YES" id="3c0-rn-CRM"/>
+                            <constraint firstItem="hqU-Xt-Uh3" firstAttribute="centerY" secondItem="TIj-CZ-t8e" secondAttribute="centerY" id="5J4-ns-wl9"/>
                             <constraint firstItem="f3L-hZ-yda" firstAttribute="top" secondItem="Tna-pW-73L" secondAttribute="bottom" constant="12" id="BOk-ur-mAF"/>
                             <constraint firstItem="GnJ-J1-FKh" firstAttribute="top" secondItem="f3L-hZ-yda" secondAttribute="bottom" constant="4" id="DYD-1b-NZi"/>
                             <constraint firstItem="Tna-pW-73L" firstAttribute="leading" secondItem="GUI-lE-4VX" secondAttribute="leading" constant="12" id="UTU-Wy-NJc"/>
@@ -511,10 +527,11 @@
                             <constraint firstItem="Igh-yT-sbk" firstAttribute="top" secondItem="bDw-xa-KaC" secondAttribute="bottom" constant="-1" id="c7J-EI-svr" userLabel="Add/Remove to Table View - Y"/>
                             <constraint firstAttribute="trailing" secondItem="bDw-xa-KaC" secondAttribute="trailing" constant="20" symbolic="YES" id="fvx-Uu-IBr"/>
                             <constraint firstItem="Igh-yT-sbk" firstAttribute="leading" secondItem="bDw-xa-KaC" secondAttribute="leading" id="gGJ-95-f9q" userLabel="Add/Remove to Table View - X"/>
+                            <constraint firstAttribute="trailing" secondItem="hqU-Xt-Uh3" secondAttribute="trailing" constant="20" id="gI5-ts-LEU"/>
                             <constraint firstItem="Tna-pW-73L" firstAttribute="top" secondItem="Igh-yT-sbk" secondAttribute="bottom" constant="8" id="h1p-qC-nGO"/>
-                            <constraint firstAttribute="trailing" secondItem="TIj-CZ-t8e" secondAttribute="trailing" constant="20" id="hZ2-oD-B5c"/>
                             <constraint firstItem="bDw-xa-KaC" firstAttribute="top" secondItem="GUI-lE-4VX" secondAttribute="top" constant="20" symbolic="YES" id="kMQ-y6-UrF"/>
                             <constraint firstAttribute="bottom" secondItem="GnJ-J1-FKh" secondAttribute="bottom" constant="20" symbolic="YES" id="mkc-xV-ewZ"/>
+                            <constraint firstItem="hqU-Xt-Uh3" firstAttribute="leading" secondItem="TIj-CZ-t8e" secondAttribute="trailing" constant="4" id="oce-TD-uZc"/>
                             <constraint firstItem="0DI-qM-2Gf" firstAttribute="leading" secondItem="Tna-pW-73L" secondAttribute="trailing" constant="4" id="pHY-c4-kSx"/>
                             <constraint firstItem="TIj-CZ-t8e" firstAttribute="centerY" secondItem="Tna-pW-73L" secondAttribute="centerY" id="pm4-wQ-dFp"/>
                             <constraint firstItem="0DI-qM-2Gf" firstAttribute="centerY" secondItem="Tna-pW-73L" secondAttribute="centerY" id="xAb-Tt-NOs"/>
@@ -550,7 +567,7 @@
                     </connections>
                 </arrayController>
             </objects>
-            <point key="canvasLocation" x="1181.5" y="716"/>
+            <point key="canvasLocation" x="1186" y="677"/>
         </scene>
         <!--Wizard Area-->
         <scene sceneID="C5O-4G-Seq">
@@ -647,9 +664,9 @@ Gw
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="20" horizontalPageScroll="10" verticalLineScroll="20" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ETr-Dk-sDL">
-                                <rect key="frame" x="20" y="20" width="466" height="119"/>
+                                <rect key="frame" x="20" y="20" width="386" height="119"/>
                                 <clipView key="contentView" id="bxK-Ou-B9g">
-                                    <rect key="frame" x="1" y="1" width="464" height="102"/>
+                                    <rect key="frame" x="1" y="1" width="384" height="102"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="sequential" columnReordering="NO" columnResizing="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="55y-Mb-WtM" customClass="MessageTableView" customModule="Tulsi" customModuleProvider="target">
@@ -729,7 +746,7 @@ Gw
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="2me-bz-ws8"/>
                                 </constraints>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="pKG-bA-SCT">
-                                    <rect key="frame" x="1" y="103" width="464" height="15"/>
+                                    <rect key="frame" x="1" y="103" width="384" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Zbt-Ys-3so">
@@ -988,13 +1005,13 @@ CA
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="22" horizontalPageScroll="10" verticalLineScroll="22" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBr-Gq-Xkt">
-                                <rect key="frame" x="20" y="20" width="394" height="321"/>
-                                <clipView key="contentView" ambiguous="YES" id="uf5-HF-t1v">
-                                    <rect key="frame" x="1" y="1" width="392" height="304"/>
+                                <rect key="frame" x="20" y="20" width="314" height="201"/>
+                                <clipView key="contentView" id="uf5-HF-t1v">
+                                    <rect key="frame" x="1" y="1" width="312" height="184"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="19" headerView="69I-Yu-xln" viewBased="YES" id="jzE-ag-Xnt">
-                                            <rect key="frame" x="0.0" y="0.0" width="590" height="281"/>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="19" headerView="69I-Yu-xln" viewBased="YES" id="jzE-ag-Xnt">
+                                            <rect key="frame" x="0.0" y="0.0" width="590" height="161"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="3"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1092,7 +1109,7 @@ CA
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="Wis-qF-tm6"/>
                                 </constraints>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="P2M-ky-6Ll">
-                                    <rect key="frame" x="1" y="305" width="392" height="15"/>
+                                    <rect key="frame" x="1" y="185" width="312" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="yD9-VN-bwr">
@@ -1105,7 +1122,7 @@ CA
                                 </tableHeaderView>
                             </scrollView>
                             <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="nNQ-6Q-aBF">
-                                <rect key="frame" x="201" y="165" width="32" height="32"/>
+                                <rect key="frame" x="151" y="105" width="32" height="32"/>
                                 <connections>
                                     <binding destination="j9X-DC-afq" name="animate" keyPath="selection.processing" id="OJk-Gn-kho"/>
                                     <binding destination="j9X-DC-afq" name="hidden" keyPath="selection.processing" id="jgr-Y2-MnA">
@@ -1116,7 +1133,7 @@ CA
                                 </connections>
                             </progressIndicator>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="yhB-E0-ghf">
-                                <rect key="frame" x="97" y="162" width="240" height="37"/>
+                                <rect key="frame" x="47" y="102" width="240" height="37"/>
                                 <textFieldCell key="cell" enabled="NO" allowsUndo="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" drawsBackground="YES" id="gh7-qf-iwd">
                                     <font key="font" metaFont="system"/>
                                     <string key="title">No valid targets found.
