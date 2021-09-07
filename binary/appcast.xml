@@ -7,8 +7,15 @@
             <pubDate>Tue, 07 Sep 2021 15:11:41 +0700</pubDate>
             <sparkle:version>0.5.0</sparkle:version>
             <sparkle:shortVersionString>0.5.0</sparkle:shortVersionString>
+            <description><![CDATA[<h2>Tulsi++ 0.5.0 🔨 </h2>
+<h4>What's new:</h4> 
+<ol> 
+    <li>xcodeproj output will be saved on tulsiproj, so the value will be unique per tulsiproj</li>
+    <li>add `Changelogs` on menu bar</li>
+    <li>add options to open previous project without generate</li>
+</ol>
+]]></description>
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
-            <sparkle:releaseNotesLink>https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/tulsi_plus_plus_0_5_0.html</sparkle:releaseNotesLink>
             <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/tulsi_plus_plus_0_5_0.dmg" length="2655731" type="application/octet-stream" sparkle:edSignature="fmMAg6VVVCL7/Q5s+xDIuMKGgUYbprh6rnsehcFzcuG1IANqhTy9/q/8zNH+40mp8b+UkbxqVkXBjBc8fI3bBw=="/>
             <sparkle:deltas>
                 <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.5.0-0.4.4.delta" sparkle:deltaFrom="0.4.4" length="237032" type="application/octet-stream" sparkle:edSignature="Lfk5iqppKJMSQFN1aU7JQBl8D9Bj91z+xeW3/rgHeljMkSK/JwoIHNd84e7slJGD6Ibw24xyw2T7/fjq7tORDQ=="/>
