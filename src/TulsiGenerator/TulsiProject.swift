@@ -71,6 +71,7 @@ public final class TulsiProject {
     }
   }
   
+  /// Xcodeproj output path
   public var xcodeprojOutputPath: URL? {
     didSet {
       options[.XcodeprojOutputPath].projectValue = xcodeprojOutputPath?.path
