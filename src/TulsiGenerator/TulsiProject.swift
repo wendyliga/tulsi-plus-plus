@@ -70,6 +70,12 @@ public final class TulsiProject {
       options[.BazelPath].projectValue = bazelURL?.path
     }
   }
+  
+  public var xcodeprojOutputPath: URL? {
+    didSet {
+      options[.XcodeprojOutputPath].projectValue = xcodeprojOutputPath?.path
+    }
+  }
 
   /// Filename to be used when writing out user-specific values.
   public static var perUserFilename: String {
@@ -109,6 +115,7 @@ public final class TulsiProject {
       self.options[.BazelPath].projectValue = self.bazelURL?.path
     }
     self.options[.WorkspaceRootPath].projectValue = workspaceRootURL.path
+    self.options[.XcodeprojOutputPath].projectValue = nil
   }
 
   public convenience init(data: Data,

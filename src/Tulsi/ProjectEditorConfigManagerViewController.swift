@@ -61,14 +61,9 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
     }
   }
   
-  var outputPath: URL? {
-    get {
-      let value = UserDefaults.standard.string(forKey: "output_path")
-      return value.map { URL(string: $0) } ?? nil
-    }
-    set {
-      UserDefaults.standard.set(newValue?.absoluteString, forKey: "output_path")
-      outputPathControl.url = newValue
+  var xcodeOutputPath: URL? {
+    didSet {
+      outputPathControl.url = xcodeOutputPath
     }
   }
 
@@ -102,7 +97,14 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
          withKeyPath: "selectedObjects.@count",
          options: nil)
     self.generateButton.keyEquivalent = "\r"
-    self.outputPathControl.url = outputPath
+  }
+  
+  override func viewDidAppear() {
+    super.viewDidAppear()
+
+    if let document = representedObject as? TulsiProjectDocument {
+      xcodeOutputPath = document.project.xcodeprojOutputPath
+    }
   }
 
   // Toggle the state of the buttons depending on the current selection as well as if any required
@@ -141,6 +143,7 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
   }
     
   @IBAction func chooseOutputPath(_ sender: AnyObject?) {
+    let projectDocument = representedObject as! TulsiProjectDocument
     let panel = NSOpenPanel()
     panel.title = NSLocalizedString("ProjectGeneration_SelectProjectOutputFolderTitle",
                                     comment: "Title for open panel through which the user should select where to generate the Xcode project.")
@@ -154,7 +157,8 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
     panel.canChooseFiles = false
     panel.beginSheetModal(for: self.view.window!) { [weak self] in
       if $0 == NSApplication.ModalResponse.OK {
-        self?.outputPath = panel.url
+        projectDocument.project.xcodeprojOutputPath = panel.url
+        self?.xcodeOutputPath = panel.url
       }
     }
   }
@@ -171,7 +175,7 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
     generatorController.generateProjectForConfigName(
       configName,
       removePreviousProject: deletePreviousProjectCheckBox.state.rawValue == 1,
-      customOutputPath: outputPath
+      customOutputPath: xcodeOutputPath
     ) { (projectURL: URL?, newOutputPath: URL?) in
       self.dismiss(generatorController)
       if let projectURL = projectURL {
@@ -181,7 +185,8 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
       }
       
       if let newOutputPath = newOutputPath {
-        self.outputPath = newOutputPath
+        self.xcodeOutputPath = newOutputPath
+        projectDocument.project.xcodeprojOutputPath = newOutputPath
       }
     }
   }
