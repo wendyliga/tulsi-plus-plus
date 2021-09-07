@@ -28,6 +28,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     window.showWindow(self)
   }
   
+  @IBAction func openChangelogs(_ sender: NSMenuItem) {
+    NSWorkspace.shared.open(URL(string: "https://github.com/wendyliga/tulsi-plus-plus/blob/main/CHANGELOG.md")!)
+  }
+  
   @IBAction func fileBugReport(_ sender: NSMenuItem) {
     BugReporter.fileBugReport()
   }
