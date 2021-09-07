@@ -40,6 +40,9 @@ public enum TulsiOptionKey: String {
       TreeArtifactOutputs,
       // The path from a config file to its associated workspace root.
       WorkspaceRootPath,
+    
+      // Output directory for generated xcodeproj
+      XcodeprojOutputPath,
 
       // Commandline Arguments used by the run phase of the generated scheme.
       CommandlineArguments,
@@ -369,6 +372,7 @@ public class TulsiOptionSet: Equatable {
 
     addStringOption(.BazelPath, [.Hidden, .PerUserOnly])
     addStringOption(.WorkspaceRootPath, [.Hidden, .PerUserOnly])
+    addStringOption(.XcodeprojOutputPath, [.Hidden, .PerUserOnly])
   }
 
   private func populateOptionGroupInfoWithBundle(_ bundle: Bundle) {
