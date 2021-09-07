@@ -35,6 +35,15 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
   @IBOutlet weak var addRemoveSegmentedControl: NSSegmentedControl!
   @IBOutlet var generateButton: NSButton!
   @IBOutlet var outputPathControl: NSPathControl!
+  
+  private lazy var openPrevious = NSMenuItem(title: "Open previous without generate", action: nil, keyEquivalent: "")
+  
+  private lazy var otherOptionsMenu: NSMenu = {
+    let menu = NSMenu()
+    menu.addItem(openPrevious)
+    
+    return menu
+  }()
 
   @objc dynamic var numBazelPackages: Int = 0 {
     didSet {
@@ -61,12 +70,23 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
     }
   }
   
-  var xcodeOutputPath: URL? {
+  /// directory where to put `xcodeproj`
+  private var xcodeOutputPath: URL? {
     didSet {
       outputPathControl.url = xcodeOutputPath
     }
   }
-
+  
+  // after success generate once, will save here. so if user want to open without generate,
+  // we can refer the value here
+  private var previousProjectURL: URL? {
+    didSet {
+      // remove the action from menu item if value is not nil
+      // use this way instead of `isEnabled` because setting enable not dimmed the button.
+      openPrevious.action = previousProjectURL != nil ? #selector(openPreviousProject) : nil
+    }
+  }
+  
   override var representedObject: Any? {
     didSet {
       if let concreteRepresentedObject = representedObject {
@@ -179,6 +199,7 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
     ) { (projectURL: URL?, newOutputPath: URL?) in
       self.dismiss(generatorController)
       if let projectURL = projectURL {
+        self.previousProjectURL = projectURL
         LogMessage.postInfo("Opening generated project in Xcode",
                             context: projectDocument.projectName)
         NSWorkspace.shared.open(projectURL)
@@ -189,6 +210,16 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
         projectDocument.project.xcodeprojOutputPath = newOutputPath
       }
     }
+  }
+  
+  @IBAction func openOtherActionMenu(_ sender: NSButton?) {
+    guard let event = NSApplication.shared.currentEvent, let sender = sender else { return }
+    NSMenu.popUpContextMenu(otherOptionsMenu, with: event, for: sender)
+  }
+  
+  @objc func openPreviousProject() {
+    guard let previousProjectURL = previousProjectURL else { return }
+    NSWorkspace.shared.open(previousProjectURL)
   }
 
   @IBAction func didDoubleClickConfigRow(_ sender: NSTableView) {
