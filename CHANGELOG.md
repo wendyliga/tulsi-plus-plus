@@ -5,6 +5,7 @@
 <h4>What's new:</h4> 
 <ol> 
     <li>xcodeproj output will be saved on tulsiproj, so the value will be unique per tulsiproj</li>
+    <li>add `Changelogs` on menu bar</li>
 </ol> 
 
 ----
