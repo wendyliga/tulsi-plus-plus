@@ -50,7 +50,7 @@ lane :release do
 			"--sign \"#{ENV['CODESIGN_CERTIFICATE']}\" " \
 			"#{bazel_bin}/Tulsi++.dmg"
 
-  # create appcast
+  # # create binary
   app_version = sh "/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' #{bazel_bin}/Tulsi++.App/Contents/Info.plist"
   app_version_with_underscore = app_version.gsub(".", "_").delete("\n")
   sh "cp -rf #{bazel_bin}/Tulsi++.zip '#{workspace_path}/binary/tulsi_plus_plus_#{app_version_with_underscore}.zip'"
@@ -79,8 +79,9 @@ def create_versional_changelog_html(workspace_path, app_version)
     if line == "## #{app_version}" 
       start_index = index
       is_found = true 
-    elsif is_found and line == "" 
-      end_index = index
+    elsif is_found and line == "----" 
+      end_index = index-1
+      break
     end
   end
 
