@@ -3,6 +3,27 @@
     <channel>
         <title>Tulsi++</title>
         <item>
+            <title>0.5.1</title>
+            <pubDate>Fri, 10 Sep 2021 10:31:40 +0700</pubDate>
+            <sparkle:version>0.5.1</sparkle:version>
+            <sparkle:shortVersionString>0.5.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
+            <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/tulsi_plus_plus_0_5_1.dmg" length="2655841" type="application/octet-stream" sparkle:edSignature="G3aiqFOcOI9bXdhCCtACyiyQr2QOvdmB6uhdDOpwXruJ2D0qgyTeM3MPJ4mjmSx17chnezDEeurRgNr8NZW7CQ=="/>
+            <sparkle:deltas>
+                <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.5.1-0.5.0.delta" sparkle:deltaFrom="0.5.0" length="95119" type="application/octet-stream" sparkle:edSignature="Qcb69Bw/jXnWSb2Ps05SXuLPILcqNmIEutvgGdJqUjTra2dx0Cb/9dtH0TfqSDw5gTuZyCRpBjeqZtX8bbGbBg=="/>
+                <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.5.1-0.5.0.delta" sparkle:deltaFrom="0.5.0" length="95119" type="application/octet-stream" sparkle:edSignature="Qcb69Bw/jXnWSb2Ps05SXuLPILcqNmIEutvgGdJqUjTra2dx0Cb/9dtH0TfqSDw5gTuZyCRpBjeqZtX8bbGbBg=="/>
+                <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.5.1-0.4.4.delta" sparkle:deltaFrom="0.4.4" length="241620" type="application/octet-stream" sparkle:edSignature="X8oqdgD6u0oV2bVi4hxjT6iB26Gk5o2wYmy4g5S2TpSgtsXS8B/9mQJX04a/qU0DV4c7aPr6hDnMVZaLeZmjAQ=="/>
+                <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.5.1-0.4.4.delta" sparkle:deltaFrom="0.4.4" length="241620" type="application/octet-stream" sparkle:edSignature="X8oqdgD6u0oV2bVi4hxjT6iB26Gk5o2wYmy4g5S2TpSgtsXS8B/9mQJX04a/qU0DV4c7aPr6hDnMVZaLeZmjAQ=="/>
+                <enclosure url="https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/Tulsi++0.5.1-0.4.3.delta" sparkle:deltaFrom="0.4.3" length="251642" type="application/octet-stream" sparkle:edSignature="IEZsdJhggHwj0BG9BFjZY0eRn0htUvnRSRMuzemPrd1SGiRvpMYJkupYXWtgPTcSUMJSj0GV65RnF+dfPBpyCQ=="/>
+            </sparkle:deltas>
+            <description><![CDATA[<h2>Tulsi++ 0.5.1 🔨 </h2>
+<h4>What's new:</h4> 
+<ol> 
+    <li>fix xcodeproj path cleared after reopen</li>
+</ol>
+]]></description>
+        </item>
+        <item>
             <title>0.5.0</title>
             <pubDate>Tue, 07 Sep 2021 15:11:41 +0700</pubDate>
             <sparkle:version>0.5.0</sparkle:version>

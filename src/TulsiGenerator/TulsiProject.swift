@@ -115,8 +115,15 @@ public final class TulsiProject {
       self.bazelURL = BazelLocator.bazelURL
       self.options[.BazelPath].projectValue = self.bazelURL?.path
     }
+    
+    // initialize xcodeproj path from tulsiproj if exist
+    if let xcodeprojOutputPath = self.options[.XcodeprojOutputPath].projectValue {
+      self.xcodeprojOutputPath = URL(fileURLWithPath: xcodeprojOutputPath)
+    } else {
+      self.options[.XcodeprojOutputPath].projectValue = nil
+    }
+    
     self.options[.WorkspaceRootPath].projectValue = workspaceRootURL.path
-    self.options[.XcodeprojOutputPath].projectValue = nil
   }
 
   public convenience init(data: Data,

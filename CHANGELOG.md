@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 0.5.1
+<h2>Tulsi++ 0.5.1 🔨 </h2>
+<h4>What's new:</h4> 
+<ol> 
+    <li>fix xcodeproj path cleared after reopen</li>
+</ol>
+
+----
+
 ## 0.5.0
 <h2>Tulsi++ 0.5.0 🔨 </h2>
 <h4>What's new:</h4> 
