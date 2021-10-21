@@ -1,7 +1,7 @@
 # CHANGELOG
 
 ## 0.5.2
-<h2>Tulsi++ 0.5.1 🔨 </h2>
+<h2>Tulsi++ 0.5.2 🔨 </h2>
 <h4>What's new:</h4> 
 <ol> 
     <li>sync with upstream including but not limited to:</li>
