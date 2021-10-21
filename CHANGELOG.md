@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.5.2
+<h2>Tulsi++ 0.5.1 🔨 </h2>
+<h4>What's new:</h4> 
+<ol> 
+    <li>sync with upstream including but not limited to:</li>
+    <li>support ios_sim_arm64 cpu type</li>
+    <li>point external path into stable external directory</li>
+    <li>fix broken external BuildLabel filename parsing</li>
+</ol>
+
+----
+
 ## 0.5.1
 <h2>Tulsi++ 0.5.1 🔨 </h2>
 <h4>What's new:</h4> 

@@ -456,16 +456,6 @@ class BazelBuildBridge(object):
 
     self.update_symbol_cache = UpdateSymbolCache()
 
-    # Target architecture.  Must be defined for correct setting of
-    # the --cpu flag. Note that Xcode will set multiple values in
-    # ARCHS when building for a Generic Device.
-    archs = os.environ.get('ARCHS')
-    if not archs:
-      _PrintXcodeError('Tulsi requires env variable ARCHS to be '
-                       'set.  Please file a bug against Tulsi.')
-      sys.exit(1)
-    self.arch = archs.split()[-1]
-
     # Path into which generated artifacts should be copied.
     self.built_products_dir = os.environ['BUILT_PRODUCTS_DIR']
     # Path where Xcode expects generated sources to be placed.
@@ -521,6 +511,20 @@ class BazelBuildBridge(object):
     else:
       self.codesigning_allowed = os.environ.get('CODE_SIGNING_ALLOWED') == 'YES'
 
+    # Target architecture.  Must be defined for correct setting of
+    # the --cpu flag. Note that Xcode will set multiple values in
+    # ARCHS when building for a Generic Device.
+    archs = os.environ.get('ARCHS')
+    if not archs:
+      _PrintXcodeError('Tulsi requires env variable ARCHS to be '
+                       'set.  Please file a bug against Tulsi.')
+      sys.exit(1)
+    arch = archs.split()[-1]
+    if self.is_simulator and arch == "arm64":
+      self.arch = "sim_" + arch
+    else:
+      self.arch = arch
+
     if self.codesigning_allowed:
       platform_prefix = 'iOS'
       if self.platform_name.startswith('macos'):
@@ -554,6 +558,7 @@ class BazelBuildBridge(object):
     self.bazel_bin_path = os.path.abspath(parser.bazel_bin_path)
     self.bazel_executable = parser.bazel_executable
     self.bazel_exec_root = self.build_settings.bazelExecRoot
+    self.bazel_output_base = self.build_settings.bazelOutputBase
 
     # Update feature flags.
     features = parser.GetEnabledFeatures()
@@ -584,17 +589,35 @@ class BazelBuildBridge(object):
     post_bazel_timer = Timer('Total Tulsi Post-Bazel time', 'total_post_bazel')
     post_bazel_timer.Start()
 
+
+    # This needs to run after `bazel build`, since it depends on the Bazel
+    # output directories
+
     if not os.path.exists(self.bazel_exec_root):
       _Fatal('No Bazel execution root was found at %r. Debugging experience '
              'will be compromised. Please report a Tulsi bug.'
              % self.bazel_exec_root)
       return 404
+    if not os.path.exists(self.bazel_output_base):
+      _Fatal('No Bazel output base was found at %r. Editing experience '
+             'will be compromised for external workspaces. Please report a'
+             ' Tulsi bug.'
+             % self.bazel_output_base)
+      return 404
 
-    # This needs to run after `bazel build`, since it depends on the Bazel
-    # workspace directory
-    exit_code = self._LinkTulsiWorkspace()
+    exit_code = self._LinkTulsiToBazel('tulsi-execution-root', self.bazel_exec_root)
     if exit_code:
       return exit_code
+    # Old versions of Tulsi mis-referred to the execution root as the workspace.
+    # We preserve the old symlink name for backwards compatibility.
+    exit_code = self._LinkTulsiToBazel('tulsi-workspace', self.bazel_exec_root)
+    if exit_code:
+      return exit_code
+    exit_code = self._LinkTulsiToBazel(
+        'tulsi-output-base', self.bazel_output_base)
+    if exit_code:
+      return exit_code
+
 
     exit_code, outputs_data = self._ExtractAspectOutputsData(outputs)
     if exit_code:
@@ -1753,17 +1776,17 @@ class BazelBuildBridge(object):
       sm_execroot = self._NormalizePath(sm_execroot)
     return (sm_execroot, sm_destpath)
 
-  def _LinkTulsiWorkspace(self):
-    """Links the Bazel Workspace to the Tulsi Workspace (`tulsi-workspace`)."""
-    tulsi_workspace = os.path.join(self.project_file_path,
+  def _LinkTulsiToBazel(self, symlink_name, destination):
+    """Links symlink_name (in project/.tulsi) to the specified destination."""
+    symlink_path = os.path.join(self.project_file_path,
                                    '.tulsi',
-                                   'tulsi-workspace')
-    if os.path.islink(tulsi_workspace):
-      os.unlink(tulsi_workspace)
-    os.symlink(self.bazel_exec_root, tulsi_workspace)
-    if not os.path.exists(tulsi_workspace):
+                                   symlink_name)
+    if os.path.islink(symlink_path):
+      os.unlink(symlink_path)
+    os.symlink(destination, symlink_path)
+    if not os.path.exists(symlink_path):
       _PrintXcodeError(
-          'Linking Tulsi Workspace to %s failed.' % tulsi_workspace)
+          'Linking %s to %s failed.' % (symlink_path, destination))
       return -1
 
   @staticmethod

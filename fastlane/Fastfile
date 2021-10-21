@@ -41,7 +41,6 @@ lane :release do
 
   # create zip
 	sh "ditto -c -k --keepParent #{bazel_bin}/Tulsi++.app #{bazel_bin}/Tulsi++.zip"
-	# sh "#{workspace_path}/src/tools/sparkle/sign_update -s #{ENV['SPARKLE_PRIVATE_KEY']} #{bazel_bin}/Tulsi++.zip"
 	
   # create dmg
 	sh "(#{workspace_path}/src/tools/BuildTools/create_dmg.sh #{bazel_bin}/Tulsi++.app -o #{bazel_bin}/Tulsi++.dmg)"
@@ -50,7 +49,7 @@ lane :release do
 			"--sign \"#{ENV['CODESIGN_CERTIFICATE']}\" " \
 			"#{bazel_bin}/Tulsi++.dmg"
 
-  # # create binary
+  # create binary
   app_version = sh "/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' #{bazel_bin}/Tulsi++.App/Contents/Info.plist"
   app_version_with_underscore = app_version.gsub(".", "_").delete("\n")
   sh "cp -rf #{bazel_bin}/Tulsi++.zip '#{workspace_path}/binary/tulsi_plus_plus_#{app_version_with_underscore}.zip'"
@@ -63,8 +62,6 @@ lane :release do
   sh "#{workspace_path}/src/tools/sparkle/generate_appcast #{workspace_path}/binary " \
     "-s #{ENV['SPARKLE_PRIVATE_KEY']} " \
     "--download-url-prefix 'https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/'"
-
-  
 end
 
 def create_versional_changelog_html(workspace_path, app_version)

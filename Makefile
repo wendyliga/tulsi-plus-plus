@@ -1,6 +1,6 @@
 
 # default
-default_xcode_version=12.5.1
+default_xcode_version=13.0.0
 default_unzip_dir=${HOME}/Applications
 default_bazel_path=bazel
 
