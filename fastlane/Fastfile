@@ -13,9 +13,6 @@ end
 
 lane :certificates do
     match(
-      app_identifier: [
-        "com.wendyliga.TulsiPlusPlus"
-      ],
       type: "developer_id",
       keychain_name: "fastlane_match_code_sign",
       keychain_password: ENV["KEYCHAIN_PASSWORD"],
