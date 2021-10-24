@@ -22,3 +22,4 @@ fastlane/report.xml
 src/build/
 /bazel-*
 binary/
+binary/appcast.xml

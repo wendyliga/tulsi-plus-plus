@@ -60,11 +60,10 @@ jobs:
           author: Wendy's Github Bot <github-bot@wendyliga.com>
           commit-message: 'update mimiq formula'
           title: 'Update appcast.xml'
-          branch: mimiq
+          branch: update_appcast
           base: main
           branch-suffix: timestamp
           reviewers: wendyliga
-          body: Automated changes created on [mimiq release](https://github.com/wendyliga/mimiq/releases)
     - name: Check outputs
       run: |
         echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
