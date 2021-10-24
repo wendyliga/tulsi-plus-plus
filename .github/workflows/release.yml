@@ -49,7 +49,7 @@ jobs:
     - name: "Create Release"
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "binary/tulsi_plus_plus.dmg,binary/tulsi_plus_plus.dmg"
+        artifacts: "binary/tulsi_plus_plus.dmg,binary/tulsi_plus_plus.zip"
         bodyFile: "binary/tulsi_plus_plus.html"
         token: ${{ secrets.GITHUB_TOKEN }}
           
