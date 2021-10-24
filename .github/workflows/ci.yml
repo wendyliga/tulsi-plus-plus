@@ -34,7 +34,7 @@ jobs:
         GIT_EMAIL: ${{ secrets.FASTLANE_CODE_SIGN_REPO_USER }}
       run: bundle exec fastlane certificates      
     - name: Build
-       env:
+      env:
         APPLE_ID: ${{ secrets.APPLE_ID }} 
         FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD : ${{ secrets.APPLE_ACCESS_TOKEN }}
         FASTLANE_PASSWORD: ${{ secrets.APPLE_ACCESS_TOKEN }}
