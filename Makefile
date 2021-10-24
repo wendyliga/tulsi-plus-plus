@@ -16,7 +16,7 @@ define build_script
 	$(if $(filter $(1),is_ci), \
 		@$(_bazel_path) build //:tulsi \
 			--config=ci -s \
-			--verbose_failures --verbose_explanations \
+			--verbose_failures \
 			--use_top_level_targets_for_symlinks \
 			--xcode_version=${_xcode_version}, \
 		@$(_bazel_path) build //:tulsi \
