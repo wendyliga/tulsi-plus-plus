@@ -46,12 +46,12 @@ jobs:
         SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY}}
         RELEASE_VERSION: ${{ env.RELEASE_VERSION }}
       run: bundle exec fastlane release
-    # - name: "Create Release"
-    #   uses: ncipollo/release-action@v1
-    #   with:
-    #     artifacts: "binary/tulsi_plus_plus.dmg,binary/tulsi_plus_plus.zip"
-    #     bodyFile: "binary/tulsi_plus_plus.html"
-    #     token: ${{ secrets.GITHUB_TOKEN }}
+    - name: "Create Release"
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "binary/tulsi_plus_plus.dmg,binary/tulsi_plus_plus.zip"
+        bodyFile: "binary/tulsi_plus_plus.html"
+        token: ${{ secrets.GITHUB_TOKEN }}
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
       with:

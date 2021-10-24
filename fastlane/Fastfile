@@ -40,12 +40,12 @@ lane :release do
   sh "codesign --verify --deep --verbose=4 #{bazel_bin}/Tulsi++.app"
 
   # notorize
-  # notarize(
-  #   package: "bazel-bin/Tulsi++.app",
-  #   asc_provider: ENV["TEAM_ID"],
-  #   print_log: true,
-  #   verbose: true
-  # )
+  notarize(
+    package: "bazel-bin/Tulsi++.app",
+    asc_provider: ENV["TEAM_ID"],
+    print_log: true,
+    verbose: true
+  )
 
   # create zip
 	sh "ditto -c -k --keepParent #{bazel_bin}/Tulsi++.app #{bazel_bin}/Tulsi++.zip"
