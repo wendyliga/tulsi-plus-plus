@@ -78,6 +78,7 @@ lane :release do
   # move appcast.xml to root
   sh "cp -rf #{workspace_path}/binary/appcast.xml #{workspace_path}/appcast.xml"
 
+  sh "pwd"
   sh "git status"
 end
 
