@@ -14,7 +14,7 @@
 </ol>
 ]]></description>
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.5.3/tulsi_plus_plus.dmg" length="2529026" type="application/octet-stream" sparkle:edSignature="MgoyKJzFb/4H3GW0XU5kHGjfS68FB0uZC/cVV4+fEqHndjO9Jgs5M+Kims8JVb66nQJOfGFVeNCT6VjQLFatDA=="/>
+            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.0.0/tulsi_plus_plus.dmg" length="2524604" type="application/octet-stream" sparkle:edSignature="uUxx3zYY1pC38FayleyEruIp/Cup1bahpuqXR0FGy4vre53GHrN3GTSPmMZFaP+9S5MTm6FDBHN2IiB97M3gAQ=="/>
         </item>
     </channel>
 </rss>
