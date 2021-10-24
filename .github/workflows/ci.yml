@@ -28,16 +28,11 @@ jobs:
     - name: Fetch Provisioning Profile
       env:
         KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }} 
-        MATCH_REPO: ${{ secrets.FASTLANE_CODE_SIGN_REPO_URL }}
-        MATCH_PASSWORD: ${{ secrets.FASTLANE_MATCH_PASSPHRASE }}
-        MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.FASTLANE_MATCH_GIT_BASIC_AUTHORIZATION }}
-        GIT_EMAIL: ${{ secrets.FASTLANE_CODE_SIGN_REPO_USER }}
+        MATCH_REPO: ${{ secrets.MATCH_REPO }}
+        MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+        MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+        GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
       run: bundle exec fastlane certificates      
     - name: Build
       env:
-        APPLE_ID: ${{ secrets.APPLE_ID }} 
-        FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD : ${{ secrets.APPLE_ACCESS_TOKEN }}
-        FASTLANE_PASSWORD: ${{ secrets.APPLE_ACCESS_TOKEN }}
-        TEAM_NAME: ${{ secrets.TEAM_NAME }} 
-        TEAM_ID: ${{ secrets.TEAM_ID }}
       run: make build xcode=${{ matrix.xcode }}
