@@ -21,4 +21,4 @@ fastlane/report.xml
 # Build artifacts
 src/build/
 /bazel-*
-binary/*
+binary/
