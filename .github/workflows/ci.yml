@@ -5,18 +5,18 @@ on:
     branches: 
       - main
   pull_request:
-    branches: [main]
-    types: [synchronize, opened, reopened, ready_for_review]
+    - '*'
       
 jobs:
   build:
     name: Build
-    runs-on: [macos-latest, macos-11, macos-10.15]
+    runs-on: macos-latest
     strategy:
       matrix:
         xcode:
-          - 12.4
-          - 13.0
+          - '12.4'
+          - '12.5.1'
+          - '13.0'
     steps:
     - name: Checkout
       uses: actions/checkout@v2
