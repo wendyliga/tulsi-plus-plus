@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 0.5.3
+<h2>Tulsi++ 0.5.3 🔨 </h2>
+<h4>What's new:</h4> 
+<ol> 
+    <li>update appcast to use new binary url from new release system</li>
+</ol>
+
+----
+
 ## 0.5.2
 <h2>Tulsi++ 0.5.2 🔨 </h2>
 <h4>What's new:</h4> 
