@@ -1,0 +1,46 @@
+name: CI
+
+# on:
+#   push:
+#     tags:
+#       - '*'
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  release:
+    name: Release
+    runs-on: macos-latest
+    timeout-minutes: 240
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup Bundle
+      run: bundle install
+    - name: Setup Keychain
+      env:
+        KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+      run: bundle exec fastlane setup
+    - name: Fetch Provisioning Profile
+      env:
+        KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }} 
+        MATCH_REPO: ${{ secrets.MATCH_REPO }}
+        MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+        MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+        GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
+      run: bundle exec fastlane certificates      
+    - name: Release
+      env:
+        APPLE_ID: ${{ secrets.APPLE_ID }} 
+        FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD : ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+        FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+        TEAM_NAME: ${{ secrets.TEAM_NAME }} 
+        TEAM_ID: ${{ secrets.TEAM_ID }}
+      run: bundle exec fastlane release
+      
