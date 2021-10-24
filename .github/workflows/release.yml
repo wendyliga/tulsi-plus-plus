@@ -52,8 +52,17 @@ jobs:
     #     artifacts: "binary/tulsi_plus_plus.dmg,binary/tulsi_plus_plus.zip"
     #     bodyFile: "binary/tulsi_plus_plus.html"
     #     token: ${{ secrets.GITHUB_TOKEN }}
-    - name: "Create Pull Request to update appcast.xml"
+    - name: Create Pull Request to update appcast.xml
       uses: peter-evans/create-pull-request@v3
+      with:
+          token: ${{ secrets.BOT_ACCESS_TOKEN }}
+          committer: Wendy's Github Bot <github-bot@wendyliga.com>
+          author: Wendy's Github Bot <github-bot@wendyliga.com>
+          commit-message: 'update appcast.xml'
+          title: 'update appcast.xml'
+          branch: appcast
+          branch-suffix: timestamp
+          reviewers: wendyliga
       
           
           
