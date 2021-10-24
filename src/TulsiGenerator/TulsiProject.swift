@@ -70,6 +70,13 @@ public final class TulsiProject {
       options[.BazelPath].projectValue = bazelURL?.path
     }
   }
+  
+  /// Xcodeproj output path
+  public var xcodeprojOutputPath: URL? {
+    didSet {
+      options[.XcodeprojOutputPath].projectValue = xcodeprojOutputPath?.path
+    }
+  }
 
   /// Filename to be used when writing out user-specific values.
   public static var perUserFilename: String {
@@ -108,6 +115,14 @@ public final class TulsiProject {
       self.bazelURL = BazelLocator.bazelURL
       self.options[.BazelPath].projectValue = self.bazelURL?.path
     }
+    
+    // initialize xcodeproj path from tulsiproj if exist
+    if let xcodeprojOutputPath = self.options[.XcodeprojOutputPath].projectValue {
+      self.xcodeprojOutputPath = URL(fileURLWithPath: xcodeprojOutputPath)
+    } else {
+      self.options[.XcodeprojOutputPath].projectValue = nil
+    }
+    
     self.options[.WorkspaceRootPath].projectValue = workspaceRootURL.path
   }
 

@@ -1,4 +1,4 @@
-# Tulsi++ - an Xcode Project Generator For Bazel
+# Tulsi++ - Xcode Project Generator For Bazel
 
 <p align="center"><img width="200" src="src/Tulsi/Assets.xcassets/AppIcon.appiconset/tulsi_plus_plus.png"></p>
 
@@ -14,11 +14,12 @@
     </a>
 </p>
 
-Tulsi++ is steroid version of Tulsi with lots of improvement on UX side.
+Tulsi++ is steroid version of [Tulsi](https://github.com/bazelbuild/tulsi) with lots of improvement on UX side.
 
 ## Difference from standart Tulsi
 - OTA Update 
 - Improvement to support latest Xcode
+- Distribution binary is code-signed and properly notorized by apple 
 - and many more
 
 ## Installing

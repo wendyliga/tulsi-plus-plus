@@ -80,28 +80,32 @@ class XcodeProjectGenerationProgressViewController: NSViewController {
   func generateProjectForConfigName(
     _ name: String,
     removePreviousProject: Bool,
-    completionHandler: @escaping (URL?) -> Void
+    customOutputPath: URL? = nil,
+    completionHandler: @escaping (_ projectURL: URL?,_ outputPath: URL?) -> Void
   ) {
     assert(view.window != nil, "Must not be called until after the view controller is presented.")
     self.removePreviousProject = removePreviousProject
+    self.outputFolderURL = customOutputPath
+    
     if outputFolderURL == nil {
       showOutputFolderPicker() { (url: URL?) in
         guard let url = url else {
-          completionHandler(nil)
+          completionHandler(nil, nil)
           return
         }
         self.outputFolderURL = url
         self.generateProjectForConfigName(
           name,
           removePreviousProject: removePreviousProject,
+          customOutputPath: url,
           completionHandler: completionHandler
         )
       }
       return
     }
 
-    generateXcodeProjectForConfigName(name) { (projectURL: URL?) in
-      completionHandler(projectURL)
+    generateXcodeProjectForConfigName(name) { [weak self] (projectURL: URL?) in
+      completionHandler(projectURL, self?.outputFolderURL)
     }
   }
 

@@ -28,6 +28,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     window.showWindow(self)
   }
   
+  @IBAction func openChangelogs(_ sender: NSMenuItem) {
+    NSWorkspace.shared.open(URL(string: "https://github.com/wendyliga/tulsi-plus-plus/blob/main/CHANGELOG.md")!)
+  }
+  
   @IBAction func fileBugReport(_ sender: NSMenuItem) {
     BugReporter.fileBugReport()
   }
@@ -40,6 +44,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     let version = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
     LogMessage.postSyslog("Tulsi UI: version \(version)")
+    
+    // config updater
+    updaterController.updater.automaticallyChecksForUpdates = true
+    updaterController.updater.updateCheckInterval = TimeInterval(24 * 60 * 60) // 1 day
   }
 
   func applicationDidFinishLaunching(_ notification: Notification) {
@@ -50,6 +58,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     checkForUpdatesMenuItem.target = updaterController
     checkForUpdatesMenuItem.action = #selector(SPUStandardUpdaterController.checkForUpdates(_:))
     updaterController.startUpdater()
+    
+    // check on startup
+    updaterController.updater.checkForUpdatesInBackground()
   }
 
   func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {

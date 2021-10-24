@@ -145,7 +145,7 @@ GEM
       domain_name (~> 0.5)
     httpclient (2.8.3)
     jmespath (1.4.0)
-    json (2.1.0)
+    json (2.5.1)
     jwt (2.1.0)
     memoist (0.16.0)
     mini_magick (4.11.0)
@@ -158,13 +158,13 @@ GEM
     os (1.0.0)
     plist (3.4.0)
     public_suffix (2.0.5)
-    rake (12.3.2)
+    rake (13.0.6)
     representable (3.0.4)
       declarative (< 0.1.0)
       declarative-option (< 0.2.0)
       uber (< 0.2.0)
     retriable (3.1.2)
-    rexml (3.1.9)
+    rexml (3.2.5)
     rouge (2.0.7)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
@@ -204,6 +204,7 @@ GEM
 
 PLATFORMS
   universal-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   fastlane

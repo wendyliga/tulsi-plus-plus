@@ -40,6 +40,9 @@ public enum TulsiOptionKey: String {
       TreeArtifactOutputs,
       // The path from a config file to its associated workspace root.
       WorkspaceRootPath,
+    
+      // Output directory for generated xcodeproj
+      XcodeprojOutputPath,
 
       // Commandline Arguments used by the run phase of the generated scheme.
       CommandlineArguments,
@@ -70,6 +73,10 @@ public enum TulsiOptionKey: String {
 
       // Whether test sources are filtered by the project's path filters.
       PathFiltersApplyToTestSources,
+    
+      // Generating project using real file path instead of dummy path.
+      // Reference: https://github.com/bazelbuild/tulsi/issues/55
+      ProjectGenerationUseRealFilePath,
 
       // Used by Tulsi to improve Bazel-caching of build flags.
       ProjectPrioritizesSwift,
@@ -334,6 +341,7 @@ public class TulsiOptionSet: Equatable {
     addBoolOption(.PathFiltersApplyToTestSources, .Generic, true)
     addBoolOption(.ProjectPrioritizesSwift, .Generic, true)
     addBoolOption(.SwiftForcesdSYMs, .Generic, false)
+    addBoolOption(.ProjectGenerationUseRealFilePath, .Generic, true)
     addBoolOption(.TreeArtifactOutputs, .Generic, true)
     addBoolOption(.Use64BitWatchSimulator, .Generic, false)
     addBoolOption(.DisableCustomLLDBInit, .Generic, false)
@@ -364,6 +372,7 @@ public class TulsiOptionSet: Equatable {
 
     addStringOption(.BazelPath, [.Hidden, .PerUserOnly])
     addStringOption(.WorkspaceRootPath, [.Hidden, .PerUserOnly])
+    addStringOption(.XcodeprojOutputPath, [.Hidden, .PerUserOnly])
   }
 
   private func populateOptionGroupInfoWithBundle(_ bundle: Bundle) {

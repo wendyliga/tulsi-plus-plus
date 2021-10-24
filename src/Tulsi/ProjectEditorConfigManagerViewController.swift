@@ -34,6 +34,16 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
   @IBOutlet var configArrayController: NSArrayController!
   @IBOutlet weak var addRemoveSegmentedControl: NSSegmentedControl!
   @IBOutlet var generateButton: NSButton!
+  @IBOutlet var outputPathControl: NSPathControl!
+  
+  private lazy var openPrevious = NSMenuItem(title: "Open previous without generate", action: nil, keyEquivalent: "")
+  
+  private lazy var otherOptionsMenu: NSMenu = {
+    let menu = NSMenu()
+    menu.addItem(openPrevious)
+    
+    return menu
+  }()
 
   @objc dynamic var numBazelPackages: Int = 0 {
     didSet {
@@ -59,7 +69,24 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
       updateButtonsState()
     }
   }
-
+  
+  /// directory where to put `xcodeproj`
+  private var xcodeOutputPath: URL? {
+    didSet {
+      outputPathControl.url = xcodeOutputPath
+    }
+  }
+  
+  // after success generate once, will save here. so if user want to open without generate,
+  // we can refer the value here
+  private var previousProjectURL: URL? {
+    didSet {
+      // remove the action from menu item if value is not nil
+      // use this way instead of `isEnabled` because setting enable not dimmed the button.
+      openPrevious.action = previousProjectURL != nil ? #selector(openPreviousProject) : nil
+    }
+  }
+  
   override var representedObject: Any? {
     didSet {
       if let concreteRepresentedObject = representedObject {
@@ -90,6 +117,14 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
          withKeyPath: "selectedObjects.@count",
          options: nil)
     self.generateButton.keyEquivalent = "\r"
+  }
+  
+  override func viewDidAppear() {
+    super.viewDidAppear()
+
+    if let document = representedObject as? TulsiProjectDocument {
+      xcodeOutputPath = document.project.xcodeprojOutputPath
+    }
   }
 
   // Toggle the state of the buttons depending on the current selection as well as if any required
@@ -126,12 +161,32 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
         didClickAction(sender)
     }
   }
+    
+  @IBAction func chooseOutputPath(_ sender: AnyObject?) {
+    let projectDocument = representedObject as! TulsiProjectDocument
+    let panel = NSOpenPanel()
+    panel.title = NSLocalizedString("ProjectGeneration_SelectProjectOutputFolderTitle",
+                                    comment: "Title for open panel through which the user should select where to generate the Xcode project.")
+    panel.message = NSLocalizedString("ProjectGeneration_SelectProjectOutputFolderMessage",
+                                      comment: "Message to show at the top of the Xcode output folder sheet, explaining what to do.")
+
+    panel.prompt = NSLocalizedString("ProjectGeneration_SelectProjectOutputFolderAndGeneratePrompt",
+                                     comment: "Label for the button used to confirm the selected output folder for the generated Xcode project which will also start generating immediately.")
+    panel.canChooseDirectories = true
+    panel.canCreateDirectories = true
+    panel.canChooseFiles = false
+    panel.beginSheetModal(for: self.view.window!) { [weak self] in
+      if $0 == NSApplication.ModalResponse.OK {
+        projectDocument.project.xcodeprojOutputPath = panel.url
+        self?.xcodeOutputPath = panel.url
+      }
+    }
+  }
 
   @IBAction func doGenerate(_ sender: AnyObject?) {
     guard let configName = configArrayController.selectedObjects.first as? String else { return }
     guard requireValidBazel({ self.doGenerate(sender) }) else { return }
 
-    
     let generatorController = XcodeProjectGenerationProgressViewController()
     generatorController.representedObject = representedObject
     presentAsSheet(generatorController)
@@ -139,15 +194,32 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
     let projectDocument = representedObject as! TulsiProjectDocument
     generatorController.generateProjectForConfigName(
       configName,
-      removePreviousProject: deletePreviousProjectCheckBox.state.rawValue == 1
-    ) { (projectURL: URL?) in
+      removePreviousProject: deletePreviousProjectCheckBox.state.rawValue == 1,
+      customOutputPath: xcodeOutputPath
+    ) { (projectURL: URL?, newOutputPath: URL?) in
       self.dismiss(generatorController)
       if let projectURL = projectURL {
+        self.previousProjectURL = projectURL
         LogMessage.postInfo("Opening generated project in Xcode",
                             context: projectDocument.projectName)
         NSWorkspace.shared.open(projectURL)
       }
+      
+      if let newOutputPath = newOutputPath {
+        self.xcodeOutputPath = newOutputPath
+        projectDocument.project.xcodeprojOutputPath = newOutputPath
+      }
     }
+  }
+  
+  @IBAction func openOtherActionMenu(_ sender: NSButton?) {
+    guard let event = NSApplication.shared.currentEvent, let sender = sender else { return }
+    NSMenu.popUpContextMenu(otherOptionsMenu, with: event, for: sender)
+  }
+  
+  @objc func openPreviousProject() {
+    guard let previousProjectURL = previousProjectURL else { return }
+    NSWorkspace.shared.open(previousProjectURL)
   }
 
   @IBAction func didDoubleClickConfigRow(_ sender: NSTableView) {

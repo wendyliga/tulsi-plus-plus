@@ -22,6 +22,9 @@
 "ProjectGenerationBazelStartupOptions" = "'build' startup options used for project generation.";
 "ProjectGenerationBazelStartupOptions_DESC" = "Modify this to add startup options for bazel invocations during project generation. Note: Modifying this will trigger a server restart between project generation and building, so the first build after generating the project will be slower than usual.";
 
+"ProjectGenerationUseRealFilePath" = "Use real Groups file path";
+"ProjectGenerationUseRealFilePath_DESC" = "Experimental Feature! By default Tulsi use dummy file path for Groups to prevents some issues related to project-generation. By turning this ON, the generated-project will use real path for Groups. This can let developer to maintain file easily on Xcode, but may can cause some issues.";
+
 "BazelBuildStartupOptions" = "'build' startup options";
 "BazelBuildStartupOptions_DESC" = "Startup options for bazel 'build' invocations.";
 "BazelBuildStartupOptionsDebug" = "Debug";
