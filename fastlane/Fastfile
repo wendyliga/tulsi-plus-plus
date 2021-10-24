@@ -78,6 +78,8 @@ lane :release do
   # move appcast.xml to root
   sh "cp -rf #{workspace_path}/binary/appcast.xml #{workspace_path}/appcast.xml"
   sh "git remote -v"
+  sh "git status"
+  sh "git fetch origin main"
   sh "git checkout origin/main -- binary"
 end
 
