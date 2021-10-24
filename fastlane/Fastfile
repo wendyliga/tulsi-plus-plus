@@ -40,12 +40,12 @@ lane :release do
   sh "codesign --verify --deep --verbose=4 #{bazel_bin}/Tulsi++.app"
 
   # notorize
-  notarize(
-    package: "bazel-bin/Tulsi++.app",
-    asc_provider: ENV["TEAM_ID"],
-    print_log: true,
-    verbose: true
-  )
+  # notarize(
+  #   package: "bazel-bin/Tulsi++.app",
+  #   asc_provider: ENV["TEAM_ID"],
+  #   print_log: true,
+  #   verbose: true
+  # )
 
   # create zip
 	sh "ditto -c -k --keepParent #{bazel_bin}/Tulsi++.app #{bazel_bin}/Tulsi++.zip"
@@ -77,6 +77,7 @@ lane :release do
 
   # move appcast.xml to root
   sh "cp -rf #{workspace_path}/binary/appcast.xml #{workspace_path}/appcast.xml"
+  sh "git remote -v"
   sh "git checkout origin/main -- binary"
 end
 
