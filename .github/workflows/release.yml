@@ -61,6 +61,7 @@ jobs:
           commit-message: 'update mimiq formula'
           title: 'Update appcast.xml'
           branch: mimiq
+          base: main
           branch-suffix: timestamp
           reviewers: wendyliga
           body: Automated changes created on [mimiq release](https://github.com/wendyliga/mimiq/releases)
