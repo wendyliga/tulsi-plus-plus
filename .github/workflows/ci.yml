@@ -34,5 +34,4 @@ jobs:
         GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
       run: bundle exec fastlane certificates      
     - name: Build
-      env:
       run: make build xcode=${{ matrix.xcode }}
