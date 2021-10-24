@@ -1,9 +1,6 @@
-name: CI
+name: Pull Request
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - '*'
