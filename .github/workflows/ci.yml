@@ -16,6 +16,7 @@ jobs:
       matrix:
         xcode:
           - 12.4
+          - 13.0
     steps:
     - name: Checkout
       uses: actions/checkout@v2
