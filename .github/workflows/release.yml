@@ -46,12 +46,13 @@ jobs:
         SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY}}
         RELEASE_VERSION: ${{ env.RELEASE_VERSION }}
       run: bundle exec fastlane release
-    - uses: "marvinpinto/action-automatic-releases@latest"
+    - name: "Create Release"
+      uses: ncipollo/release-action@v1
       with:
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        prerelease: false
-        files: |
-          binary/tulsi_plus_plus.zip
-          binary/tulsi_plus_plus.dmg
+        artifacts: "binary/tulsi_plus_plus.dmg,binary/tulsi_plus_plus.dmg"
+        bodyFile: "binary/tulsi_plus_plus.html"
+        token: ${{ secrets.GITHUB_TOKEN }}
+          
+          
           
       
