@@ -46,11 +46,12 @@ jobs:
         SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY}}
         RELEASE_VERSION: ${{ env.RELEASE_VERSION }}
       run: bundle exec fastlane release
-    - name: Upload Binary to Release
-      uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
+    - uses: "marvinpinto/action-automatic-releases@latest"
       with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        prerelease: false
         files: |
           binary/tulsi_plus_plus.zip
           binary/tulsi_plus_plus.dmg
+          
       
