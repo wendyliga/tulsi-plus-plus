@@ -77,9 +77,7 @@ lane :release do
 
   # move appcast.xml to root
   sh "cp -rf #{workspace_path}/binary/appcast.xml #{workspace_path}/appcast.xml"
-  sh "cd .."
-  sh "pwd"
-  sh "git status"
+  sh "git checkout origin/main -- ../binary"
 end
 
 def create_versional_changelog_html(workspace_path, app_version)
