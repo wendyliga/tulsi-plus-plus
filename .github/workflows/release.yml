@@ -52,7 +52,22 @@ jobs:
         artifacts: "binary/tulsi_plus_plus.dmg,binary/tulsi_plus_plus.zip"
         bodyFile: "binary/tulsi_plus_plus.html"
         token: ${{ secrets.GITHUB_TOKEN }}
-          
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+          token: ${{ secrets.BOT_ACCESS_TOKEN }}
+          committer: Wendy's Github Bot <github-bot@wendyliga.com>
+          author: Wendy's Github Bot <github-bot@wendyliga.com>
+          commit-message: 'update mimiq formula'
+          title: 'Update appcast.xml'
+          branch: update_appcast
+          base: main
+          branch-suffix: timestamp
+          reviewers: wendyliga
+    - name: Check outputs
+      run: |
+        echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+      
           
           
       

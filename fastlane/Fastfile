@@ -74,6 +74,11 @@ lane :release do
   sh "#{workspace_path}/src/tools/sparkle/generate_appcast #{workspace_path}/binary " \
     "-s #{ENV['SPARKLE_PRIVATE_KEY']} " \
     "--download-url-prefix 'https://github.com/wendyliga/tulsi-plus-plus/releases/download/#{ENV['RELEASE_VERSION']}'"
+
+  # move appcast.xml to root
+  sh "cp -rf #{workspace_path}/binary/appcast.xml #{workspace_path}/appcast.xml"
+  sh "git fetch origin main"
+  sh "git checkout origin/main -- ../binary"
 end
 
 def create_versional_changelog_html(workspace_path, app_version)
