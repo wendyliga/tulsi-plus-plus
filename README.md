@@ -3,6 +3,9 @@
 <p align="center"><img width="200" src="src/Tulsi/Assets.xcassets/AppIcon.appiconset/tulsi_plus_plus.png"></p>
 
 <p align="center">
+    <a href="https://github.com/wendyliga/tulsi-plus-plus/actions/workflows/ci.yml">
+        <img src="https://github.com/wendyliga/tulsi-plus-plus/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI" />
+    </a>
     <a href="https://github.com/wendyliga/tulsi-plus-plus/releases">
         <img src="https://img.shields.io/github/v/release/wendyliga/tulsi-plus-plus" alt="Latest Release" />
     </a>
