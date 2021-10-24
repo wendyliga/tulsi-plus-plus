@@ -26,9 +26,6 @@ end
 lane :release do
   workspace_path = (sh "bazel info workspace").delete("\n")
   bazel_bin = workspace_path + "/bazel-bin"
-  
-  # set env value, so build could use CI mode
-  ENV["IS_CI"] = is_ci ? "is_ci" : ""
 
   # code sign
   sh "codesign --verbose --force --deep --no-strict -o runtime " \
@@ -55,16 +52,20 @@ lane :release do
 	
   # create dmg
 	sh "(#{workspace_path}/src/tools/BuildTools/create_dmg.sh #{bazel_bin}/Tulsi++.app -o #{bazel_bin}/Tulsi++.dmg)"
+
   # codesign dmg
   sh "codesign --verbose --force --deep --no-strict -o runtime " \
 			"--sign \"#{ENV['CODESIGN_CERTIFICATE']}\" " \
 			"#{bazel_bin}/Tulsi++.dmg"
 
+  # remove previous
+  sh "rm -f binary/tulsi_plus_plus.dmg"
+  sh "rm -f binary/tulsi_plus_plus.zip"
+
   # create binary
   app_version = sh "/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' #{bazel_bin}/Tulsi++.App/Contents/Info.plist"
-  app_version_with_underscore = app_version.gsub(".", "_").delete("\n")
-  sh "cp -rf #{bazel_bin}/Tulsi++.zip '#{workspace_path}/binary/tulsi_plus_plus_#{app_version_with_underscore}.zip'"
-  sh "cp -rf #{bazel_bin}/Tulsi++.dmg '#{workspace_path}/binary/tulsi_plus_plus_#{app_version_with_underscore}.dmg'"
+  sh "cp -rf #{bazel_bin}/Tulsi++.zip '#{workspace_path}/binary/tulsi_plus_plus.zip'"
+  sh "cp -rf #{bazel_bin}/Tulsi++.dmg '#{workspace_path}/binary/tulsi_plus_plus.dmg'"
 
   # create changelog html
   create_versional_changelog_html(workspace_path, app_version.delete("\n"))
@@ -72,7 +73,7 @@ lane :release do
   # generate appcast
   sh "#{workspace_path}/src/tools/sparkle/generate_appcast #{workspace_path}/binary " \
     "-s #{ENV['SPARKLE_PRIVATE_KEY']} " \
-    "--download-url-prefix 'https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/binary/'"
+    "--download-url-prefix 'https://github.com/wendyliga/tulsi-plus-plus/releases/download/#{ENV['RELEASE_VERSION']}'"
 end
 
 def create_versional_changelog_html(workspace_path, app_version)
@@ -99,7 +100,7 @@ def create_versional_changelog_html(workspace_path, app_version)
     join = versional_changelog_data.join("\n")
 
     # write data
-    out_file = File.new("#{workspace_path}/binary/tulsi_plus_plus_#{app_version_with_underscore}.html", "w")
+    out_file = File.new("#{workspace_path}/binary/tulsi_plus_plus.html", "w")
     out_file.puts(join)
     out_file.close
   end
