@@ -20,6 +20,7 @@ lane :certificates do
       keychain_name: "fastlane_match_code_sign",
       keychain_password: ENV["KEYCHAIN_PASSWORD"],
       readonly: true,
+      verbose: true,
       output_path: './src/provisioning_profile'
     )
 end
