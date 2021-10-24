@@ -15,6 +15,11 @@ Install _fastlane_ using
 or alternatively using `brew install fastlane`
 
 # Available Actions
+### setup
+```
+fastlane setup
+```
+
 ### certificates
 ```
 fastlane certificates

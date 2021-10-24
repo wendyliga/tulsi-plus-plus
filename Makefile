@@ -10,15 +10,17 @@ _bazel_path=$(if $(bazel_path),$(bazel_path),$(default_bazel_path))
 _xcode_version:= $(if $(xcode),$(xcode),$(default_xcode_version))
 _workspace_path:=$(shell ${_bazel_path} info workspace)
 _bazel_bin=${_workspace_path}/bazel-bin
-_is_ci=${IS_CI}
+_is_ci=${is_ci}
 
 define build_script
 	$(if $(filter $(1),is_ci), \
 		@$(_bazel_path) build //:tulsi \
 			--config=ci -s \
+			--verbose_failures \
 			--use_top_level_targets_for_symlinks \
 			--xcode_version=${_xcode_version}, \
 		@$(_bazel_path) build //:tulsi \
+			--verbose_failures \
 			--use_top_level_targets_for_symlinks \
 			--xcode_version=${_xcode_version} \
 	)
@@ -41,10 +43,6 @@ build: clean
 	@echo ====================================	
 
 	$(if $(_is_ci), $(call build_script, is_ci), $(call build_script))
-
-	@$(_bazel_path) build //:tulsi -s \
-	--use_top_level_targets_for_symlinks \
-	--xcode_version=${_xcode_version}
 	
 	@unzip -oq $(_bazel_bin)/tulsi.zip -d "${_bazel_bin}"
 
