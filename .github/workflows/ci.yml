@@ -22,6 +22,8 @@ jobs:
     - name: Setup Bundle
       run: bundle install
     - name: Setup Keychain
+      env:
+        KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
       run: bundle exec fastlane setup
     - name: Fetch Provisioning Profile
       run: bundle exec fastlane certificates      
