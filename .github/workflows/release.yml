@@ -21,8 +21,9 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Set env
-        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+    - name: Set output
+        id: vars
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
     - name: Setup Bundle
       run: bundle install
     - name: Setup Keychain
@@ -48,7 +49,7 @@ jobs:
         TEAM_ID: ${{ secrets.TEAM_ID }}
         CODESIGN_CERTIFICATE: ${{ secrets.CODESIGN_CERTIFICATE }}
         SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY}}
-        RELEASE_VERSION: ${{ env.RELEASE_VERSION }}
+        RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
       run: bundle exec fastlane release
     - name: Upload Binary to Release
         uses: softprops/action-gh-release@v1
