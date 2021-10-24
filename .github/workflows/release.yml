@@ -5,6 +5,10 @@ name: CI
 #     tags:
 #       - '*'
 
+concurrency: 
+  group: ${{ github.head_ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches:
@@ -48,5 +52,7 @@ jobs:
         FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
         TEAM_NAME: ${{ secrets.TEAM_NAME }} 
         TEAM_ID: ${{ secrets.TEAM_ID }}
+        CODESIGN_CERTIFICATE: ${{ secrets.CODESIGN_CERTIFICATE }}
+        SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY}}
       run: bundle exec fastlane release
       
