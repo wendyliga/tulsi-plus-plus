@@ -1,6 +1,8 @@
 default_platform(:mac)
 
 lane :setup do 
+  puts "hello world"
+  puts ENV["KEYCHAIN_PASSWORD"]
   create_keychain(
     name: "fastlane_match_code_sign",
     password: ENV["KEYCHAIN_PASSWORD"],
