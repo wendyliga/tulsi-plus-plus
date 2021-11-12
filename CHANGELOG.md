@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.6.0
+<h2>Tulsi++ 0.6.0 🔥 </h2>
+<h4>What's new:</h4> 
+<ol> 
+    <li>By default, will use Xcode New Build System</li>
+    <li>Add Option to use Legacy Build System, false by default</li>
+</ol>
+
+<h4>New Build System Fixes:</h4> 
+<ol> 
+    <li>unit test will build & test successfully on Xcode 13</li>
+    <li>Fix issue where unit test failure doesn't pin to the exact code line</li>
+    <li>eliminate error couldn't find framework folder</li>
+    <li>Xcode will properly indexing the whole codebase in the background</li>
+</ol>
+
+----
+
 ## 0.5.3
 <h2>Tulsi++ 0.5.3 🔨 </h2>
 <h4>What's new:</h4> 
