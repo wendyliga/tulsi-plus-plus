@@ -635,14 +635,18 @@ final class XcodeProjectGenerator {
       try writeDataHandler(workspaceSettingsURL, data)
     }
 
-
     let workspaceSharedDataURL = projectURL.appendingPathComponent("project.xcworkspace/xcshareddata")
-    let sharedWorkspaceSettings: [String: Any] = [
-      "BuildSystemType": "Original",
-      "DisableBuildSystemDeprecationWarning": true as AnyObject,
-      "DisableBuildSystemDeprecationDiagnostic": true as AnyObject,
+    var sharedWorkspaceSettings: [String: Any] = [
       "IDEWorkspaceSharedSettings_AutocreateContextsIfNeeded": false as AnyObject,
     ]
+    
+    let useLegacyBuildSystem: Bool = config.options[.UseLegacyBuildSystem].commonValueAsBool ?? false
+    if useLegacyBuildSystem {
+      sharedWorkspaceSettings["BuildSystemType"] = "Original"
+      sharedWorkspaceSettings["DisableBuildSystemDeprecationWarning"] = true as AnyObject
+      sharedWorkspaceSettings["DisableBuildSystemDeprecationDiagnostic"] = true as AnyObject
+    }
+    
     try writeWorkspaceSettings(sharedWorkspaceSettings,
                                toDirectoryAtURL: workspaceSharedDataURL,
                                replaceIfExists: true)

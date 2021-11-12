@@ -25,6 +25,9 @@
 "ProjectGenerationUseRealFilePath" = "Use real Groups file path";
 "ProjectGenerationUseRealFilePath_DESC" = "Experimental Feature! By default Tulsi use dummy file path for Groups to prevents some issues related to project-generation. By turning this ON, the generated-project will use real path for Groups. This can let developer to maintain file easily on Xcode, but may can cause some issues.";
 
+"UseLegacyBuildSystem" = "Use Legacy Build System";
+"UseLegacyBuildSystem_DESC" = "Option to fallback to xcode legacy build system";
+
 "BazelBuildStartupOptions" = "'build' startup options";
 "BazelBuildStartupOptions_DESC" = "Startup options for bazel 'build' invocations.";
 "BazelBuildStartupOptionsDebug" = "Debug";
