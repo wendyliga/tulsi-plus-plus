@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.6.0
+<h2>Tulsi++ 0.6.0 🔥 </h2>
+<h4>What's new:</h4> 
+<ol> 
+    <li>By default, will use Xcode New Build System</li>
+    <li>Add Option to use Legacy Build System, false by default</li>
+    <li>by using New Build System,it fix issue where unit test failure doesn't pin to the exact code line</li>
+</ol>
+
+----
+
 ## 0.5.3
 <h2>Tulsi++ 0.5.3 🔨 </h2>
 <h4>What's new:</h4> 
