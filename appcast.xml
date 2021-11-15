@@ -17,27 +17,18 @@
             <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.5.3/tulsi_plus_plus.dmg" length="2529407" type="application/octet-stream" sparkle:edSignature="PLCcam684hppSRkH9TPvDUDN4LqY2sgb9hiDDaZ5ZaJ3As6MCLAPDHPo0Z8aeZoV+lJzNyShq4kp/xmQfm2lDQ=="/>
         </item>
         <item>
-            <title>0.6.0</title>
-            <pubDate>Fri, 12 Nov 2021 05:41:44 +0000</pubDate>
-            <sparkle:version>0.6.0</sparkle:version>
-            <sparkle:shortVersionString>0.6.0</sparkle:shortVersionString>
-            <description><![CDATA[<h2>Tulsi++ 0.6.0 🔥 </h2>
-<h4>What's new:</h4> 
+            <title>0.6.1</title>
+            <pubDate>Mon, 15 Nov 2021 04:11:05 +0000</pubDate>
+            <sparkle:version>0.6.1</sparkle:version>
+            <sparkle:shortVersionString>0.6.1</sparkle:shortVersionString>
+            <description><![CDATA[<h2>Tulsi++ 0.6.1 🔥 </h2>
+<h4>Fix:</h4> 
 <ol> 
-    <li>By default, will use Xcode New Build System</li>
-    <li>Add Option to use Legacy Build System, false by default</li>
-</ol>
-
-<h4>New Build System Fixes:</h4> 
-<ol> 
-    <li>unit test will build & test successfully on Xcode 13</li>
-    <li>Fix issue where unit test failure doesn't pin to the exact code line</li>
-    <li>eliminate error couldn't find framework folder</li>
-    <li>Xcode will properly indexing the whole codebase in the background</li>
+    <li>as we use bazel to take care of signing, silent Xcode New Build System mandatory signing error.</li>
 </ol>
 ]]></description>
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.6.0/tulsi_plus_plus.dmg" length="2529572" type="application/octet-stream" sparkle:edSignature="ViZG0nd3QiZbIIh3hB1udoi8AyB7Cf73NUae18N885NX/CiYVauRLqzBFbXtDDa3tLtM8dXKsvPJKbxG1DERBQ=="/>
+            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.6.1/tulsi_plus_plus.dmg" length="2529834" type="application/octet-stream" sparkle:edSignature="ZGmZ89leZBPGWTWpk1xsK6KFw6avdkTshHYkVHFk9HIF4O+BMSp1zJfArFy7wMmd0uvI/trRA9zZuav91JNVDA=="/>
         </item>
     </channel>
 </rss>
