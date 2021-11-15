@@ -58,7 +58,7 @@ jobs:
           token: ${{ secrets.BOT_ACCESS_TOKEN }}
           committer: Wendy's Github Bot <github-bot@wendyliga.com>
           author: Wendy's Github Bot <github-bot@wendyliga.com>
-          commit-message: 'update mimiq formula'
+          commit-message: 'update appcast'
           title: 'Update appcast.xml'
           branch: update_appcast
           base: main

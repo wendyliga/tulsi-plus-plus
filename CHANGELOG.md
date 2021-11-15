@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 0.6.1
+<h2>Tulsi++ 0.6.1 🔥 </h2>
+<h4>Fix:</h4> 
+<ol> 
+    <li>as we use bazel to take care of signing, silent Xcode New Build System mandatory signing error.</li>
+</ol>
+
+----
+
 ## 0.6.0
 <h2>Tulsi++ 0.6.0 🔥 </h2>
 <h4>What's new:</h4> 
