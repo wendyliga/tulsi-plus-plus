@@ -3,32 +3,20 @@
     <channel>
         <title>Tulsi++</title>
         <item>
-            <title>0.5.3</title>
-            <pubDate>Sun, 24 Oct 2021 17:20:53 +0000</pubDate>
-            <sparkle:version>0.5.3</sparkle:version>
-            <sparkle:shortVersionString>0.5.3</sparkle:shortVersionString>
-            <description><![CDATA[<h2>Tulsi++ 0.5.3 🔨 </h2>
-<h4>What's new:</h4> 
-<ol> 
-    <li>update appcast to use new binary url from new release system</li>
-</ol>
-]]></description>
+            <title>0.6.1</title>
+            <pubDate>Wed, 24 Nov 2021 14:59:24 +0000</pubDate>
+            <sparkle:version>0.6.1</sparkle:version>
+            <sparkle:shortVersionString>0.6.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.5.3/tulsi_plus_plus.dmg" length="2529407" type="application/octet-stream" sparkle:edSignature="PLCcam684hppSRkH9TPvDUDN4LqY2sgb9hiDDaZ5ZaJ3As6MCLAPDHPo0Z8aeZoV+lJzNyShq4kp/xmQfm2lDQ=="/>
+            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.0.0/tulsi_plus_plus-darwin_arm64.zip" length="2747030" type="application/octet-stream" sparkle:edSignature="rBIPsPhLOs/ItKU99jsqFNahBD1hAqFaH9lF6LjptjYYJIva7v6aNuispKU16oZtVXanECpQXPFozMfq3RuMDA=="/>
         </item>
         <item>
             <title>0.6.1</title>
-            <pubDate>Mon, 15 Nov 2021 04:11:05 +0000</pubDate>
+            <pubDate>Wed, 24 Nov 2021 14:59:24 +0000</pubDate>
             <sparkle:version>0.6.1</sparkle:version>
             <sparkle:shortVersionString>0.6.1</sparkle:shortVersionString>
-            <description><![CDATA[<h2>Tulsi++ 0.6.1 🔥 </h2>
-<h4>Fix:</h4> 
-<ol> 
-    <li>as we use bazel to take care of signing, silent Xcode New Build System mandatory signing error.</li>
-</ol>
-]]></description>
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.6.1/tulsi_plus_plus.dmg" length="2529834" type="application/octet-stream" sparkle:edSignature="ZGmZ89leZBPGWTWpk1xsK6KFw6avdkTshHYkVHFk9HIF4O+BMSp1zJfArFy7wMmd0uvI/trRA9zZuav91JNVDA=="/>
+            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.0.0/tulsi_plus_plus-darwin_arm64.dmg" length="2483518" type="application/octet-stream" sparkle:edSignature="vICBeCGqLToFkinQ+SQckqVoOoqH5yXp03Rv7y44sDc55lVgxZovFJfxl1PEn+xlipBPkyGr4ikcD/VLuPdADw=="/>
         </item>
     </channel>
 </rss>
