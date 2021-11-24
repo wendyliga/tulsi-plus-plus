@@ -16,8 +16,9 @@ _is_ci=${is_ci}
 define build_script_intel
 	$(if $(filter $(1),is_ci), \
 		@$(_bazel_path) build //:tulsi \
-			--config=ci -s \
+			--config=ci \
 			--config=intel \
+			-s \
 			--verbose_failures \
 			--use_top_level_targets_for_symlinks \
 			--xcode_version=${_xcode_version}, \
@@ -32,8 +33,9 @@ endef
 define build_script_apple_silicon
 	$(if $(filter $(1),is_ci), \
 		@$(_bazel_path) build //:tulsi \
-			--config=ci -s \
+			--config=ci \
 			--config=apple_silicon \
+			-s \
 			--verbose_failures \
 			--use_top_level_targets_for_symlinks \
 			--xcode_version=${_xcode_version}, \
@@ -89,7 +91,7 @@ build: clean
 	@echo cpu=Intel
 	@echo ====================================
 
-	$(if $(_is_ci),$(call build_script, build_script_intel, is_ci),$(call build_script_intel, is_intel))
+	$(if $(_is_ci),$(call build_script_intel, is_ci),$(call build_script_intel, is_intel))
 	$(call processing_binary)
 
 install: build
@@ -106,7 +108,7 @@ build_apple_silicon: clean
 	@echo cpu=Apple Silicon
 	@echo ====================================
 
-	$(if $(_is_ci),$(call build_script, build_script_apple_silicon, is_ci),$(call build_script_apple_silicon, is_intel))
+	$(if $(_is_ci),$(call build_script_apple_silicon, is_ci),$(call build_script_apple_silicon, is_intel))
 	$(call processing_binary)
 
 install_apple_silicon: build_apple_silicon
