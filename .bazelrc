@@ -1,4 +1,3 @@
-build --cpu=darwin_x86_64
 build --apple_platform_type=macos
 build --compilation_mode=opt
 build --swiftcopt=-whole-module-optimization 
@@ -9,3 +8,9 @@ build --define=RULES_SWIFT_BUILD_DUMMY_WORKER=1
 build --strategy=SwiftCompile=local
 
 build:ci --define=is_ci=1
+
+build:intel --cpu=darwin_x86_64
+build:intel --macos_cpus=x86_64
+
+build:apple_silicon --cpu=darwin_arm64
+build:apple_silicon --macos_cpus=arm64

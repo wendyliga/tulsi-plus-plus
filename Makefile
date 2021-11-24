@@ -10,40 +10,42 @@ _bazel_path=$(if $(bazel_path),$(bazel_path),$(default_bazel_path))
 _xcode_version:= $(if $(xcode),$(xcode),$(default_xcode_version))
 _workspace_path:=$(shell ${_bazel_path} info workspace)
 _bazel_bin=${_workspace_path}/bazel-bin
+_bazel_out=${_workspace_path}/bazel-out
 _is_ci=${is_ci}
 
-define build_script
+define build_script_intel
 	$(if $(filter $(1),is_ci), \
 		@$(_bazel_path) build //:tulsi \
 			--config=ci -s \
+			--config=intel \
 			--verbose_failures \
 			--use_top_level_targets_for_symlinks \
 			--xcode_version=${_xcode_version}, \
 		@$(_bazel_path) build //:tulsi \
+			--config=intel \
 			--verbose_failures \
 			--use_top_level_targets_for_symlinks \
 			--xcode_version=${_xcode_version} \
 	)
 endef
 
-clean:
-	@# remove previous
-	@rm -f $(_bazel_bin)/tulsi.zip
-	@rm -f $(_bazel_bin)/Tulsi++.zip
-	@rm -rf $(_bazel_bin)/Tulsi++.app
+define build_script_apple_silicon
+	$(if $(filter $(1),is_ci), \
+		@$(_bazel_path) build //:tulsi \
+			--config=ci -s \
+			--config=apple_silicon \
+			--verbose_failures \
+			--use_top_level_targets_for_symlinks \
+			--xcode_version=${_xcode_version}, \
+		@$(_bazel_path) build //:tulsi \
+			--verbose_failures \
+			--config=apple_silicon \
+			--use_top_level_targets_for_symlinks \
+			--xcode_version=${_xcode_version} \
+	)
+endef
 
-build: clean
-	@echo "===================================="
-	@echo "|           BUILDING               |"
-	@echo "===================================="
-	@echo xcode=$(_xcode_version)
-	@echo workspace_path=$(_workspace_path)
-	@echo bazel_path=$(_bazel_path)
-	@echo is_ci=$(if $(_is_ci), true, false)
-	@echo ====================================	
-
-	$(if $(_is_ci), $(call build_script, is_ci), $(call build_script))
-	
+define processing_binary
 	@unzip -oq $(_bazel_bin)/tulsi.zip -d "${_bazel_bin}"
 
 	@# remove all frameworks, for some reason, dylib like `foundation` is included which should not.
@@ -57,8 +59,9 @@ build: clean
 	@# remove bazel's codesign, it's invalid codesign, apple notorization server unable to read the codesign
 	@codesign --remove-signature --deep $(_bazel_bin)/Tulsi++.app
 	@codesign --remove-signature --deep $(_bazel_bin)/Tulsi++.app/Contents/Frameworks/Sparkle.framework
+endef
 
-install: build
+define install
 	@echo "===================================="
 	@echo "|           INSTALLING              |"
 	@echo "===================================="
@@ -68,5 +71,46 @@ install: build
 	@rm -rf ${_unzip_dir}/Tulsi++.app
 	@cp -R $(_bazel_bin)/Tulsi++.app ${_unzip_dir}/Tulsi++.app
 	@open "${_unzip_dir}/Tulsi++.app"
+endef
 
-.PHONY: build install
+clean:
+	@# remove previous
+	@rm -rf $(_bazel_bin)
+	@rm -rf $(_bazel_out)
+
+build: clean
+	@echo "===================================="
+	@echo "|           BUILDING               |"
+	@echo "===================================="
+	@echo xcode=$(_xcode_version)
+	@echo workspace_path=$(_workspace_path)
+	@echo bazel_path=$(_bazel_path)
+	@echo is_ci=$(if $(_is_ci),true,false)
+	@echo cpu=Intel
+	@echo ====================================
+
+	$(if $(_is_ci),$(call build_script, build_script_intel, is_ci),$(call build_script_intel, is_intel))
+	$(call processing_binary)
+
+install: build
+	$(call install)
+
+build_apple_silicon: clean
+	@echo "===================================="
+	@echo "|           BUILDING               |"
+	@echo "===================================="
+	@echo xcode=$(_xcode_version)
+	@echo workspace_path=$(_workspace_path)
+	@echo bazel_path=$(_bazel_path)
+	@echo is_ci=$(if $(_is_ci),true,false)
+	@echo cpu=Apple Silicon
+	@echo ====================================
+
+	$(if $(_is_ci),$(call build_script, build_script_apple_silicon, is_ci),$(call build_script_apple_silicon, is_intel))
+	$(call processing_binary)
+
+install_apple_silicon: build_apple_silicon
+	$(call install)
+
+.PHONY: build install build_apple_silicon
+
