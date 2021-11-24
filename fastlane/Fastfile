@@ -23,7 +23,7 @@ lane :certificates do
 end
 
 # you need to run `make build` first
-lane :release do
+lane :notorize do
   workspace_path = (sh "bazel info workspace").delete("\n")
   bazel_bin = workspace_path + "/bazel-bin"
 
@@ -69,16 +69,47 @@ lane :release do
 
   # create changelog html
   create_versional_changelog_html(workspace_path, app_version.delete("\n"))
+end
+
+lane :intel_appcast do
+  workspace_path = (sh "bazel info workspace").delete("\n")
+
+  # naming binary based on architecture
+  sh "mkdir -p #{workspace_path}/intel"
+  sh "mv '#{workspace_path}/binary/tulsi_plus_plus.zip' '#{workspace_path}/intel/tulsi_plus_plus-darwin_x86_64.zip'"
+  sh "mv '#{workspace_path}/binary/tulsi_plus_plus.dmg' '#{workspace_path}/intel/tulsi_plus_plus-darwin_x86_64.dmg'"
 
   # generate appcast
-  sh "#{workspace_path}/src/tools/sparkle/generate_appcast #{workspace_path}/binary " \
+  sh "#{workspace_path}/src/tools/sparkle/generate_appcast #{workspace_path}/intel " \
     "-s #{ENV['SPARKLE_PRIVATE_KEY']} " \
     "--download-url-prefix 'https://github.com/wendyliga/tulsi-plus-plus/releases/download/#{ENV['RELEASE_VERSION']}/'"
 
   # move appcast.xml to root
-  sh "cp -rf #{workspace_path}/binary/appcast.xml #{workspace_path}/appcast.xml"
-  sh "git fetch origin main"
-  sh "git checkout origin/main -- ../binary"
+  sh "cp -rf #{workspace_path}/intel/appcast.xml #{workspace_path}/appcast.xml"
+end
+
+lane :apple_silicon_appcast do
+  workspace_path = (sh "bazel info workspace").delete("\n")
+
+  # naming binary based on architecture
+  sh "mkdir -p #{workspace_path}/apple_silicon"
+  sh "mv '#{workspace_path}/binary/tulsi_plus_plus.zip' '#{workspace_path}/apple_silicon/tulsi_plus_plus-darwin_arm64.zip'"
+  sh "mv '#{workspace_path}/binary/tulsi_plus_plus.dmg' '#{workspace_path}/apple_silicon/tulsi_plus_plus-darwin_arm64.dmg'"
+
+  # generate appcast
+  sh "#{workspace_path}/src/tools/sparkle/generate_appcast #{workspace_path}/apple_silicon " \
+    "-s #{ENV['SPARKLE_PRIVATE_KEY']} " \
+    "--download-url-prefix 'https://github.com/wendyliga/tulsi-plus-plus/releases/download/#{ENV['RELEASE_VERSION']}/'"
+
+  # move appcast.xml to root
+  sh "cp -rf #{workspace_path}/apple_silicon/appcast.xml #{workspace_path}/appcast_apple_silicon.xml"
+end
+
+lane :clean_up_binary do
+  workspace_path = (sh "bazel info workspace").delete("\n")
+
+  sh "rm -rf #{workspace_path}/intel"
+  sh "rm -rf #{workspace_path}/apple_silicon"
 end
 
 def create_versional_changelog_html(workspace_path, app_version)

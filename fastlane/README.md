@@ -25,9 +25,24 @@ fastlane setup
 fastlane certificates
 ```
 
-### release
+### notorize
 ```
-fastlane release
+fastlane notorize
+```
+
+### intel_appcast
+```
+fastlane intel_appcast
+```
+
+### apple_silicon_appcast
+```
+fastlane apple_silicon_appcast
+```
+
+### clean_up_binary
+```
+fastlane clean_up_binary
 ```
 
 
