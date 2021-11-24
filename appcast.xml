@@ -3,32 +3,20 @@
     <channel>
         <title>Tulsi++</title>
         <item>
-            <title>0.5.3</title>
-            <pubDate>Sun, 24 Oct 2021 17:20:53 +0000</pubDate>
-            <sparkle:version>0.5.3</sparkle:version>
-            <sparkle:shortVersionString>0.5.3</sparkle:shortVersionString>
-            <description><![CDATA[<h2>Tulsi++ 0.5.3 🔨 </h2>
-<h4>What's new:</h4> 
-<ol> 
-    <li>update appcast to use new binary url from new release system</li>
-</ol>
-]]></description>
+            <title>0.6.2</title>
+            <pubDate>Wed, 24 Nov 2021 15:15:31 +0000</pubDate>
+            <sparkle:version>0.6.2</sparkle:version>
+            <sparkle:shortVersionString>0.6.2</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.5.3/tulsi_plus_plus.dmg" length="2529407" type="application/octet-stream" sparkle:edSignature="PLCcam684hppSRkH9TPvDUDN4LqY2sgb9hiDDaZ5ZaJ3As6MCLAPDHPo0Z8aeZoV+lJzNyShq4kp/xmQfm2lDQ=="/>
+            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.6.2/tulsi_plus_plus-darwin_x86_64.zip" length="2801382" type="application/octet-stream" sparkle:edSignature="j211XVITY6Q/c3df0U7XlYt5amRP0QHruhKst3MRpWUTzEn/f7ZJ9Oji+FG1KX3kG+IoBGZbZOhUKB5eAY2hBA=="/>
         </item>
         <item>
-            <title>0.6.1</title>
-            <pubDate>Mon, 15 Nov 2021 04:11:05 +0000</pubDate>
-            <sparkle:version>0.6.1</sparkle:version>
-            <sparkle:shortVersionString>0.6.1</sparkle:shortVersionString>
-            <description><![CDATA[<h2>Tulsi++ 0.6.1 🔥 </h2>
-<h4>Fix:</h4> 
-<ol> 
-    <li>as we use bazel to take care of signing, silent Xcode New Build System mandatory signing error.</li>
-</ol>
-]]></description>
+            <title>0.6.2</title>
+            <pubDate>Wed, 24 Nov 2021 15:15:31 +0000</pubDate>
+            <sparkle:version>0.6.2</sparkle:version>
+            <sparkle:shortVersionString>0.6.2</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.6.1/tulsi_plus_plus.dmg" length="2529834" type="application/octet-stream" sparkle:edSignature="ZGmZ89leZBPGWTWpk1xsK6KFw6avdkTshHYkVHFk9HIF4O+BMSp1zJfArFy7wMmd0uvI/trRA9zZuav91JNVDA=="/>
+            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.6.2/tulsi_plus_plus-darwin_x86_64.dmg" length="2525948" type="application/octet-stream" sparkle:edSignature="BWtVZ4DMEz9RCTmIR+hNnZShq2ju4A56MsvmTXi/LWVIxnxfzvOGDBK4/b+5R+x57D1kvJMGbYpdObaQmog6CQ=="/>
         </item>
     </channel>
 </rss>
