@@ -45,10 +45,11 @@ jobs:
         TEAM_NAME: ${{ secrets.TEAM_NAME }} 
         TEAM_ID: ${{ secrets.TEAM_ID }}
         CODESIGN_CERTIFICATE: ${{ secrets.CODESIGN_CERTIFICATE }}
-        SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY}}
-        RELEASE_VERSION: ${{ env.RELEASE_VERSION }}
       run: bundle exec fastlane notorize
     - name: Appcast for Intel Binary
+      env:
+        SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY}}
+        RELEASE_VERSION: ${{ env.RELEASE_VERSION }}
       run: bundle exec fastlane intel_appcast
 
     # apple silicon binary
@@ -62,10 +63,11 @@ jobs:
         TEAM_NAME: ${{ secrets.TEAM_NAME }} 
         TEAM_ID: ${{ secrets.TEAM_ID }}
         CODESIGN_CERTIFICATE: ${{ secrets.CODESIGN_CERTIFICATE }}
-        SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY}}
-        RELEASE_VERSION: ${{ env.RELEASE_VERSION }}
       run: bundle exec fastlane notorize
     - name: Appcast for Apple Silicon Binary
+      env:
+        SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY}}
+        RELEASE_VERSION: ${{ env.RELEASE_VERSION }}
       run: bundle exec fastlane apple_silicon_appcast
     
       # create release
