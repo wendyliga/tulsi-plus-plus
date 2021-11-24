@@ -78,7 +78,7 @@ lane :intel_appcast do
   sh "mkdir -p #{workspace_path}/intel"
   sh "mv '#{workspace_path}/binary/tulsi_plus_plus.zip' '#{workspace_path}/intel/tulsi_plus_plus-darwin_x86_64.zip'"
   sh "mv '#{workspace_path}/binary/tulsi_plus_plus.dmg' '#{workspace_path}/intel/tulsi_plus_plus-darwin_x86_64.dmg'"
-  sh "mv '#{workspace_path}/binary/tulsi_plus_plus.html' '#{workspace_path}/intel/tulsi_plus_plus-darwin_x86_64.html'"
+  sh "cp '#{workspace_path}/binary/tulsi_plus_plus.html' '#{workspace_path}/intel/tulsi_plus_plus-darwin_x86_64.html'"
 
   # generate appcast
   sh "#{workspace_path}/src/tools/sparkle/generate_appcast #{workspace_path}/intel " \
@@ -96,7 +96,7 @@ lane :apple_silicon_appcast do
   sh "mkdir -p #{workspace_path}/apple_silicon"
   sh "mv '#{workspace_path}/binary/tulsi_plus_plus.zip' '#{workspace_path}/apple_silicon/tulsi_plus_plus-darwin_arm64.zip'"
   sh "mv '#{workspace_path}/binary/tulsi_plus_plus.dmg' '#{workspace_path}/apple_silicon/tulsi_plus_plus-darwin_arm64.dmg'"
-  sh "mv '#{workspace_path}/binary/tulsi_plus_plus.html' '#{workspace_path}/apple_silicon/tulsi_plus_plus-darwin_arm64.html'"
+  sh "cp '#{workspace_path}/binary/tulsi_plus_plus.html' '#{workspace_path}/apple_silicon/tulsi_plus_plus-darwin_arm64.html'"
 
   # generate appcast
   sh "#{workspace_path}/src/tools/sparkle/generate_appcast #{workspace_path}/apple_silicon " \
