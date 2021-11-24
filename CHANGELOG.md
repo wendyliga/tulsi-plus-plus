@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 0.6.2
+<h2>Tulsi++ 0.6.2 🔥 </h2>
+<h4>Change:</h4> 
+<ol> 
+    <li>native apple silicon binary</li>
+</ol>
+
+----
+
 ## 0.6.1
 <h2>Tulsi++ 0.6.1 🔥 </h2>
 <h4>Fix:</h4> 
