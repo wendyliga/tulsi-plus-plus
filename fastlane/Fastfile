@@ -40,12 +40,12 @@ lane :notorize do
   sh "codesign --verify --deep --verbose=4 #{bazel_bin}/Tulsi++.app"
 
   # notorize
-  notarize(
-    package: "bazel-bin/Tulsi++.app",
-    asc_provider: ENV["TEAM_ID"],
-    print_log: true,
-    verbose: true
-  )
+  # notarize(
+  #   package: "bazel-bin/Tulsi++.app",
+  #   asc_provider: ENV["TEAM_ID"],
+  #   print_log: true,
+  #   verbose: true
+  # )
 
   # create zip
 	sh "ditto -c -k --keepParent #{bazel_bin}/Tulsi++.app #{bazel_bin}/Tulsi++.zip"
@@ -77,9 +77,11 @@ lane :intel_appcast do
   # naming binary based on architecture
   sh "mkdir -p #{workspace_path}/intel"
   sh "mv '#{workspace_path}/binary/tulsi_plus_plus.zip' '#{workspace_path}/intel/tulsi_plus_plus-darwin_x86_64.zip'"
+  sh "shasum -a 256 '#{workspace_path}/intel/tulsi_plus_plus-darwin_x86_64.zip' > '#{workspace_path}/intel/tulsi_plus_plus-darwin_x86_64.zip.sha256'"
   sh "mv '#{workspace_path}/binary/tulsi_plus_plus.dmg' '#{workspace_path}/intel/tulsi_plus_plus-darwin_x86_64.dmg'"
+  sh "shasum -a 256 '#{workspace_path}/intel/tulsi_plus_plus-darwin_x86_64.dmg' > '#{workspace_path}/intel/tulsi_plus_plus-darwin_x86_64.dmg.sha256'"
   sh "cp '#{workspace_path}/binary/tulsi_plus_plus.html' '#{workspace_path}/intel/tulsi_plus_plus-darwin_x86_64.html'"
-
+  
   # generate appcast
   sh "#{workspace_path}/src/tools/sparkle/generate_appcast #{workspace_path}/intel " \
     "-s #{ENV['SPARKLE_PRIVATE_KEY']} " \
@@ -95,7 +97,9 @@ lane :apple_silicon_appcast do
   # naming binary based on architecture
   sh "mkdir -p #{workspace_path}/apple_silicon"
   sh "mv '#{workspace_path}/binary/tulsi_plus_plus.zip' '#{workspace_path}/apple_silicon/tulsi_plus_plus-darwin_arm64.zip'"
+  sh "shasum -a 256 '#{workspace_path}/apple_silicon/tulsi_plus_plus-darwin_arm64.zip' > '#{workspace_path}/apple_silicon/tulsi_plus_plus-darwin_arm64.zip.sha256'"
   sh "mv '#{workspace_path}/binary/tulsi_plus_plus.dmg' '#{workspace_path}/apple_silicon/tulsi_plus_plus-darwin_arm64.dmg'"
+  sh "shasum -a 256 '#{workspace_path}/intel/tulsi_plus_plus-darwin_x86_64.dmg' > '#{workspace_path}/apple_silicon/tulsi_plus_plus-darwin_arm64.dmg.sha256'"
   sh "cp '#{workspace_path}/binary/tulsi_plus_plus.html' '#{workspace_path}/apple_silicon/tulsi_plus_plus-darwin_arm64.html'"
 
   # generate appcast
