@@ -4,7 +4,7 @@
         <title>Tulsi++</title>
         <item>
             <title>0.6.2</title>
-            <pubDate>Wed, 24 Nov 2021 15:49:05 +0000</pubDate>
+            <pubDate>Fri, 26 Nov 2021 12:19:39 +0000</pubDate>
             <sparkle:version>0.6.2</sparkle:version>
             <sparkle:shortVersionString>0.6.2</sparkle:shortVersionString>
             <description><![CDATA[<h2>Tulsi++ 0.6.2 🔥 </h2>
@@ -14,11 +14,11 @@
 </ol>
 ]]></description>
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.6.2/tulsi_plus_plus-darwin_x86_64.zip" length="2801553" type="application/octet-stream" sparkle:edSignature="QTtMeocJl+75u6HOP+8blSljPD+PoewNQzz6oSP8iGEjn/qDf7Vem9AN8u4xl1XFYYqOMKNohpo4suxk0tpGCQ=="/>
+            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.0.0/tulsi_plus_plus-darwin_x86_64.zip" length="2801574" type="application/octet-stream" sparkle:edSignature="G2tSuftQFO93mJ4uEPXhrPlJPNYlJ8Qtr/ti7rNcSlMMgfp/L9PIunVWYTIVQW52GC4VbKGZT/ut4wH8XPa7DA=="/>
         </item>
         <item>
             <title>0.6.2</title>
-            <pubDate>Wed, 24 Nov 2021 15:49:05 +0000</pubDate>
+            <pubDate>Fri, 26 Nov 2021 12:19:39 +0000</pubDate>
             <sparkle:version>0.6.2</sparkle:version>
             <sparkle:shortVersionString>0.6.2</sparkle:shortVersionString>
             <description><![CDATA[<h2>Tulsi++ 0.6.2 🔥 </h2>
@@ -28,7 +28,7 @@
 </ol>
 ]]></description>
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.6.2/tulsi_plus_plus-darwin_x86_64.dmg" length="2526241" type="application/octet-stream" sparkle:edSignature="l1gRshnCzVIzmDfdQBB/XqZtnUKj4RdcczRESZd6GGf5419fH3uU6Bi2ruZfRrJo62ukVVbbbqvdPN8QVXuyAQ=="/>
+            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.0.0/tulsi_plus_plus-darwin_x86_64.dmg" length="2526541" type="application/octet-stream" sparkle:edSignature="SMlmruRjno8DlUHvkgTbZpgMJyYlaBAMNmZiKUcXlNyviZRhwve5TJcZ+hlbC5MwjTTHy1OBJw/BGVEditF+AQ=="/>
         </item>
     </channel>
 </rss>

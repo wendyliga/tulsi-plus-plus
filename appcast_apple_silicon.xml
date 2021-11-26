@@ -4,7 +4,7 @@
         <title>Tulsi++</title>
         <item>
             <title>0.6.2</title>
-            <pubDate>Wed, 24 Nov 2021 15:51:32 +0000</pubDate>
+            <pubDate>Fri, 26 Nov 2021 12:22:02 +0000</pubDate>
             <sparkle:version>0.6.2</sparkle:version>
             <sparkle:shortVersionString>0.6.2</sparkle:shortVersionString>
             <description><![CDATA[<h2>Tulsi++ 0.6.2 🔥 </h2>
@@ -14,11 +14,11 @@
 </ol>
 ]]></description>
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.6.2/tulsi_plus_plus-darwin_arm64.zip" length="2746717" type="application/octet-stream" sparkle:edSignature="0KnwH9DUHRZPQOWphGoOdaK3anAo6iWx6aw+ms+FvxQ4bd5WKLFtf08ISWX+KAUiKC8W2Mu/8LFIiQJ5/bbAAg=="/>
+            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.0.0/tulsi_plus_plus-darwin_arm64.zip" length="2746577" type="application/octet-stream" sparkle:edSignature="aiPBgufSuXhKG9P+qB/r/WPTx9tdpSzfb43dInnwizPIVEgP7k7IoCVEf/BIRhzC8vzxuwxm7ILHDfAXvny7Aw=="/>
         </item>
         <item>
             <title>0.6.2</title>
-            <pubDate>Wed, 24 Nov 2021 15:51:32 +0000</pubDate>
+            <pubDate>Fri, 26 Nov 2021 12:22:02 +0000</pubDate>
             <sparkle:version>0.6.2</sparkle:version>
             <sparkle:shortVersionString>0.6.2</sparkle:shortVersionString>
             <description><![CDATA[<h2>Tulsi++ 0.6.2 🔥 </h2>
@@ -28,7 +28,7 @@
 </ol>
 ]]></description>
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.6.2/tulsi_plus_plus-darwin_arm64.dmg" length="2483014" type="application/octet-stream" sparkle:edSignature="L8J49d7g9F6WOqDdxSa0upcaQnoXe5KvYf4Y6LoviNmcERJuAOs37Xj2DiJldUylcSEkF6NFm7RJBXcJ6qBpBQ=="/>
+            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.0.0/tulsi_plus_plus-darwin_arm64.dmg" length="2478742" type="application/octet-stream" sparkle:edSignature="CFdEWoa4b5xGotUbzQ4b1RySF5UAMrmeDnVtxks6b5JQ6FnxceTb5/jJCkRBbZOj3hpQatroipAIgDJ5T/O+Cg=="/>
         </item>
     </channel>
 </rss>
