@@ -3,6 +3,9 @@
 <p align="center"><img width="200" src="src/Tulsi/Assets.xcassets/AppIcon.appiconset/tulsi_plus_plus.png"></p>
 
 <p align="center">
+    <a href="https://github.com/wendyliga/tulsi-plus-plus/releases">
+        <img src="https://img.shields.io/github/downloads/wendyliga/tulsi-plus-plus/total.svg?style=flat" alt="downloads"/>
+    </a>
     <a href="https://github.com/wendyliga/tulsi-plus-plus/actions/workflows/main.yml">
         <img src="https://github.com/wendyliga/tulsi-plus-plus/actions/workflows/main.yml/badge.svg" alt="CI" />
     </a>
@@ -11,6 +14,9 @@
     </a>
     <a href="#">
         <img src="https://img.shields.io/github/license/wendyliga/tulsi-plus-plus" />
+    </a>
+    <a href="#">
+        <img src="https://img.shields.io/badge/platform-macOS-lightgrey.svg?style=flat" alt="platform"/>
     </a>
     <a href="https://twitter.com/wendyliga">
         <img src="https://img.shields.io/badge/contact-@wendyliga-blue.svg?style=flat" alt="Twitter: @wendyliga" />
