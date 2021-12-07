@@ -1195,7 +1195,7 @@ final class PBXTargetGenerator: PBXTargetGeneratorProtocol {
   private func addConfigsForIndexingTarget(_ target: PBXTarget, data: IndexerData) {
 
     var buildSettings = options.buildSettingsForTarget(target.name)
-    buildSettings["PRODUCT_NAME"] = target.productName!
+    buildSettings["PRODUCT_NAME"] = data.indexerNameInfo.first?.targetName ?? target.productName
 
     if let pchFile = data.pchFile {
       buildSettings["GCC_PREFIX_HEADER"] = PBXTargetGenerator.projectRefForBazelFileInfo(pchFile)
