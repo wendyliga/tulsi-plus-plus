@@ -124,6 +124,7 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
 
     if let document = representedObject as? TulsiProjectDocument {
       xcodeOutputPath = document.project.xcodeprojOutputPath
+      deletePreviousProjectCheckBox.state = document.project.deletePreviousXcodeproj ? .on : .off
     }
   }
 
@@ -212,6 +213,13 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
         projectDocument.project.xcodeprojOutputPath = newOutputPath
       }
     }
+  }
+  
+  @IBAction func changeDeletePreviousProjectCheckboxStatus(_ sender: AnyObject?) {
+    let projectDocument = representedObject as! TulsiProjectDocument
+    
+    projectDocument.project.deletePreviousXcodeproj = deletePreviousProjectCheckBox.state.rawValue == 1
+    projectDocument.updateChangeCount(.changeDone)
   }
   
   @IBAction func openOtherActionMenu(_ sender: NSButton?) {
