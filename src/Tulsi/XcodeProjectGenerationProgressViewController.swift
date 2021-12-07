@@ -135,6 +135,12 @@ class XcodeProjectGenerationProgressViewController: NSViewController {
       let url: URL?
       if $0 == NSApplication.ModalResponse.OK {
         url = panel.url
+        
+        if let document = self.representedObject as? TulsiProjectDocument {
+          document.updateChangeCount(.changeDone)
+          // trigger save document
+          NSApp.sendAction(#selector(NSDocument.save(_:)), to: nil, from: self)
+        }
       } else {
         url = nil
       }

@@ -179,6 +179,7 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
     panel.beginSheetModal(for: self.view.window!) { [weak self] in
       if $0 == NSApplication.ModalResponse.OK {
         projectDocument.project.xcodeprojOutputPath = panel.url
+        projectDocument.updateChangeCount(.changeDone)
         self?.xcodeOutputPath = panel.url
       }
     }
