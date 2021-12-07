@@ -37,6 +37,7 @@ final class SplashScreenWindowController: NSWindowController, NSTableViewDelegat
 
   @IBOutlet var recentDocumentsArrayController: NSArrayController!
   @IBOutlet weak var splashScreenImageView: NSImageView!
+  @IBOutlet weak var recentDocumentTable: NSTableView!
   @objc dynamic var applicationVersion: String = ""
   @objc dynamic var recentDocumentViewControllers = [SplashScreenRecentDocumentViewController]()
 
@@ -54,6 +55,7 @@ final class SplashScreenWindowController: NSWindowController, NSTableViewDelegat
     }
 
     recentDocumentViewControllers = getRecentDocumentViewControllers()
+    recentDocumentTable.reloadData()
   }
 
   @IBAction func createNewDocument(_ sender: NSButton) {

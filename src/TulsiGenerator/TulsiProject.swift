@@ -77,6 +77,12 @@ public final class TulsiProject {
       options[.XcodeprojOutputPath].projectValue = xcodeprojOutputPath?.path
     }
   }
+  
+  public var deletePreviousXcodeproj: Bool = true {
+    didSet {
+      options[.DeletePreviousXcodeproj].projectValue = deletePreviousXcodeproj ? "YES" : "NO"
+    }
+  }
 
   /// Filename to be used when writing out user-specific values.
   public static var perUserFilename: String {
@@ -121,6 +127,13 @@ public final class TulsiProject {
       self.xcodeprojOutputPath = URL(fileURLWithPath: xcodeprojOutputPath)
     } else {
       self.options[.XcodeprojOutputPath].projectValue = nil
+    }
+    
+    if let deletePreviousXcodeproj = self.options[.DeletePreviousXcodeproj].projectValue {
+      self.deletePreviousXcodeproj = deletePreviousXcodeproj == "YES"
+    } else {
+      self.options[.DeletePreviousXcodeproj].projectValue = "YES"
+      self.deletePreviousXcodeproj = true
     }
     
     self.options[.WorkspaceRootPath].projectValue = workspaceRootURL.path

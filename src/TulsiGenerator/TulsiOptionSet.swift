@@ -43,6 +43,9 @@ public enum TulsiOptionKey: String {
     
       // Output directory for generated xcodeproj
       XcodeprojOutputPath,
+  
+      // Flag to delete previous xcodeproj
+      DeletePreviousXcodeproj,
 
       // Commandline Arguments used by the run phase of the generated scheme.
       CommandlineArguments,
@@ -377,6 +380,7 @@ public class TulsiOptionSet: Equatable {
     addStringOption(.BazelPath, [.Hidden, .PerUserOnly])
     addStringOption(.WorkspaceRootPath, [.Hidden, .PerUserOnly])
     addStringOption(.XcodeprojOutputPath, [.Hidden, .PerUserOnly])
+    addBoolOption(.DeletePreviousXcodeproj, [.Hidden, .PerUserOnly], true)
   }
 
   private func populateOptionGroupInfoWithBundle(_ bundle: Bundle) {

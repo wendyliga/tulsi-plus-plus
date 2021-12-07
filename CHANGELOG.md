@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.7.0
+<h2>Tulsi++ 0.7.0 🎅 </h2>
+<h4>Bug Fixes:</h4> 
+<ol> 
+    <li>fix xcodeproj_output_dir sometimes isn't saved to disk</li>
+    <li>fix recent document on splash window sometimes is empty</li>
+</ol>
+
+<h4>Improvements:</h4> 
+<ol> 
+    <li>Now Xcode 13 auto import should suggest same name with modulemap(use modulemap name for PRODUCT_NAME)</li>
+    <li>change button title to "Save", when tapping change xcodeproj_output_dir</li>
+    <li>save delete_previous_xcodeproj flag to disk</li>
+    
+</ol>
+
+----
+
 ## 0.6.2
 <h2>Tulsi++ 0.6.2 🔥 </h2>
 <h4>Change:</h4> 
