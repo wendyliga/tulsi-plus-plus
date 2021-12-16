@@ -3,50 +3,32 @@
     <channel>
         <title>Tulsi++</title>
         <item>
-            <title>0.7.0</title>
-            <pubDate>Tue, 07 Dec 2021 15:47:58 +0000</pubDate>
-            <sparkle:version>0.7.0</sparkle:version>
-            <sparkle:shortVersionString>0.7.0</sparkle:shortVersionString>
-            <description><![CDATA[<h2>Tulsi++ 0.7.0 🎅 </h2>
+            <title>0.7.1</title>
+            <pubDate>Thu, 16 Dec 2021 03:21:23 +0000</pubDate>
+            <sparkle:version>0.7.1</sparkle:version>
+            <sparkle:shortVersionString>0.7.1</sparkle:shortVersionString>
+            <description><![CDATA[<h2>Tulsi++ 0.7.1 🎅 </h2>
 <h4>Bug Fixes:</h4> 
 <ol> 
-    <li>fix xcodeproj_output_dir sometimes isn't saved to disk</li>
-    <li>fix recent document on splash window sometimes is empty</li>
-</ol>
-
-<h4>Improvements:</h4> 
-<ol> 
-    <li>Now Xcode 13 auto import should suggest same name with modulemap(use modulemap name for PRODUCT_NAME)</li>
-    <li>change button title to "Save", when tapping change xcodeproj_output_dir</li>
-    <li>save delete_previous_xcodeproj flag to disk</li>
-    
+    <li>fix fail building uitest on legacy build</li>
 </ol>
 ]]></description>
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.7.0/tulsi_plus_plus-darwin_x86_64.zip" length="2802821" type="application/octet-stream" sparkle:edSignature="A8ZvvLrErl5snbZASEikgJiawBl3jO2tlsylwHVRO1SLvybPESckuZ5GsVH8+mxG7AyaZ7DLTehTJiXhaL12CQ=="/>
+            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.7.1/tulsi_plus_plus-darwin_x86_64.zip" length="2802869" type="application/octet-stream" sparkle:edSignature="z1s0ALgev1fDB6qidIc2f3ke2/Ggxo46VG5c1Q8c3YDgSo7Ngh7sFkZjBr3J6FsFqu1NkUieqL/UoMS019lFBQ=="/>
         </item>
         <item>
-            <title>0.7.0</title>
-            <pubDate>Tue, 07 Dec 2021 15:47:58 +0000</pubDate>
-            <sparkle:version>0.7.0</sparkle:version>
-            <sparkle:shortVersionString>0.7.0</sparkle:shortVersionString>
-            <description><![CDATA[<h2>Tulsi++ 0.7.0 🎅 </h2>
+            <title>0.7.1</title>
+            <pubDate>Thu, 16 Dec 2021 03:21:23 +0000</pubDate>
+            <sparkle:version>0.7.1</sparkle:version>
+            <sparkle:shortVersionString>0.7.1</sparkle:shortVersionString>
+            <description><![CDATA[<h2>Tulsi++ 0.7.1 🎅 </h2>
 <h4>Bug Fixes:</h4> 
 <ol> 
-    <li>fix xcodeproj_output_dir sometimes isn't saved to disk</li>
-    <li>fix recent document on splash window sometimes is empty</li>
-</ol>
-
-<h4>Improvements:</h4> 
-<ol> 
-    <li>Now Xcode 13 auto import should suggest same name with modulemap(use modulemap name for PRODUCT_NAME)</li>
-    <li>change button title to "Save", when tapping change xcodeproj_output_dir</li>
-    <li>save delete_previous_xcodeproj flag to disk</li>
-    
+    <li>fix fail building uitest on legacy build</li>
 </ol>
 ]]></description>
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.7.0/tulsi_plus_plus-darwin_x86_64.dmg" length="2528282" type="application/octet-stream" sparkle:edSignature="SjyEV1n9oXiZ5CzyoSVz5OcOmzvkGD0slD+PZ6j4zE4sgoroQDO9sy9OCfDcwlA2geyX88i/F9uJVAOj0H/RCA=="/>
+            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.7.1/tulsi_plus_plus-darwin_x86_64.dmg" length="2531389" type="application/octet-stream" sparkle:edSignature="uWy3nA612YO0E1ecvXH1JX1kdmiktZuSd5DxohjN4s1wk8MoIqMpd8h+9hQF+bQ3KzX9o5QaGNNd9Fh92yTcAA=="/>
         </item>
     </channel>
 </rss>
