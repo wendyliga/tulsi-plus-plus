@@ -26,6 +26,9 @@
     },
     "ProjectPrioritizesSwift" : {
       "p" : "YES"
+    },
+    "UseLegacyBuildSystem" : {
+      "p" : "YES"
     }
   },
   "projectName" : "Tulsi",
