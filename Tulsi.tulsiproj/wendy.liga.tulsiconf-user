@@ -1,0 +1,16 @@
+{
+  "optionSet" : {
+    "BazelPath" : {
+      "p" : "/opt/homebrew/Cellar/bazelisk/1.10.1/bin/bazelisk"
+    },
+    "DeletePreviousXcodeproj" : {
+      "p" : "YES"
+    },
+    "WorkspaceRootPath" : {
+      "p" : "/Users/wendy.liga/Developer/tulsi-plus-plus"
+    },
+    "XcodeprojOutputPath" : {
+      "p" : "/Users/wendy.liga/Developer/tulsi-plus-plus"
+    }
+  }
+}
