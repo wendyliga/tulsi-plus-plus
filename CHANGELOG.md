@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [Upcoming] 0.7.1
+<h2>Tulsi++ 0.7.1 🎅 </h2>
+<h4>Bug Fixes:</h4> 
+<ol> 
+    <li>fix fail to build uitest on legacy build</li>
+</ol>
+
+----
+
 ## 0.7.0
 <h2>Tulsi++ 0.7.0 🎅 </h2>
 <h4>Bug Fixes:</h4> 
