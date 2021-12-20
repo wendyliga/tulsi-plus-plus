@@ -36,7 +36,7 @@ lane :notorize do
 			"--sign \"#{ENV['CODESIGN_CERTIFICATE']}\" " \
 			"#{bazel_bin}/Tulsi++.app"
 
-	# print out codesign validation
+  # print out codesign validation
   sh "codesign --verify --deep --verbose=4 #{bazel_bin}/Tulsi++.app"
 
   # notorize
@@ -48,10 +48,10 @@ lane :notorize do
   )
 
   # create zip
-	sh "ditto -c -k --keepParent #{bazel_bin}/Tulsi++.app #{bazel_bin}/Tulsi++.zip"
+  sh "ditto -c -k --keepParent #{bazel_bin}/Tulsi++.app #{bazel_bin}/Tulsi++.zip"
 	
   # create dmg
-	sh "(#{workspace_path}/src/tools/BuildTools/create_dmg.sh #{bazel_bin}/Tulsi++.app -o #{bazel_bin}/Tulsi++.dmg)"
+  sh "(#{workspace_path}/src/tools/BuildTools/create_dmg.sh #{bazel_bin}/Tulsi++.app -o #{bazel_bin}/Tulsi++.dmg)"
 
   # codesign dmg
   sh "codesign --verbose --force --deep --no-strict -o runtime " \
@@ -63,6 +63,7 @@ lane :notorize do
   sh "rm -f binary/tulsi_plus_plus.zip"
 
   # create binary
+  sh "mkdir -p #{workspace_path}/binary"
   app_version = sh "/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' #{bazel_bin}/Tulsi++.App/Contents/Info.plist"
   sh "cp -rf #{bazel_bin}/Tulsi++.zip '#{workspace_path}/binary/tulsi_plus_plus.zip'"
   sh "cp -rf #{bazel_bin}/Tulsi++.dmg '#{workspace_path}/binary/tulsi_plus_plus.dmg'"
@@ -70,10 +71,11 @@ lane :notorize do
   # create changelog html
   create_versional_changelog_html(workspace_path, app_version.delete("\n"))
 
-  # naming binary based on architecture
-  sh "mkdir -p #{workspace_path}/binary"
+  # create sha256
   sh "shasum -a 256 '#{workspace_path}/binary/tulsi_plus_plus.zip' > '#{workspace_path}/binary/tulsi_plus_plus.zip.sha256'"
   sh "shasum -a 256 '#{workspace_path}/binary/tulsi_plus_plus.dmg' > '#{workspace_path}/binary/tulsi_plus_plus.dmg.sha256'"
+
+  # reuse latest appcast
   sh "cp '#{workspace_path}/appcast.xml' '#{workspace_path}/binary/appcast.xml'"
   
   # generate appcast
