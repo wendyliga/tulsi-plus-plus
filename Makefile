@@ -90,12 +90,12 @@ build: clean
 	@echo ====================================
 
 	@# build for intel
-	$(if $(_is_ci),$(call build_script_intel, is_ci),$(call build_script_intel, is_intel))
+	$(if $(_is_ci),$(call build_script_intel, is_ci),$(call build_script_intel))
 	@mkdir -p "${_workspace_path}/.build/x86_64"
 	@unzip -oq $(_bazel_bin)/tulsi.zip -d "${_workspace_path}/.build/x86_64"
 
 	@# build for apple silicon
-	$(if $(_is_ci),$(call build_script_apple_silicon, is_ci),$(call build_script_apple_silicon, is_intel))
+	$(if $(_is_ci),$(call build_script_apple_silicon, is_ci),$(call build_script_apple_silicon))
 	@mkdir -p "${_workspace_path}/.build/apple_silicon"
 	@unzip -oq $(_bazel_bin)/tulsi.zip -d "${_workspace_path}/.build/apple_silicon"
 
