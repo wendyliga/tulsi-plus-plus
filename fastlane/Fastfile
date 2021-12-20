@@ -69,53 +69,20 @@ lane :notorize do
 
   # create changelog html
   create_versional_changelog_html(workspace_path, app_version.delete("\n"))
-end
-
-lane :intel_appcast do
-  workspace_path = (sh "bazel info workspace").delete("\n")
 
   # naming binary based on architecture
-  sh "mkdir -p #{workspace_path}/intel"
-  sh "mv '#{workspace_path}/binary/tulsi_plus_plus.zip' '#{workspace_path}/intel/tulsi_plus_plus-darwin_x86_64.zip'"
-  sh "shasum -a 256 '#{workspace_path}/intel/tulsi_plus_plus-darwin_x86_64.zip' > '#{workspace_path}/intel/tulsi_plus_plus-darwin_x86_64.zip.sha256'"
-  sh "mv '#{workspace_path}/binary/tulsi_plus_plus.dmg' '#{workspace_path}/intel/tulsi_plus_plus-darwin_x86_64.dmg'"
-  sh "shasum -a 256 '#{workspace_path}/intel/tulsi_plus_plus-darwin_x86_64.dmg' > '#{workspace_path}/intel/tulsi_plus_plus-darwin_x86_64.dmg.sha256'"
-  sh "cp '#{workspace_path}/binary/tulsi_plus_plus.html' '#{workspace_path}/intel/tulsi_plus_plus-darwin_x86_64.html'"
+  sh "mkdir -p #{workspace_path}/binary"
+  sh "shasum -a 256 '#{workspace_path}/binary/tulsi_plus_plus.zip' > '#{workspace_path}/binary/tulsi_plus_plus.zip.sha256'"
+  sh "shasum -a 256 '#{workspace_path}/binary/tulsi_plus_plus.dmg' > '#{workspace_path}/binary/tulsi_plus_plus.dmg.sha256'"
+  sh "cp '#{workspace_path}/appcast.xml' '#{workspace_path}/binary/appcast.xml'"
   
   # generate appcast
-  sh "#{workspace_path}/src/tools/sparkle/generate_appcast #{workspace_path}/intel " \
+  sh "#{workspace_path}/src/tools/sparkle/generate_appcast #{workspace_path}/binary " \
     "-s #{ENV['SPARKLE_PRIVATE_KEY']} " \
     "--download-url-prefix 'https://github.com/wendyliga/tulsi-plus-plus/releases/download/#{ENV['RELEASE_VERSION']}/'"
 
   # move appcast.xml to root
-  sh "cp -rf #{workspace_path}/intel/appcast.xml #{workspace_path}/appcast.xml"
-end
-
-lane :apple_silicon_appcast do
-  workspace_path = (sh "bazel info workspace").delete("\n")
-
-  # naming binary based on architecture
-  sh "mkdir -p #{workspace_path}/apple_silicon"
-  sh "mv '#{workspace_path}/binary/tulsi_plus_plus.zip' '#{workspace_path}/apple_silicon/tulsi_plus_plus-darwin_arm64.zip'"
-  sh "shasum -a 256 '#{workspace_path}/apple_silicon/tulsi_plus_plus-darwin_arm64.zip' > '#{workspace_path}/apple_silicon/tulsi_plus_plus-darwin_arm64.zip.sha256'"
-  sh "mv '#{workspace_path}/binary/tulsi_plus_plus.dmg' '#{workspace_path}/apple_silicon/tulsi_plus_plus-darwin_arm64.dmg'"
-  sh "shasum -a 256 '#{workspace_path}/intel/tulsi_plus_plus-darwin_x86_64.dmg' > '#{workspace_path}/apple_silicon/tulsi_plus_plus-darwin_arm64.dmg.sha256'"
-  sh "cp '#{workspace_path}/binary/tulsi_plus_plus.html' '#{workspace_path}/apple_silicon/tulsi_plus_plus-darwin_arm64.html'"
-
-  # generate appcast
-  sh "#{workspace_path}/src/tools/sparkle/generate_appcast #{workspace_path}/apple_silicon " \
-    "-s #{ENV['SPARKLE_PRIVATE_KEY']} " \
-    "--download-url-prefix 'https://github.com/wendyliga/tulsi-plus-plus/releases/download/#{ENV['RELEASE_VERSION']}/'"
-
-  # move appcast.xml to root
-  sh "cp -rf #{workspace_path}/apple_silicon/appcast.xml #{workspace_path}/appcast_apple_silicon.xml"
-end
-
-lane :clean_up_binary do
-  workspace_path = (sh "bazel info workspace").delete("\n")
-
-  sh "rm -rf #{workspace_path}/intel"
-  sh "rm -rf #{workspace_path}/apple_silicon"
+  sh "cp -rf #{workspace_path}/binary/appcast.xml #{workspace_path}/appcast.xml"
 end
 
 def create_versional_changelog_html(workspace_path, app_version)

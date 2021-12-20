@@ -48,13 +48,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     // config updater
     updaterController.updater.automaticallyChecksForUpdates = true
     updaterController.updater.updateCheckInterval = TimeInterval(24 * 60 * 60) // 1 day
-      
-    #if ARM64
-    updaterController.updater.setFeedURL(URL(string: "https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/appcast_apple_silicon.xml"))
-    #else
-    updaterController.updater.setFeedURL(URL(string: "https://raw.githubusercontent.com/wendyliga/tulsi-plus-plus/main/appcast.xml"))
-    #endif
-    
   }
 
   func applicationDidFinishLaunching(_ notification: Notification) {
