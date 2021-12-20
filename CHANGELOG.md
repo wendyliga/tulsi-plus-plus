@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.7.2
+<h2>Tulsi++ 0.7.2 🎅 </h2>
+<h4>Improvement:</h4> 
+<ol> 
+    <li>use universal binary</li>
+</ol>
+
 ## 0.7.1
 <h2>Tulsi++ 0.7.1 🎅 </h2>
 <h4>Bug Fixes:</h4> 
