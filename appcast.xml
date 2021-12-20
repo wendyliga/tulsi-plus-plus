@@ -44,5 +44,26 @@
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download//tulsi_plus_plus.dmg" length="3242978" type="application/octet-stream" sparkle:edSignature="/ElZorB+rIU/yCDnAdGjlNcjykLGitROvZzO3H6/OFqnCwbJ3626xEEJQ6W9AX2NIZZAMwo6D+uyDDU8B+3mDg=="/>
         </item>
+        <item>
+            <title>0.7.2</title>
+            <pubDate>Mon, 20 Dec 2021 11:52:30 +0000</pubDate>
+            <sparkle:version>0.7.2</sparkle:version>
+            <sparkle:shortVersionString>0.7.2</sparkle:shortVersionString>
+            <description><![CDATA[<h2>Tulsi++ 0.7.2 🎅 </h2>
+<h4>Improvement:</h4> 
+<ol> 
+    <li>use universal binary</li>
+</ol>
+
+## 0.7.1
+<h2>Tulsi++ 0.7.1 🎅 </h2>
+<h4>Bug Fixes:</h4> 
+<ol> 
+    <li>fix fail building uitest on legacy build</li>
+</ol>
+]]></description>
+            <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.7.2/tulsi_plus_plus.dmg" length="3251860" type="application/octet-stream" sparkle:edSignature="4PdC9A/BSMeyLaC3L3OtV31HETD9vMrjPXlpZlkiTO1xZFazSv9tb4BrLTPtewj0BD2RzLdsNhJgrws4SfmKDg=="/>
+        </item>
     </channel>
 </rss>
