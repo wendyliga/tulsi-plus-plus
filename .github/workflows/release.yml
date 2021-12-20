@@ -33,11 +33,9 @@ jobs:
         MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
         GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
       run: bundle exec fastlane certificates 
-
-    # intel binary
-    - name: Build Intel Binary
+    - name: Build
       run: make build xcode=13.0 is_ci=true     
-    - name: Notorize Intel Binary
+    - name: Notorize
       env:
         APPLE_ID: ${{ secrets.APPLE_ID }} 
         FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD : ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
@@ -45,40 +43,15 @@ jobs:
         TEAM_NAME: ${{ secrets.TEAM_NAME }} 
         TEAM_ID: ${{ secrets.TEAM_ID }}
         CODESIGN_CERTIFICATE: ${{ secrets.CODESIGN_CERTIFICATE }}
-      run: bundle exec fastlane notorize
-    - name: Appcast for Intel Binary
-      env:
         SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY}}
         RELEASE_VERSION: ${{ env.RELEASE_VERSION }}
-      run: bundle exec fastlane intel_appcast
-
-    # apple silicon binary
-    - name: Build Apple Silicon Binary
-      run: make build_apple_silicon xcode=13.0 is_ci=true  
-    - name: Notorize Apple Silicon Binary
-      env:
-        APPLE_ID: ${{ secrets.APPLE_ID }} 
-        FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD : ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
-        FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
-        TEAM_NAME: ${{ secrets.TEAM_NAME }} 
-        TEAM_ID: ${{ secrets.TEAM_ID }}
-        CODESIGN_CERTIFICATE: ${{ secrets.CODESIGN_CERTIFICATE }}
       run: bundle exec fastlane notorize
-    - name: Appcast for Apple Silicon Binary
-      env:
-        SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY}}
-        RELEASE_VERSION: ${{ env.RELEASE_VERSION }}
-      run: bundle exec fastlane apple_silicon_appcast
-    
-      # create release
     - name: "Create Release"
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "intel/tulsi_plus_plus-darwin_x86_64.zip,intel/tulsi_plus_plus-darwin_x86_64.zip.sha256,intel/tulsi_plus_plus-darwin_x86_64.dmg,intel/tulsi_plus_plus-darwin_x86_64.dmg.sha256,apple_silicon/tulsi_plus_plus-darwin_arm64.zip,apple_silicon/tulsi_plus_plus-darwin_arm64.zip.sha256,apple_silicon/tulsi_plus_plus-darwin_arm64.dmg,apple_silicon/tulsi_plus_plus-darwin_arm64.dmg.sha256"
+        artifacts: "binary/tulsi_plus_plus.zip,binary/tulsi_plus_plus.zip.sha256,binary/tulsi_plus_plus.dmg,binary/tulsi_plus_plus.dmg.sha256"
         bodyFile: "binary/tulsi_plus_plus.html"
         token: ${{ secrets.GITHUB_TOKEN }}
-    - name: Clean up Git Changes
-      run: bundle exec fastlane clean_up_binary
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
       with:

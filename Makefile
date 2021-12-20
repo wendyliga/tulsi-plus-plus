@@ -48,12 +48,10 @@ define build_script_apple_silicon
 endef
 
 define processing_binary
-	@unzip -oq $(_bazel_bin)/tulsi.zip -d "${_bazel_bin}"
-
 	@# remove all frameworks, for some reason, dylib like `foundation` is included which should not.
 	@rm -rf $(_bazel_bin)/Tulsi++.app/Contents/Frameworks/*
 
-	@# for development, we use Sparkle framework which all symblink is replace with copy of the original file
+	@# for development, we use Sparkle framework which all symblink is replaced with copy of the original file
 	@# this is needed, to solve error when building tulsi on xcode
 	@# this sparkle framework version is default sparkle with symlink
 	@unzip -oq ${_workspace_path}/src/Sparkle/Sparkle.framework.zip -d $(_bazel_bin)/Tulsi++.app/Contents/Frameworks
@@ -79,6 +77,7 @@ clean:
 	@# remove previous
 	@rm -rf $(_bazel_bin)
 	@rm -rf $(_bazel_out)
+	@rm -rf ${_workspace_path}/.build
 
 build: clean
 	@echo "===================================="
@@ -88,30 +87,34 @@ build: clean
 	@echo workspace_path=$(_workspace_path)
 	@echo bazel_path=$(_bazel_path)
 	@echo is_ci=$(if $(_is_ci),true,false)
-	@echo cpu=Intel
 	@echo ====================================
 
+	@# build for intel
 	$(if $(_is_ci),$(call build_script_intel, is_ci),$(call build_script_intel, is_intel))
-	$(call processing_binary)
+	@mkdir -p "${_workspace_path}/.build/x86_64"
+	@unzip -oq $(_bazel_bin)/tulsi.zip -d "${_workspace_path}/.build/x86_64"
+
+	@# build for apple silicon
+	$(if $(_is_ci),$(call build_script_apple_silicon, is_ci),$(call build_script_apple_silicon, is_intel))
+	@mkdir -p "${_workspace_path}/.build/apple_silicon"
+	@unzip -oq $(_bazel_bin)/tulsi.zip -d "${_workspace_path}/.build/apple_silicon"
+
+	@# create fat executable to contain both x86_64 and apple silicon binary
+	@mkdir -p "${_workspace_path}/.build/universal_binary"
+	@cp -r "${_workspace_path}/.build/x86_64/Tulsi++.app" "${_workspace_path}/.build/universal_binary"
+	@lipo -create \
+        "${_workspace_path}/.build/x86_64/Tulsi++.app/Contents/MacOS/Tulsi++" \
+        "${_workspace_path}/.build/apple_silicon/Tulsi++.app/Contents/MacOS/Tulsi++" \
+        -output "${_workspace_path}/.build/universal_binary/Tulsi++.app/Contents/MacOS/Tulsi++" \
+	
+	@# packing it back to bazel-bin
+	@rm -f $(_bazel_bin)/tulsi.zip
+	@cp -r .build/universal_binary/Tulsi++.app $(_bazel_bin)/Tulsi++.app
+
+	@# additional processing
+	@$(call processing_binary)
 
 install: build
-	$(call install)
-
-build_apple_silicon: clean
-	@echo "===================================="
-	@echo "|           BUILDING               |"
-	@echo "===================================="
-	@echo xcode=$(_xcode_version)
-	@echo workspace_path=$(_workspace_path)
-	@echo bazel_path=$(_bazel_path)
-	@echo is_ci=$(if $(_is_ci),true,false)
-	@echo cpu=Apple Silicon
-	@echo ====================================
-
-	$(if $(_is_ci),$(call build_script_apple_silicon, is_ci),$(call build_script_apple_silicon, is_intel))
-	$(call processing_binary)
-
-install_apple_silicon: build_apple_silicon
 	$(call install)
 
 .PHONY: build install build_apple_silicon
