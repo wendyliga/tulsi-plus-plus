@@ -100,7 +100,10 @@ public enum TulsiOptionKey: String {
       PostBuildPhaseRunScript,
       
       // option to fallback to xcode legacy build system
-      UseLegacyBuildSystem
+      UseLegacyBuildSystem,
+
+      // Option to use a fallback approach to finding dSYMs.
+      UseBazelCacheReader
 
   // Options for build invocations.
   case BazelBuildOptionsDebug,
@@ -352,6 +355,7 @@ public class TulsiOptionSet: Equatable {
     addBoolOption(.Use64BitWatchSimulator, .Generic, false)
     addBoolOption(.DisableCustomLLDBInit, .Generic, false)
     addBoolOption(.UseLegacyBuildSystem, .Generic, false)
+    addBoolOption(.UseBazelCacheReader, .Generic, false)
 
     let defaultIdentifier = PlatformConfiguration.defaultConfiguration.identifier
     let platformCPUIdentifiers = PlatformConfiguration.allValidConfigurations.map { $0.identifier }
