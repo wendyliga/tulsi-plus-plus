@@ -12,6 +12,7 @@ _workspace_path:=$(shell ${_bazel_path} info workspace)
 _bazel_bin=${_workspace_path}/bazel-bin
 _bazel_out=${_workspace_path}/bazel-out
 _is_ci=${is_ci}
+_version=${version}
 
 define build_script_intel
 	$(if $(filter $(1),is_ci), \
@@ -120,5 +121,8 @@ install: build
 xcode:
 	@export TULSI_APP=/Applications/Tulsi++.app && src/tools/generate_xcodeproj.sh -- --genconfig ./Tulsi.tulsiproj:Tulsi --outputfolder .
 
-.PHONY: build install clean xcode
+release:
+	$(if $(_version),@git tag ${_version} && git push ${_version},@echo spesify version)
+
+.PHONY: build install clean xcode release
 
