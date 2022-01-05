@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.7.3
+<h2>Tulsi++ 0.7.3 🎉 </h2>
+<h4>Sync with Upstream:</h4> 
+<ol> 
+    <li>Add UseLegacyBuildSystem option to swap between new/old build systems</li>
+    <li>Fix signing of test runners with Xcode 13</li>
+    <li>Improve performance of fetching build/bzl files for a project</li>
+    <li>more <a href="https://github.com/wendyliga/tulsi-plus-plus/pull/46">here</a></li>
+</ol>
+
+----
+
 ## 0.7.2
 <h2>Tulsi++ 0.7.2 🎅 </h2>
 <h4>Improvement:</h4> 
