@@ -673,14 +673,13 @@ final class XcodeProjectGenerator {
     var sharedWorkspaceSettings: [String: Any] = [
       "IDEWorkspaceSharedSettings_AutocreateContextsIfNeeded": false as AnyObject,
     ]
-    
-    let useLegacyBuildSystem: Bool = config.options[.UseLegacyBuildSystem].commonValueAsBool ?? false
-    if useLegacyBuildSystem {
+    if config.options.useLegacyBuildSystem {
       sharedWorkspaceSettings["BuildSystemType"] = "Original"
+      // Disable legacy build system warning in Xcode 12.
       sharedWorkspaceSettings["DisableBuildSystemDeprecationWarning"] = true as AnyObject
+      // Disable legacy build system error in Xcode 13.
       sharedWorkspaceSettings["DisableBuildSystemDeprecationDiagnostic"] = true as AnyObject
     }
-    
     try writeWorkspaceSettings(sharedWorkspaceSettings,
                                toDirectoryAtURL: workspaceSharedDataURL,
                                replaceIfExists: true)
