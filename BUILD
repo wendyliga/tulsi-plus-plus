@@ -69,6 +69,7 @@ macos_application(
     name = "tulsi",
     additional_contents = {
         "//src/tools/bazel_cache_reader": "MacOS",
+        "//src/tools/module_cache_pruner": "MacOS",
     },
     app_icons = ["//src/Tulsi:Icon"],
     bundle_id = "com.wendyliga.TulsiPlusPlus",
