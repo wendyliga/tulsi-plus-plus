@@ -117,8 +117,5 @@ build: clean
 install: build
 	$(call install)
 
-xcode:
-	@export TULSI_APP=/Applications/Tulsi++.app && src/tools/generate_xcodeproj.sh -- --genconfig ./Tulsi.tulsiproj:Tulsi --outputfolder .
-
-.PHONY: build install clean xcode
+.PHONY: build install build_apple_silicon
 
