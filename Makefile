@@ -122,7 +122,7 @@ xcode:
 	@export TULSI_APP=/Applications/Tulsi++.app && src/tools/generate_xcodeproj.sh -- --genconfig ./Tulsi.tulsiproj:Tulsi --outputfolder .
 
 release:
-	$(if $(_version),@git tag ${_version} && git push ${_version},@echo spesify version)
+	$(if $(_version),@git tag ${_version} && git push origin main "${_version}",@echo spesify version)
 
 .PHONY: build install clean xcode release
 
