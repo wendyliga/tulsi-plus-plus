@@ -90,6 +90,9 @@ public enum TulsiOptionKey: String {
       // i386.
       Use64BitWatchSimulator,
 
+      // Target the legacy build system instead of the new build system.
+      UseLegacyBuildSystem,
+
       // Option to fallback to using a global lldbinit.
       DisableCustomLLDBInit,
 
@@ -98,9 +101,9 @@ public enum TulsiOptionKey: String {
 
       // Custom build phase run script that runs after bazel build.
       PostBuildPhaseRunScript,
-      
-      // option to fallback to xcode legacy build system
-      UseLegacyBuildSystem
+
+      // Option to use a fallback approach to finding dSYMs.
+      UseBazelCacheReader
 
   // Options for build invocations.
   case BazelBuildOptionsDebug,
@@ -284,6 +287,13 @@ public class TulsiOptionSet: Equatable {
     return buildSettings
   }
 
+  // MARK: - Public Getters
+
+  /// Whether the legacy build system should be used instead of the new build system.
+  var useLegacyBuildSystem: Bool {
+    return self[.UseLegacyBuildSystem].commonValueAsBool ?? true
+  }
+
   // MARK: - Private methods.
 
   private func saveToDictionary(_ filter: (TulsiOptionKey, TulsiOption) -> Bool) -> PersistenceType {
@@ -352,6 +362,8 @@ public class TulsiOptionSet: Equatable {
     addBoolOption(.Use64BitWatchSimulator, .Generic, false)
     addBoolOption(.DisableCustomLLDBInit, .Generic, false)
     addBoolOption(.UseLegacyBuildSystem, .Generic, false)
+    addBoolOption(.UseBazelCacheReader, .Generic, false)
+    addBoolOption(.UseLegacyBuildSystem, .Generic, true)
 
     let defaultIdentifier = PlatformConfiguration.defaultConfiguration.identifier
     let platformCPUIdentifiers = PlatformConfiguration.allValidConfigurations.map { $0.identifier }
