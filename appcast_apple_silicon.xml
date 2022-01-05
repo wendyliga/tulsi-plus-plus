@@ -44,5 +44,22 @@
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.7.2/tulsi_plus_plus.dmg" length="3246545" type="application/octet-stream" sparkle:edSignature="xJ8bFYc5EzzhCROpml4ifAdlB/X261BTMS4jYvU6ROugcvgx5t0Ijy19XCtOI6tbOVJQ7Sug5c13/Vo911taCw=="/>
         </item>
+        <item>
+            <title>0.7.3</title>
+            <pubDate>Wed, 05 Jan 2022 09:54:50 +0000</pubDate>
+            <sparkle:version>0.7.3</sparkle:version>
+            <sparkle:shortVersionString>0.7.3</sparkle:shortVersionString>
+            <description><![CDATA[<h2>Tulsi++ 0.7.3 🎉 </h2>
+<h4>Sync with Upstream:</h4> 
+<ol> 
+    <li>Add UseLegacyBuildSystem option to swap between new/old build systems</li>
+    <li>Fix signing of test runners with Xcode 13</li>
+    <li>Improve performance of fetching build/bzl files for a project</li>
+    <li>more <a href="https://github.com/wendyliga/tulsi-plus-plus/pull/46">here</a></li>
+</ol>
+]]></description>
+            <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.7.3/tulsi_plus_plus.dmg" length="3314591" type="application/octet-stream" sparkle:edSignature="pV9hDWKJ4VdGw+T9ggvtz1RnyIx6QLtC5qMop4n1svWOalAh9DLL5a/iMEeL7bozAUKGmBJgom+7nviksj97Dg=="/>
+        </item>
     </channel>
 </rss>
