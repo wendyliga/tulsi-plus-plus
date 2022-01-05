@@ -101,9 +101,6 @@ public enum TulsiOptionKey: String {
 
       // Custom build phase run script that runs after bazel build.
       PostBuildPhaseRunScript,
-      
-      // option to fallback to xcode legacy build system
-      UseLegacyBuildSystem,
 
       // Option to use a fallback approach to finding dSYMs.
       UseBazelCacheReader
