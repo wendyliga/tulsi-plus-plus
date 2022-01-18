@@ -83,6 +83,12 @@ public final class TulsiProject {
       options[.DeletePreviousXcodeproj].projectValue = deletePreviousXcodeproj ? "YES" : "NO"
     }
   }
+  
+  public var openXcode: Bool = true {
+    didSet {
+      options[.OpenXcode].projectValue = openXcode ? "YES" : "NO"
+    }
+  }
 
   /// Filename to be used when writing out user-specific values.
   public static var perUserFilename: String {
@@ -134,6 +140,13 @@ public final class TulsiProject {
     } else {
       self.options[.DeletePreviousXcodeproj].projectValue = "YES"
       self.deletePreviousXcodeproj = true
+    }
+    
+    if let openXcode = self.options[.OpenXcode].projectValue {
+      self.openXcode = openXcode == "YES"
+    } else {
+      self.options[.OpenXcode].projectValue = "YES"
+      self.openXcode = true
     }
     
     self.options[.WorkspaceRootPath].projectValue = workspaceRootURL.path
