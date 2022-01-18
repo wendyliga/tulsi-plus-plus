@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 0.8.0
+<h2>Tulsi++ 0.8.0 </h2>
+<h4>Improvement:</h4> 
+<ol> 
+    <li>Add option to not open xcode after generate</li>
+    <li>Better Xcode 13 auto complete referencing</li>
+<h4>Bug Fix:</h4> 
+<ol> 
+    <li>Fix not all PRODUCT_NAME use module name on TestRunner scheme</li>
+</ol>
+
+----
+
 ## 0.7.3
 <h2>Tulsi++ 0.7.3 🎉 </h2>
 <h4>Sync with Upstream:</h4> 
