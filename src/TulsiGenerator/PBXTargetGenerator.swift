@@ -688,6 +688,7 @@ final class PBXTargetGenerator: PBXTargetGeneratorProtocol {
     mergeRegisteredIndexers()
 
     func generateIndexer(_ name: String,
+                         productName: String,
                          indexerType: PBXTarget.ProductType,
                          data: IndexerData) {
       let indexingTarget = project.createNativeTarget(name,
@@ -695,6 +696,8 @@ final class PBXTargetGenerator: PBXTargetGeneratorProtocol {
                                                       targetType: indexerType,
                                                       isIndexerTarget: true)
       indexingTarget.buildPhases.append(data.buildPhase)
+      indexingTarget.productName = productName
+      
       addConfigsForIndexingTarget(indexingTarget, data: data)
 
       for name in data.supportedIndexingTargets {
@@ -703,11 +706,21 @@ final class PBXTargetGenerator: PBXTargetGeneratorProtocol {
     }
 
     for (name, data) in staticIndexers {
-      generateIndexer(name, indexerType: PBXTarget.ProductType.StaticLibrary, data: data)
+      generateIndexer(
+        name,
+        productName: data.indexerNameInfo.first?.targetName ?? name,
+        indexerType: PBXTarget.ProductType.StaticLibrary,
+        data: data
+      )
     }
 
     for (name, data) in frameworkIndexers {
-      generateIndexer(name, indexerType: PBXTarget.ProductType.Framework, data: data)
+        generateIndexer(
+          name,
+          productName: data.indexerNameInfo.first?.targetName ?? name,
+          indexerType: PBXTarget.ProductType.Framework,
+          data: data
+        )
     }
 
     func linkDependencies(_ dataMap: [String: IndexerData]) {
@@ -1197,7 +1210,7 @@ final class PBXTargetGenerator: PBXTargetGeneratorProtocol {
   private func addConfigsForIndexingTarget(_ target: PBXTarget, data: IndexerData) {
 
     var buildSettings = options.buildSettingsForTarget(target.name)
-    buildSettings["PRODUCT_NAME"] = data.indexerNameInfo.first?.targetName ?? target.productName
+    buildSettings["PRODUCT_NAME"] = target.productName ?? data.indexerNameInfo.first?.targetName
 
     if let pchFile = data.pchFile {
       buildSettings["GCC_PREFIX_HEADER"] = PBXTargetGenerator.projectRefForBazelFileInfo(pchFile)
@@ -1648,7 +1661,7 @@ final class PBXTargetGenerator: PBXTargetGeneratorProtocol {
     let target = project.createNativeTarget(name,
                                             deploymentTarget: entry.deploymentTarget,
                                             targetType: pbxTargetType)
-
+    target.productName = name
     for f in entry.secondaryArtifacts {
       project.createProductReference(f.fullPath)
     }
