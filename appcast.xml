@@ -75,5 +75,23 @@
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.7.3/tulsi_plus_plus.dmg" length="3314591" type="application/octet-stream" sparkle:edSignature="pV9hDWKJ4VdGw+T9ggvtz1RnyIx6QLtC5qMop4n1svWOalAh9DLL5a/iMEeL7bozAUKGmBJgom+7nviksj97Dg=="/>
         </item>
+        <item>
+            <title>0.8.0</title>
+            <pubDate>Wed, 19 Jan 2022 05:09:50 +0000</pubDate>
+            <sparkle:version>0.8.0</sparkle:version>
+            <sparkle:shortVersionString>0.8.0</sparkle:shortVersionString>
+            <description><![CDATA[<h2>Tulsi++ 0.8.0 </h2>
+<h4>Improvement:</h4> 
+<ol> 
+    <li>Add option to not open xcode after generate</li>
+    <li>Better Xcode 13 auto complete referencing</li>
+<h4>Bug Fix:</h4> 
+<ol> 
+    <li>Fix not all PRODUCT_NAME use module name on TestRunner scheme</li>
+</ol>
+]]></description>
+            <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.8.0/tulsi_plus_plus.dmg" length="3320753" type="application/octet-stream" sparkle:edSignature="IdrZL7rqb8EWYMVX8E0DBDy12hb3BBFgHfyou80hzbIlxbAr6J3Ff9zIXCd/NLKo9LBcKAmOY+11VoWXMRnJDQ=="/>
+        </item>
     </channel>
 </rss>
