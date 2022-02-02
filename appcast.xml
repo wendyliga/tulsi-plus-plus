@@ -85,6 +85,7 @@
 <ol> 
     <li>Add option to not open xcode after generate</li>
     <li>Better Xcode 13 auto complete referencing</li>
+</ol>
 <h4>Bug Fix:</h4> 
 <ol> 
     <li>Fix not all PRODUCT_NAME use module name on TestRunner scheme</li>
