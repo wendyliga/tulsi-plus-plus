@@ -20,7 +20,7 @@ import Foundation
 // relative to the Bazel exec root for non-generated files.
 final class BazelXcodeProjectPatcher {
   /// this is the parent directory we want to always patch even if useRealGroupsPath is true.
-  /// if we don't patch it, all item inside this directory will not be accessible on xcode
+  /// if we don't patch it, all items inside this directory will not be accessible on xcode
   static let alwaysPatchParentDirectory = ["bazel-tulsi-includes", "bazel-out", "external"]
 
   // FileManager used to check for presence of PBXFileReferences when patching.
