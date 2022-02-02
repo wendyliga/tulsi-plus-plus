@@ -19,6 +19,9 @@ import Foundation
 // BazelPBXReferencePatcher to any files that can't be found. As a backup, paths are set to be
 // relative to the Bazel exec root for non-generated files.
 final class BazelXcodeProjectPatcher {
+  /// this is the parent directory we want to always patch even if useRealGroupsPath is true.
+  /// if we don't patch it, all item inside this directory will not be accessible on xcode
+  static let alwaysPatchParentDirectory = ["bazel-tulsi-includes", "bazel-out", "external"]
 
   // FileManager used to check for presence of PBXFileReferences when patching.
   let fileManager: FileManager
@@ -75,11 +78,17 @@ final class BazelXcodeProjectPatcher {
       if let group = ref as? PBXGroup {
         // Queue up all children of the group so we can find all of their FileReferences.
         queue.append(contentsOf: group.children)
-      } else if !useRealGroupsPath, // Don't patch anything if use real path for Groups
-                let file = ref as? PBXFileReference,
+      } else if let file = ref as? PBXFileReference,
                 let fileURL = URL(string: file.path!, relativeTo: workspaceRootURL) {
-        self.patchFileReference(xcodeProject: xcodeProject, file: file, url: fileURL,
-                                workspaceRootURL: workspaceRootURL)
+        let parentDir = file.path!.components(separatedBy: "/").first ?? ""
+        let alwaysPatchDirectory = BazelXcodeProjectPatcher.alwaysPatchParentDirectory.contains(parentDir)
+        
+        // patch if parent directory is included on allow list `BazelXcodeProjectPatcher.alwaysPatchParentDirectory`
+        // Don't patch anything if use real path for Groups
+        if alwaysPatchDirectory || !useRealGroupsPath{
+          self.patchFileReference(xcodeProject: xcodeProject, file: file, url: fileURL,
+                                  workspaceRootURL: workspaceRootURL)
+        }
       }
     }
   }
