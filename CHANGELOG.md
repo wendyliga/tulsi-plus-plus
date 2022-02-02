@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [WIP] 0.9.0
+<h2>Tulsi++ 0.9.0 </h2>
+<h4>Improvement:</h4> 
+<ol> 
+    <li>Exclude Bazel Tulsi internal directory from real group path</li>
+</ol>
+
+----
+
 ## 0.8.0
 <h2>Tulsi++ 0.8.0 </h2>
 <h4>Improvement:</h4> 
