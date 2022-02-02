@@ -5,6 +5,7 @@
 <h4>Improvement:</h4> 
 <ol> 
     <li>Exclude Bazel Tulsi internal directory from real group path</li>
+    <li>Change default sort to label title on target selection window</li>
 </ol>
 
 ----
@@ -15,6 +16,7 @@
 <ol> 
     <li>Add option to not open xcode after generate</li>
     <li>Better Xcode 13 auto complete referencing</li>
+</ol>
 <h4>Bug Fix:</h4> 
 <ol> 
     <li>Fix not all PRODUCT_NAME use module name on TestRunner scheme</li>
