@@ -880,8 +880,6 @@ final class XcodeProjectGenerator {
       var extensionType: String? = nil
       var launchStyle: XcodeScheme.LaunchStyle? = .Normal
       var runnableDebuggingMode: XcodeScheme.RunnableDebuggingMode = .Default
-      // set true to ask for lunch if Run
-      var askForAppToLaunch: Bool = false
       // put something here if you want to custom the launch target scheme
       var launchActionBuildConfig: String? = nil
 
@@ -896,7 +894,6 @@ final class XcodeProjectGenerator {
       } else if targetType.isTest {
         // Test targets should be Buildable but not Runnable.
         launchStyle = .Normal
-        askForAppToLaunch = true
         launchActionBuildConfig = runTestTargetBuildConfigPrefix + "Debug"
       }
 
@@ -949,7 +946,6 @@ final class XcodeProjectGenerator {
                                  extensionType: extensionType,
                                  customLLDBInitFile: customLLDBInitFile,
                                  launchStyle: launchStyle,
-                                 askForAppToLaunch: askForAppToLaunch,
                                  runnableDebuggingMode: runnableDebuggingMode,
                                  additionalBuildTargets: additionalBuildTargets,
                                  commandlineArguments: commandlineArguments(for: entry),
