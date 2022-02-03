@@ -94,5 +94,21 @@
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.8.0/tulsi_plus_plus.dmg" length="3320753" type="application/octet-stream" sparkle:edSignature="IdrZL7rqb8EWYMVX8E0DBDy12hb3BBFgHfyou80hzbIlxbAr6J3Ff9zIXCd/NLKo9LBcKAmOY+11VoWXMRnJDQ=="/>
         </item>
+        <item>
+            <title>0.9.0</title>
+            <pubDate>Thu, 03 Feb 2022 01:02:11 +0000</pubDate>
+            <sparkle:version>0.9.0</sparkle:version>
+            <sparkle:shortVersionString>0.9.0</sparkle:shortVersionString>
+            <description><![CDATA[<h2>Tulsi++ 0.9.0 </h2>
+<h4>Improvement:</h4> 
+<ol> 
+    <li>Unit Test is buildable(⌘+B) now</li>
+    <li>Exclude Bazel Tulsi internal directory from real group path</li>
+    <li>Change default sort to label title on target selection window</li>
+</ol>
+]]></description>
+            <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.9.0/tulsi_plus_plus.dmg" length="3319202" type="application/octet-stream" sparkle:edSignature="NI7egy2o/BiM/dr4h6/XINjlyliBfcBQdp6GWnK44gzmb0dMT4vbdgUJEkZQ0CCl6pK3VCPciGJ3t+jIE6wMBw=="/>
+        </item>
     </channel>
 </rss>
