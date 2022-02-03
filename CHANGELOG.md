@@ -1,9 +1,10 @@
 # CHANGELOG
 
-## [WIP] 0.9.0
+## 0.9.0
 <h2>Tulsi++ 0.9.0 </h2>
 <h4>Improvement:</h4> 
 <ol> 
+    <li>Unit Test is buildable(⌘+B) now</li>
     <li>Exclude Bazel Tulsi internal directory from real group path</li>
     <li>Change default sort to label title on target selection window</li>
 </ol>

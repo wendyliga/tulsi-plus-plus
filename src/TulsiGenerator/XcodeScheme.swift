@@ -50,6 +50,7 @@ final class XcodeScheme {
   let extensionType: String?
   let customLLDBInitFile: String?
   let launchStyle: LaunchStyle?
+  let askForAppToLaunch: Bool
   let runnableDebuggingMode: RunnableDebuggingMode
   let explicitTests: [PBXTarget]?
   // List of additional targets and their project bundle names that should be built along with the
@@ -74,6 +75,7 @@ final class XcodeScheme {
        extensionType: String? = nil,
        customLLDBInitFile: String? = nil,
        launchStyle: LaunchStyle? = nil,
+       askForAppToLaunch: Bool = false,
        runnableDebuggingMode: RunnableDebuggingMode = .Default,
        version: String = "1.3",
        explicitTests: [PBXTarget]? = nil,
@@ -95,6 +97,7 @@ final class XcodeScheme {
     self.extensionType = extensionType
     self.customLLDBInitFile = customLLDBInitFile
     self.launchStyle = launchStyle
+    self.askForAppToLaunch = askForAppToLaunch
     self.runnableDebuggingMode = runnableDebuggingMode
     self.explicitTests = explicitTests
     self.additionalBuildTargets = additionalBuildTargets
@@ -273,6 +276,12 @@ final class XcodeScheme {
         "debugServiceExtension": "internal",
         "allowLocationSimulation": "YES",
     ]
+    
+    // only add if true
+    if askForAppToLaunch {
+      attributes["askForAppToLaunch"] = "YES"
+    }
+    
     if let launchStyle = launchStyle, launchStyle == .AppExtension {
       attributes["selectedDebuggerIdentifier"] = ""
       attributes["selectedLauncherIdentifier"] = "Xcode.IDEFoundation.Launcher.PosixSpawn"
