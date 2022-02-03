@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 0.9.1
+<h2>Tulsi++ 0.9.1 </h2>
+<h4>Improvement:</h4> 
+<ol> 
+    <li>Inject SRCROOT on environment by default, to support XCTSourceCodeLocation swizzle</li>
+</ol>
+
+----
+
 ## 0.9.0
 <h2>Tulsi++ 0.9.0 </h2>
 <h4>Improvement:</h4> 

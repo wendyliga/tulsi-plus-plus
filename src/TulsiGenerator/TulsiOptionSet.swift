@@ -376,7 +376,7 @@ public class TulsiOptionSet: Equatable {
     addStringOption(.ProjectGenerationBazelStartupOptions, [.SupportsInheritKeyword])
 
     addStringOption(.CommandlineArguments, [.TargetSpecializable, .SupportsInheritKeyword])
-    addStringOption(.EnvironmentVariables, [.TargetSpecializable, .SupportsInheritKeyword])
+    addStringOption(.EnvironmentVariables, [.TargetSpecializable, .SupportsInheritKeyword], "SRCROOT=${TULSI_WR}")
 
     // List matches the available options for the 'C++ Language Dialect' setting in XCode 10.2.1 and 11.
     // Currently compiler default is equivalent to GNU++98 (Xcode 10.2.1 and 11)
