@@ -4,10 +4,7 @@ common --incompatible_allow_tags_propagation
 build --cpu=darwin_x86_64
 build --apple_platform_type=macos
 build --compilation_mode=dbg
-build --spawn_strategy=local
-build --features=swift.use_global_module_cache
 build --swiftcopt=-whole-module-optimization 
-build --host_swiftcopt=-whole-module-optimization
 
 # Disable the Swift compilation worker when running integration tests, since it
 # requires the protobuf dependency which is infeasible to get working on Bazel.
@@ -27,5 +24,4 @@ build:apple_silicon --copt=-DARM64=1 --swiftcopt=-DARM64
 test --test_output=all
 test --build_tests_only
 test --curses=no
-test --compilation_mode=fastbuild
 test --show_timestamps
