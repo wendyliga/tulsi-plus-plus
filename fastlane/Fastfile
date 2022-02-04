@@ -12,6 +12,7 @@ lane :setup do
 end
 
 lane :certificates do
+  if is_ci
     match(
       type: "developer_id",
       keychain_name: "fastlane_match_code_sign",
@@ -20,6 +21,14 @@ lane :certificates do
       verbose: true,
       output_path: './src/provisioning_profile'
     )
+  else
+    match(
+      type: "developer_id",
+      readonly: true,
+      verbose: true,
+      output_path: './src/provisioning_profile'
+    )
+  end
 end
 
 # you need to run `make build` first

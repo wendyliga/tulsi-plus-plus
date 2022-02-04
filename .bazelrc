@@ -6,6 +6,12 @@ build --apple_platform_type=macos
 build --compilation_mode=opt
 build --swiftcopt=-whole-module-optimization
 
+test --test_output=all
+test --build_tests_only
+test --curses=no
+test --compilation_mode=fastbuild
+test --show_timestamps
+
 # Disable the Swift compilation worker when running integration tests, since it
 # requires the protobuf dependency which is infeasible to get working on Bazel.
 build --define=RULES_SWIFT_BUILD_DUMMY_WORKER=1
