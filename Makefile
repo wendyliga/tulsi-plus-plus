@@ -124,5 +124,8 @@ xcode:
 release:
 	$(if $(_version),@git tag ${_version} && git push origin main "${_version}",@echo spesify version)
 
+test:
+	bazel test //src/TulsiGeneratorTests --config=ci --compilation_mode=fastbuild --xcode_version=${_xcode_version}
+
 .PHONY: build install clean xcode release
 

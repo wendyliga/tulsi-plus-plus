@@ -34,7 +34,13 @@ macos_unit_test(
         "//src/tools/module_cache_pruner": "MacOS",
     },
     minimum_os_version = "10.13",
-    infoplists = modified_plist,
-    test_host = "//:tulsi",
+    infoplists = select({
+        "//:is_ci": ["Info.plist"],
+        "//conditions:default": modified_plist,
+    }),
+    test_host = select({
+        "//:is_ci": None,
+        "//conditions:default": "//:tulsi",
+    }),
     deps = [":TulsiGeneratorTestsLib"],
 )

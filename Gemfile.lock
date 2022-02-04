@@ -204,10 +204,11 @@ GEM
 
 PLATFORMS
   universal-darwin-20
+  universal-darwin-21
   x86_64-linux
 
 DEPENDENCIES
   fastlane
 
 BUNDLED WITH
-   2.2.11
+   2.2.27

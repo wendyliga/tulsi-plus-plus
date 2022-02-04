@@ -3,8 +3,8 @@ common --incompatible_allow_tags_propagation
 
 build --cpu=darwin_x86_64
 build --apple_platform_type=macos
-build --compilation_mode=opt
-build --swiftcopt=-whole-module-optimization
+build --compilation_mode=dbg
+build --swiftcopt=-whole-module-optimization 
 
 # Disable the Swift compilation worker when running integration tests, since it
 # requires the protobuf dependency which is infeasible to get working on Bazel.
@@ -12,6 +12,7 @@ build --define=RULES_SWIFT_BUILD_DUMMY_WORKER=1
 build --strategy=SwiftCompile=local
 
 build:ci --define=is_ci=1
+build:ci --compilation_mode=opt
 
 build:intel --cpu=darwin_x86_64
 build:intel --macos_cpus=x86_64
@@ -19,3 +20,8 @@ build:intel --macos_cpus=x86_64
 build:apple_silicon --cpu=darwin_arm64
 build:apple_silicon --macos_cpus=arm64
 build:apple_silicon --copt=-DARM64=1 --swiftcopt=-DARM64
+
+test --test_output=all
+test --build_tests_only
+test --curses=no
+test --show_timestamps
