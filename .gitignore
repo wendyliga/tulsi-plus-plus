@@ -3,7 +3,7 @@
 
 # Xcode Proj
 *.xcodeproj/
-src/provisioning_profile/*.provisionprofile
+# src/provisioning_profile/*.provisionprofile
 src/provisioning_profile/*.cer
 src/provisioning_profile/*.p12
 
