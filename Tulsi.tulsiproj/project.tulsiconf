@@ -7,16 +7,14 @@
       "GenerateRunfiles" : {
         "p" : "YES"
       },
-      "ProjectGenerationUseRealFilePath" : {
-        "p" : "NO"
-      },
       "TreeArtifactOutputs" : {
         "p" : "NO"
       }
     }
   },
   "packages" : [
-    ""
+    "",
+    "src/TulsiGeneratorTests"
   ],
   "projectName" : "Tulsi",
   "workspaceRoot" : ".."

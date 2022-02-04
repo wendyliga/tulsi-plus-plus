@@ -6,6 +6,9 @@
     "DeletePreviousXcodeproj" : {
       "p" : "YES"
     },
+    "OpenXcode" : {
+      "p" : "YES"
+    },
     "WorkspaceRootPath" : {
       "p" : "/Users/wendy.liga/Developer/tulsi-plus-plus"
     },
