@@ -61,6 +61,6 @@ jobs:
         MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
         GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
       run: bundle exec fastlane certificates      
-    - name: Build
-      run: make build xcode=${{ matrix.xcode }} is_ci=true
+    - name: Test
+      run: make test xcode=${{ matrix.xcode }} is_ci=true
     
