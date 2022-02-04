@@ -1,7 +1,7 @@
 {
   "optionSet" : {
     "BazelPath" : {
-      "p" : "/opt/homebrew/Cellar/bazelisk/1.10.1/bin/bazelisk"
+      "p" : "/opt/homebrew/bin/bazel"
     },
     "DeletePreviousXcodeproj" : {
       "p" : "YES"

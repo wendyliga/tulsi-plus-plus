@@ -273,6 +273,7 @@ final class XcodeScheme {
         "debugServiceExtension": "internal",
         "allowLocationSimulation": "YES",
     ]
+    
     if let launchStyle = launchStyle, launchStyle == .AppExtension {
       attributes["selectedDebuggerIdentifier"] = ""
       attributes["selectedLauncherIdentifier"] = "Xcode.IDEFoundation.Launcher.PosixSpawn"

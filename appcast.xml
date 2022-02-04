@@ -44,5 +44,85 @@
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download//tulsi_plus_plus.dmg" length="3242978" type="application/octet-stream" sparkle:edSignature="/ElZorB+rIU/yCDnAdGjlNcjykLGitROvZzO3H6/OFqnCwbJ3626xEEJQ6W9AX2NIZZAMwo6D+uyDDU8B+3mDg=="/>
         </item>
+        <item>
+            <title>0.7.2</title>
+            <pubDate>Mon, 20 Dec 2021 12:14:23 +0000</pubDate>
+            <sparkle:version>0.7.2</sparkle:version>
+            <sparkle:shortVersionString>0.7.2</sparkle:shortVersionString>
+            <description><![CDATA[<h2>Tulsi++ 0.7.2 🎅 </h2>
+<h4>Improvement:</h4> 
+<ol> 
+    <li>use universal binary</li>
+</ol>
+]]></description>
+            <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.7.2/tulsi_plus_plus.dmg" length="3246545" type="application/octet-stream" sparkle:edSignature="xJ8bFYc5EzzhCROpml4ifAdlB/X261BTMS4jYvU6ROugcvgx5t0Ijy19XCtOI6tbOVJQ7Sug5c13/Vo911taCw=="/>
+        </item>
+        <item>
+            <title>0.7.3</title>
+            <pubDate>Wed, 05 Jan 2022 09:54:50 +0000</pubDate>
+            <sparkle:version>0.7.3</sparkle:version>
+            <sparkle:shortVersionString>0.7.3</sparkle:shortVersionString>
+            <description><![CDATA[<h2>Tulsi++ 0.7.3 🎉 </h2>
+<h4>Sync with Upstream:</h4> 
+<ol> 
+    <li>Add UseLegacyBuildSystem option to swap between new/old build systems</li>
+    <li>Fix signing of test runners with Xcode 13</li>
+    <li>Improve performance of fetching build/bzl files for a project</li>
+    <li>more <a href="https://github.com/wendyliga/tulsi-plus-plus/pull/46">here</a></li>
+</ol>
+]]></description>
+            <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.7.3/tulsi_plus_plus.dmg" length="3314591" type="application/octet-stream" sparkle:edSignature="pV9hDWKJ4VdGw+T9ggvtz1RnyIx6QLtC5qMop4n1svWOalAh9DLL5a/iMEeL7bozAUKGmBJgom+7nviksj97Dg=="/>
+        </item>
+        <item>
+            <title>0.8.0</title>
+            <pubDate>Wed, 19 Jan 2022 05:09:50 +0000</pubDate>
+            <sparkle:version>0.8.0</sparkle:version>
+            <sparkle:shortVersionString>0.8.0</sparkle:shortVersionString>
+            <description><![CDATA[<h2>Tulsi++ 0.8.0 </h2>
+<h4>Improvement:</h4> 
+<ol> 
+    <li>Add option to not open xcode after generate</li>
+    <li>Better Xcode 13 auto complete referencing</li>
+</ol>
+<h4>Bug Fix:</h4> 
+<ol> 
+    <li>Fix not all PRODUCT_NAME use module name on TestRunner scheme</li>
+</ol>
+]]></description>
+            <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.8.0/tulsi_plus_plus.dmg" length="3320753" type="application/octet-stream" sparkle:edSignature="IdrZL7rqb8EWYMVX8E0DBDy12hb3BBFgHfyou80hzbIlxbAr6J3Ff9zIXCd/NLKo9LBcKAmOY+11VoWXMRnJDQ=="/>
+        </item>
+        <item>
+            <title>0.9.0</title>
+            <pubDate>Thu, 03 Feb 2022 01:02:11 +0000</pubDate>
+            <sparkle:version>0.9.0</sparkle:version>
+            <sparkle:shortVersionString>0.9.0</sparkle:shortVersionString>
+            <description><![CDATA[<h2>Tulsi++ 0.9.0 </h2>
+<h4>Improvement:</h4> 
+<ol> 
+    <li>Unit Test is buildable(⌘+B) now</li>
+    <li>Exclude Bazel Tulsi internal directory from real group path</li>
+    <li>Change default sort to label title on target selection window</li>
+</ol>
+]]></description>
+            <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.9.0/tulsi_plus_plus.dmg" length="3319202" type="application/octet-stream" sparkle:edSignature="NI7egy2o/BiM/dr4h6/XINjlyliBfcBQdp6GWnK44gzmb0dMT4vbdgUJEkZQ0CCl6pK3VCPciGJ3t+jIE6wMBw=="/>
+        </item>
+        <item>
+            <title>0.9.1</title>
+            <pubDate>Thu, 03 Feb 2022 20:51:43 +0000</pubDate>
+            <sparkle:version>0.9.1</sparkle:version>
+            <sparkle:shortVersionString>0.9.1</sparkle:shortVersionString>
+            <description><![CDATA[<h2>Tulsi++ 0.9.1 </h2>
+<h4>Improvement:</h4> 
+<ol> 
+    <li>Inject SRCROOT on environment by default, to support XCTSourceCodeLocation swizzle</li>
+</ol>
+]]></description>
+            <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.9.1/tulsi_plus_plus.dmg" length="3321967" type="application/octet-stream" sparkle:edSignature="S3Lj+fQNdjy0PGSkflVWc+DMU79rgdY/W9Gm0SKxEAagRcVE6iVc02ZDhJ6H8cHswdJmfa8OZmMOO42SMaxACA=="/>
+        </item>
     </channel>
 </rss>

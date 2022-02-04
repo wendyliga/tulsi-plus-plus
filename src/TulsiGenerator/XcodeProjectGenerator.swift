@@ -880,6 +880,8 @@ final class XcodeProjectGenerator {
       var extensionType: String? = nil
       var launchStyle: XcodeScheme.LaunchStyle? = .Normal
       var runnableDebuggingMode: XcodeScheme.RunnableDebuggingMode = .Default
+      // put something here if you want to custom the launch target scheme
+      var launchActionBuildConfig: String? = nil
 
       if targetType.isiOSAppExtension {
         appExtension = true
@@ -891,7 +893,8 @@ final class XcodeProjectGenerator {
         launchStyle = nil
       } else if targetType.isTest {
         // Test targets should be Buildable but not Runnable.
-        launchStyle = nil
+        launchStyle = .Normal
+        launchActionBuildConfig = runTestTargetBuildConfigPrefix + "Debug"
       }
 
       var schemeEnvVars = environmentVariables(for: entry)
@@ -937,6 +940,7 @@ final class XcodeProjectGenerator {
                                  project: info.project,
                                  projectBundleName: projectBundleName,
                                  testActionBuildConfig: runTestTargetBuildConfigPrefix + "Debug",
+                                 launchActionBuildConfig: launchActionBuildConfig ?? "Debug",
                                  profileActionBuildConfig: runTestTargetBuildConfigPrefix + "Release",
                                  appExtension: appExtension,
                                  extensionType: extensionType,

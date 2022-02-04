@@ -46,6 +46,9 @@ public enum TulsiOptionKey: String {
   
       // Flag to delete previous xcodeproj
       DeletePreviousXcodeproj,
+  
+      // Flag to open xcode after generate
+      OpenXcode,
 
       // Commandline Arguments used by the run phase of the generated scheme.
       CommandlineArguments,
@@ -373,7 +376,7 @@ public class TulsiOptionSet: Equatable {
     addStringOption(.ProjectGenerationBazelStartupOptions, [.SupportsInheritKeyword])
 
     addStringOption(.CommandlineArguments, [.TargetSpecializable, .SupportsInheritKeyword])
-    addStringOption(.EnvironmentVariables, [.TargetSpecializable, .SupportsInheritKeyword])
+    addStringOption(.EnvironmentVariables, [.TargetSpecializable, .SupportsInheritKeyword], "SRCROOT=${TULSI_WR}")
 
     // List matches the available options for the 'C++ Language Dialect' setting in XCode 10.2.1 and 11.
     // Currently compiler default is equivalent to GNU++98 (Xcode 10.2.1 and 11)
@@ -393,6 +396,7 @@ public class TulsiOptionSet: Equatable {
     addStringOption(.WorkspaceRootPath, [.Hidden, .PerUserOnly])
     addStringOption(.XcodeprojOutputPath, [.Hidden, .PerUserOnly])
     addBoolOption(.DeletePreviousXcodeproj, [.Hidden, .PerUserOnly], true)
+    addBoolOption(.OpenXcode, [.Hidden, .PerUserOnly], true)
   }
 
   private func populateOptionGroupInfoWithBundle(_ bundle: Bundle) {

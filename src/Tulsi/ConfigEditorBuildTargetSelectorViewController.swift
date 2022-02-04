@@ -85,8 +85,9 @@ final class ConfigEditorBuildTargetSelectorViewController: NSViewController, Wiz
 
     let typeColumn = buildTargetTable.tableColumn(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "Type"))!
     let labelColumn = buildTargetTable.tableColumn(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "Label"))!
-    buildTargetTable.sortDescriptors = [typeColumn.sortDescriptorPrototype!,
-                                        labelColumn.sortDescriptorPrototype!]
+    buildTargetTable.sortDescriptors = [
+                                        labelColumn.sortDescriptorPrototype!,
+                                        typeColumn.sortDescriptorPrototype!]
   }
 
   // MARK: - WizardSubviewProtocol

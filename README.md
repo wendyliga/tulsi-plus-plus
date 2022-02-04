@@ -7,7 +7,7 @@
         <img src="https://img.shields.io/github/downloads/wendyliga/tulsi-plus-plus/total.svg?style=flat" alt="downloads"/>
     </a>
     <a href="https://github.com/wendyliga/tulsi-plus-plus/actions/workflows/main.yml">
-        <img src="https://github.com/wendyliga/tulsi-plus-plus/actions/workflows/main.yml/badge.svg" alt="CI" />
+        <img src="https://github.com/wendyliga/tulsi-plus-plus/actions/workflows/development.yml/badge.svg" alt="CI" />
     </a>
     <a href="https://github.com/wendyliga/tulsi-plus-plus/releases">
         <img src="https://img.shields.io/github/v/release/wendyliga/tulsi-plus-plus" alt="Latest Release" />

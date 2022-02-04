@@ -31,6 +31,7 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
   private static var PostSaveContextAddConfig = 0
 
   @IBOutlet var deletePreviousProjectCheckBox: NSButton!
+  @IBOutlet var openXcodeCheckbox: NSButton!
   @IBOutlet var configArrayController: NSArrayController!
   @IBOutlet weak var addRemoveSegmentedControl: NSSegmentedControl!
   @IBOutlet var generateButton: NSButton!
@@ -125,6 +126,7 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
     if let document = representedObject as? TulsiProjectDocument {
       xcodeOutputPath = document.project.xcodeprojOutputPath
       deletePreviousProjectCheckBox.state = document.project.deletePreviousXcodeproj ? .on : .off
+      openXcodeCheckbox.state = document.project.openXcode ? .on : .off
     }
   }
 
@@ -197,15 +199,20 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
     let projectDocument = representedObject as! TulsiProjectDocument
     generatorController.generateProjectForConfigName(
       configName,
-      removePreviousProject: deletePreviousProjectCheckBox.state.rawValue == 1,
+      removePreviousProject: deletePreviousProjectCheckBox.state == .on,
       customOutputPath: xcodeOutputPath
     ) { (projectURL: URL?, newOutputPath: URL?) in
       self.dismiss(generatorController)
       if let projectURL = projectURL {
         self.previousProjectURL = projectURL
-        LogMessage.postInfo("Opening generated project in Xcode",
+        LogMessage.postInfo("Success generate project in Xcode",
                             context: projectDocument.projectName)
-        NSWorkspace.shared.open(projectURL)
+        
+        if self.openXcodeCheckbox.state == .on {
+          LogMessage.postInfo("Opening generated project in Xcode",
+                              context: projectDocument.projectName)
+          NSWorkspace.shared.open(projectURL)
+        }
       }
       
       if let newOutputPath = newOutputPath {
@@ -218,7 +225,14 @@ final class ProjectEditorConfigManagerViewController: NSViewController {
   @IBAction func changeDeletePreviousProjectCheckboxStatus(_ sender: AnyObject?) {
     let projectDocument = representedObject as! TulsiProjectDocument
     
-    projectDocument.project.deletePreviousXcodeproj = deletePreviousProjectCheckBox.state.rawValue == 1
+    projectDocument.project.deletePreviousXcodeproj = deletePreviousProjectCheckBox.state == .on
+    projectDocument.updateChangeCount(.changeDone)
+  }
+  
+  @IBAction func changeOpenXcodeCheckboxStatus(_ sender: AnyObject?) {
+    let projectDocument = representedObject as! TulsiProjectDocument
+    
+    projectDocument.project.openXcode = openXcodeCheckbox.state == .on
     projectDocument.updateChangeCount(.changeDone)
   }
   
