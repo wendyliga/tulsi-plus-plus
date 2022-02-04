@@ -795,7 +795,9 @@ final class PBXTargetGenerator: PBXTargetGeneratorProtocol {
     buildSettings["CODE_SIGNING_REQUIRED"] = "NO"
     // as bazel takes care of signing the application, will silent error when using new build system `An empty identity is not valid when signing a binary for the product type 'Aplication'`
     let useLegacyBuildSystem = options[.UseLegacyBuildSystem].commonValueAsBool == true
-    buildSettings["CODE_SIGNING_ALLOWED"] = useLegacyBuildSystem ? "YES" : "NO"
+    if !useLegacyBuildSystem {
+      buildSettings["CODE_SIGNING_ALLOWED"] = "NO"
+    }
     
     buildSettings["CODE_SIGN_IDENTITY"] = ""
 
@@ -1698,8 +1700,7 @@ final class PBXTargetGenerator: PBXTargetGeneratorProtocol {
     // CODE_SIGNING_REQUIRED=NO so disable code signing and let bazel_build.py do the necessary
     // signing.
     if pbxTargetType == .AppClip {
-      let useLegacyBuildSystem = options[.UseLegacyBuildSystem].commonValueAsBool == true
-      buildSettings["CODE_SIGNING_ALLOWED"] = useLegacyBuildSystem ? "YES" : "NO"
+      buildSettings["CODE_SIGNING_ALLOWED"] = "NO"
     }
 
     // bazel_build.py uses this to determine if it needs to pass the --xcode_version flag, as the

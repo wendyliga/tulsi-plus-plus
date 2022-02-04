@@ -3,7 +3,8 @@
     "BUILD"
   ],
   "buildTargets" : [
-    "//:tulsi"
+    "//:tulsi",
+    "//src/TulsiGeneratorTests:TulsiGeneratorTests"
   ],
   "optionSet" : {
     "BazelBuildOptionsDebug" : {
@@ -33,6 +34,8 @@
   },
   "projectName" : "Tulsi",
   "sourceFilters" : [
+    "bazel-tulsi-includes/...",
+    "external/...",
     "src/..."
   ]
 }

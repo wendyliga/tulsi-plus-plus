@@ -364,7 +364,6 @@ public class TulsiOptionSet: Equatable {
     addBoolOption(.TreeArtifactOutputs, .Generic, true)
     addBoolOption(.Use64BitWatchSimulator, .Generic, false)
     addBoolOption(.DisableCustomLLDBInit, .Generic, false)
-    addBoolOption(.UseLegacyBuildSystem, .Generic, false)
     addBoolOption(.UseBazelCacheReader, .Generic, false)
     addBoolOption(.UseLegacyBuildSystem, .Generic, true)
 
