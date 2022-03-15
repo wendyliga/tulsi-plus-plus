@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.9.2
+<h2>Tulsi++ 0.9.2 </h2>
+<h4>Bug Fix:</h4> 
+<ol> 
+    <li>Fix crash on Xcode 13.3 on Macos 12.3</li>
+</ol>
+
+<h4>Sync with Upstream:</h4> 
+<ol> 
+    <li>Migrate python script to python3</li>
+    <li>Add support for stub binaries</li>
+    <li><a href="https://github.com/wendyliga/tulsi-plus-plus/pull/63">More</a></li>
+</ol>
+
+----
+
 ## 0.9.1
 <h2>Tulsi++ 0.9.1 </h2>
 <h4>Improvement:</h4> 
