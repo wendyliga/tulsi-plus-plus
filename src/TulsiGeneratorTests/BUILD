@@ -1,3 +1,4 @@
+
 licenses(["notice"])  # Apache 2.0
 
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
@@ -7,24 +8,7 @@ swift_library(
     name = "TulsiGeneratorTestsLib",
     testonly = 1,
     srcs = glob(["*.swift"]),
-    deps = [
-        "//src/TulsiGenerator:tulsi_generator_lib",
-        "//src/UnitTestPatcher:UnitTestPatcher"
-    ],
-)
-
-modified_plist = [
-    "TulsiGeneratorTests-patched.plist"
-]
-
-genrule(
-    name = "TulsiGeneratorTests_info_plist_modified",
-    srcs = ["Info.plist"],
-    outs = modified_plist,
-    message = "Append UnitTestPatcher NSPrincipalClass",
-    cmd = """
-    plutil -insert "NSPrincipalClass" -string "UnitTestPatcher.UnitTestMain" -o "$@" "$<"
-    """
+    deps = ["//src/TulsiGenerator:tulsi_generator_lib"],
 )
 
 macos_unit_test(
@@ -34,7 +18,5 @@ macos_unit_test(
         "//src/tools/module_cache_pruner": "MacOS",
     },
     minimum_os_version = "10.13",
-    infoplists = modified_plist,
-    test_host = "//:tulsi",
     deps = [":TulsiGeneratorTestsLib"],
 )
