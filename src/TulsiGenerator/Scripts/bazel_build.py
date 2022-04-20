@@ -260,7 +260,6 @@ class _OptionsParser(object):
       sys.exit(1)
 
     self.verbose = 0
-    self.generate_docc = False
     self.bazel_bin_path = 'bazel-bin'
     self.bazel_executable = None
 
@@ -338,9 +337,6 @@ class _OptionsParser(object):
 
       elif arg == '--verbose':
         self.verbose += 1
-
-      elif arg == '--docc':
-        self.generate_docc += True
 
       else:
         match = verbose_re.match(arg)
@@ -445,7 +441,7 @@ class BazelBuildBridge(object):
     self.bazel_bin_path = None
     self.codesign_attributes = {}
 
-    self.codesigning_folder_path = os.environ.get('CODESIGNING_FOLDER_PATH')
+    self.codesigning_folder_path = os.environ['CODESIGNING_FOLDER_PATH']
 
     self.xcode_action = os.environ['ACTION']  # The Xcode build action.
     # When invoked as an external build system script, Xcode will set ACTION to
@@ -738,14 +734,6 @@ class BazelBuildBridge(object):
 
     extra_options = bazel_options.BazelOptions(os.environ)
     bazel_command.extend(extra_options.bazel_feature_flags())
-
-    if options.generate_docc:
-      bazel_command.extend([
-        "--swiftcopt='-Xfrontend'",
-        "--swiftcopt='-emit-symbol-graph'",
-        "--swiftcopt='-emit-symbol-graph-dir'"
-        "--swiftcopt='/var/tmp/'"
-      ])
 
     return (bazel_command, 0)
 

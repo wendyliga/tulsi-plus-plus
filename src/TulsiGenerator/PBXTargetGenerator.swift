@@ -69,7 +69,7 @@ protocol PBXTargetGeneratorProtocol: AnyObject {
 
   /// Returns a new PBXGroup instance appropriate for use as a top level project group.
   static func mainGroupForOutputFolder(_ outputFolderURL: URL, workspaceRootURL: URL) -> PBXGroup
-  
+
   init(bazelPath: String,
        bazelBinPath: String,
        project: PBXProject,

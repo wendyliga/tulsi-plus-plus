@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+# script helper to generate docc
+# example: bazel_docc.sh /usr/bin/bazel //:MyApp "--cpu=ios_x86_64"
 set -eu
 
 readonly bazel_executable="$1"; shift

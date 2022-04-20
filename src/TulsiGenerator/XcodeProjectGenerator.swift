@@ -1206,7 +1206,7 @@ final class XcodeProjectGenerator {
       let scriptPath = "${PROJECT_FILE_PATH}/\(XcodeProjectGenerator.ScriptDirectorySubpath)/\(XcodeProjectGenerator.DoccScript)"
       
       let debugConfig = self.config.options[.BazelBuildOptionsDebug].commonValue ?? ""
-      let cpu = self.config.options[.ProjectGenerationPlatformConfiguration].commonValue ?? "ios_sim_arm64"
+      let cpu = self.config.options[.ProjectGenerationPlatformConfiguration].commonValue ?? "ios_x86_64"
       let config = "\(debugConfig) --cpu=\(cpu)"
       
       let label = entry.label.value
