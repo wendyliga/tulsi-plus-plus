@@ -245,17 +245,13 @@ final class XcodeProjectGenerator {
       throw ProjectGeneratorError.serializationFailed("Project directory creation failed")
     }
     
-    guard let bazelPath = projectInfo.generator as? PBXTargetGenerator else {
-      throw ProjectGeneratorError.serializationFailed("fail to get bazel path")
-    }
-    
     // generate docc schemes
     try installDoccSchemesForProjectInfo(
       projectInfo,
       projectURL: projectURL,
       projectBundleName: projectBundleName,
       workingDirectory: pbxTargetGeneratorType.workingDirectoryForPBXGroup(mainGroup),
-      bazelPath: bazelPath.bazelPath
+      bazelPath: projectInfo.generator.bazelPath
     )
     
     guard let serializedXcodeProject = serializer.serialize() else {
