@@ -73,6 +73,7 @@ final class XcodeProjectGenerator {
   private static let BuildScript = "bazel_build.py"
   private static let SettingsScript = "bazel_build_settings.py"
   private static let CleanScript = "bazel_clean.sh"
+  private static let DoccScript = "bazel_docc.sh"
   private static let ShellCommandsUtil = "bazel_cache_reader"
   private static let ModuleCachePrunerUtil = "module_cache_pruner"
   private static let ShellCommandsCleanScript = "clean_symbol_cache"
@@ -237,16 +238,27 @@ final class XcodeProjectGenerator {
 
     let serializingProfileToken = localizedMessageLogger.startProfiling("serializing_project",
                                                                         context: config.projectName)
-    guard let serializedXcodeProject = serializer.serialize() else {
-      throw ProjectGeneratorError.serializationFailed("OpenStep serialization failed")
-    }
-    localizedMessageLogger.logProfilingEnd(serializingProfileToken)
-
+    
     let projectBundleName = config.xcodeProjectFilename
     let projectURL = outputFolderURL.appendingPathComponent(projectBundleName)
     if !createDirectory(projectURL) {
       throw ProjectGeneratorError.serializationFailed("Project directory creation failed")
     }
+    
+    // generate docc schemes
+    try installDoccSchemesForProjectInfo(
+      projectInfo,
+      projectURL: projectURL,
+      projectBundleName: projectBundleName,
+      workingDirectory: pbxTargetGeneratorType.workingDirectoryForPBXGroup(mainGroup),
+      bazelPath: (pbxTargetGeneratorType as? PBXTargetGenerator)?.bazelPath ?? "",
+      tulsiConfig: ""
+    )
+    
+    guard let serializedXcodeProject = serializer.serialize() else {
+      throw ProjectGeneratorError.serializationFailed("OpenStep serialization failed")
+    }
+    localizedMessageLogger.logProfilingEnd(serializingProfileToken)
 
     let pbxproj = projectURL.appendingPathComponent("project.pbxproj")
     try writeDataHandler(pbxproj, serializedXcodeProject)
@@ -1114,6 +1126,113 @@ final class XcodeProjectGenerator {
         }
         try installSchemeForTestSuite(suite, named: suiteName)
       }
+    }
+
+    let schemeManagementURL = userSchemesURL.appendingPathComponent("xcschememanagement.plist")
+    guard savePlist(schemeManagementDict, url: schemeManagementURL) else { return }
+  }
+  
+  private func installDoccSchemesForProjectInfo(
+    _ info: GeneratedProjectInfo,
+    projectURL: URL,
+    projectBundleName: String,
+    workingDirectory: String,
+    bazelPath: String,
+    tulsiConfig: String
+  ) throws {
+    let xcschemesURL = projectURL.appendingPathComponent("xcshareddata/xcschemes")
+    guard createDirectory(xcschemesURL) else { return }
+
+    let userSchemeSubpath = "xcuserdata/\(usernameFetcher()).xcuserdatad/xcschemes"
+    let userSchemesURL = projectURL.appendingPathComponent(userSchemeSubpath)
+    guard createDirectory(userSchemesURL) else { return }
+
+    func updateManagementDictionary(
+      _ dictionary: inout [String: Any],
+      schemeName: String,
+      shared: Bool = true,
+      visible: Bool = true
+    ) {
+      guard var schemeUserState = dictionary["SchemeUserState"] as? [String: Any] else {
+        return
+      }
+      let actualizedName = shared ? "\(schemeName)_^#shared#^_" : schemeName
+      let schemeDict: [String: Any] = ["isShown": visible]
+      schemeUserState[actualizedName] = schemeDict
+      dictionary["SchemeUserState"] = schemeUserState
+    }
+
+    func targetForLabel(_ label: BuildLabel) -> PBXTarget? {
+      if let pbxTarget = info.topLevelBuildTargetsByLabel[label] {
+        return pbxTarget
+      }
+      if let pbxTarget = info.project.targetByName[label.targetName!] {
+        return pbxTarget
+      } else if let pbxTarget = info.project.targetByName[label.asFullPBXTargetName!] {
+        return pbxTarget
+      }
+      return nil
+    }
+    
+    var schemeManagementDict = [String: Any]()
+    schemeManagementDict["SchemeUserState"] = [String: Any]()
+    schemeManagementDict["SuppressBuildableAutocreation"] = [String: Any]()
+
+    let runTestTargetBuildConfigPrefix = pbxTargetGeneratorType.getRunTestTargetBuildConfigPrefix()
+    for entry in info.buildRuleEntries {
+      // Generate an XcodeScheme with a test action set up to allow tests to be run without Xcode
+      // attempting to compile code.
+      let target: PBXNativeTarget
+      if let pbxTarget = targetForLabel(entry.label) as? PBXNativeTarget {
+        target = pbxTarget
+      } else {
+        localizedMessageLogger.warning("XCSchemeGenerationFailed",
+                                       comment: "Warning shown when generation of an Xcode scheme failed for build target %1$@",
+                                       context: config.projectName,
+                                       values: entry.label.value)
+        continue
+      }
+      
+      let targetType = entry.pbxTargetType ?? .Application
+      // skip if unit test
+      guard targetType != .UnitTest else { continue }
+      
+      let scriptPath = "${PROJECT_FILE_PATH}/\(XcodeProjectGenerator.ScriptDirectorySubpath)/\(XcodeProjectGenerator.DoccScript)"
+      
+      let config = self.config.options[.BazelBuildOptionsDebug].commonValue
+      let label = entry.label.value
+      let doccTarget = info.project.createLegacyTarget(
+        target.name + "_docc",
+        deploymentTarget: nil,
+        buildToolPath: scriptPath,
+        buildArguments: "\(bazelPath) \(label) \(config ?? "")",
+        buildWorkingDirectory: workingDirectory
+      )
+
+      let doccScheme = XcodeScheme(
+        target: doccTarget,
+        project: info.project,
+        projectBundleName: projectBundleName,
+        testActionBuildConfig: runTestTargetBuildConfigPrefix + "Debug",
+        launchActionBuildConfig: "Debug",
+        profileActionBuildConfig: runTestTargetBuildConfigPrefix + "Release",
+        launchStyle: .Normal,
+        runnableDebuggingMode: .Default,
+        additionalBuildTargets: [],
+        commandlineArguments: [],
+        environmentVariables: [:],
+        preActionScripts:[:],
+        postActionScripts:[:],
+        localizedMessageLogger: localizedMessageLogger
+      )
+
+      let doccXMLDocument = doccScheme.toXML()
+
+      let doccFilename = doccTarget.name + ".xcscheme"
+      let doccUrl = xcschemesURL.appendingPathComponent(doccFilename)
+      let doccData = doccXMLDocument.xmlData(options: XMLNode.Options.nodePrettyPrint)
+      try writeDataHandler(doccUrl, doccData)
+      updateManagementDictionary(&schemeManagementDict, schemeName: doccFilename)
     }
 
     let schemeManagementURL = userSchemesURL.appendingPathComponent("xcschememanagement.plist")

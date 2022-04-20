@@ -32,7 +32,7 @@
       "p" : "YES"
     }
   },
-  "projectName" : "Tulsi",
+  "projectName" : "Tulsi++",
   "sourceFilters" : [
     "bazel-tulsi-includes/...",
     "external/...",

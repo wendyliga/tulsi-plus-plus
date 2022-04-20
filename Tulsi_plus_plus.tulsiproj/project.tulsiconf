@@ -16,6 +16,6 @@
     "",
     "src/TulsiGeneratorTests"
   ],
-  "projectName" : "Tulsi",
+  "projectName" : "Tulsi++",
   "workspaceRoot" : ".."
 }
