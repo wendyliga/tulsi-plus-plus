@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright 2016 The Tulsi Authors. All rights reserved.
+# Copyright 2022 Wendy Liga. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,11 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-#
-# Bridge between Xcode and Bazel for the "clean" action.
-#
-# Usage: bazel_clean.sh <bazel_binary_path> <bazel_binary_output_path> <bazel startup options>
-# Note that the ACTION environment variable is expected to be set to "clean".
 
 set -eu
 
@@ -52,3 +47,6 @@ docc_exec=$(xcode-select -p)/Toolchains/XcodeDefault.xctoolchain/usr/bin/docc
 
 # clean up
 rm -rf ${symbol_graph_dir}
+
+# open docc
+open ${output}/tulsi.doccarchive

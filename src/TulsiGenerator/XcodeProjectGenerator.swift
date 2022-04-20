@@ -245,14 +245,17 @@ final class XcodeProjectGenerator {
       throw ProjectGeneratorError.serializationFailed("Project directory creation failed")
     }
     
+    guard let bazelPath = projectInfo.generator as? PBXTargetGenerator else {
+      throw ProjectGeneratorError.serializationFailed("fail to get bazel path")
+    }
+    
     // generate docc schemes
     try installDoccSchemesForProjectInfo(
       projectInfo,
       projectURL: projectURL,
       projectBundleName: projectBundleName,
       workingDirectory: pbxTargetGeneratorType.workingDirectoryForPBXGroup(mainGroup),
-      bazelPath: (pbxTargetGeneratorType as? PBXTargetGenerator)?.bazelPath ?? "",
-      tulsiConfig: ""
+      bazelPath: bazelPath.bazelPath
     )
     
     guard let serializedXcodeProject = serializer.serialize() else {
@@ -371,6 +374,9 @@ final class XcodeProjectGenerator {
     /// Test targets from `test_suite` rules which were silently dropped since
     /// their rule kind is unsupported.
     let ignoredTestTargets: Set<BuildLabel>
+    
+    /// Tusli generator info
+    let generator: PBXTargetGeneratorProtocol
   }
 
   /// Throws an exception if the Xcode project path is found to be in a forbidden location,
@@ -679,7 +685,8 @@ final class XcodeProjectGenerator {
                                 testSuiteRuleEntries: testSuiteRules,
                                 indexerTargets: indexerTargets,
                                 topLevelBuildTargetsByLabel: targetsByLabel,
-                                ignoredTestTargets: ignoredTests)
+                                ignoredTestTargets: ignoredTests,
+                                generator: generator)
   }
 
   private func installWorkspaceSettings(_ projectURL: URL) throws {
@@ -1137,8 +1144,7 @@ final class XcodeProjectGenerator {
     projectURL: URL,
     projectBundleName: String,
     workingDirectory: String,
-    bazelPath: String,
-    tulsiConfig: String
+    bazelPath: String
   ) throws {
     let xcschemesURL = projectURL.appendingPathComponent("xcshareddata/xcschemes")
     guard createDirectory(xcschemesURL) else { return }
@@ -1199,13 +1205,16 @@ final class XcodeProjectGenerator {
       
       let scriptPath = "${PROJECT_FILE_PATH}/\(XcodeProjectGenerator.ScriptDirectorySubpath)/\(XcodeProjectGenerator.DoccScript)"
       
-      let config = self.config.options[.BazelBuildOptionsDebug].commonValue
+      let debugConfig = self.config.options[.BazelBuildOptionsDebug].commonValue ?? ""
+      let cpu = self.config.options[.ProjectGenerationPlatformConfiguration].commonValue ?? "ios_sim_arm64"
+      let config = "\(debugConfig) --cpu=\(cpu)"
+      
       let label = entry.label.value
       let doccTarget = info.project.createLegacyTarget(
         target.name + "_docc",
         deploymentTarget: nil,
         buildToolPath: scriptPath,
-        buildArguments: "\(bazelPath) \(label) \(config ?? "")",
+        buildArguments: #""\#(bazelPath)" "\#(label)" "\#(config)""#,
         buildWorkingDirectory: workingDirectory
       )
 
