@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.10.0
+<h2>Tulsi++ 0.10.0 🕌</h2>
+<h4>Improvement:</h4> 
+<ol> 
+    <li>Add new target to generate DocC from tulsi's generated xcodeproj</li>
+</ol>
+
+----
 ## 0.9.2
 <h2>Tulsi++ 0.9.2 </h2>
 <h4>Bug Fix:</h4> 
