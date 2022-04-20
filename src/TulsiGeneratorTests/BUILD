@@ -6,9 +6,13 @@ load("@build_bazel_rules_apple//apple:macos.bzl", "macos_unit_test")
 
 swift_library(
     name = "TulsiGeneratorTestsLib",
+    module_name = "TulsiGeneratorTests",
     testonly = 1,
     srcs = glob(["*.swift"]),
-    deps = ["//src/TulsiGenerator:tulsi_generator_lib"],
+    deps = [
+	"//src/TulsiGenerator:tulsi_generator_lib",
+	"//src/UnitTestPatcher",
+    ],
 )
 
 macos_unit_test(

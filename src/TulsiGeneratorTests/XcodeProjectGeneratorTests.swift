@@ -595,6 +595,8 @@ final class MockPBXTargetGenerator: PBXTargetGeneratorProtocol {
       sourceTree: .Absolute,
       parent: nil)
   }
+  
+  let bazelPath: String
 
   required init(
     bazelPath: String,
@@ -610,6 +612,7 @@ final class MockPBXTargetGenerator: PBXTargetGeneratorProtocol {
     suppressCompilerDefines: Bool
   ) {
     self.project = project
+    self.bazelPath = bazelPath
   }
 
   func generateFileReferencesForFilePaths(_ paths: [String], pathFilters: Set<String>?) {
