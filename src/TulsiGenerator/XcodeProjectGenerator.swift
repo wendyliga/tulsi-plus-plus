@@ -1243,9 +1243,6 @@ final class XcodeProjectGenerator {
       try writeDataHandler(doccUrl, doccData)
       updateManagementDictionary(&schemeManagementDict, schemeName: doccFilename)
     }
-
-    let schemeManagementURL = userSchemesURL.appendingPathComponent("xcschememanagement.plist")
-    guard savePlist(schemeManagementDict, url: schemeManagementURL) else { return }
   }
 
   /// Create a file that contains Bazel build settings for the generated project.
