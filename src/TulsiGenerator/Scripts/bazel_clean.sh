@@ -52,3 +52,15 @@ remove_dir "${bazel_bin_dir}"
   "${bazel_executable}" "${arguments[@]}"
 )
 
+
+# remove derived data
+# looks like ~/Library/Developer/Xcode/DerivedData/Meijer-bendrqyqislprqgnunzxygajcfho/Build
+derived_data_build_dir=$(dirname "${BUILD_ROOT}")
+(
+  set -x
+  ## clean all item inside Build dir
+  rm -rf "${derived_data_build_dir}"
+)
+
+
+
