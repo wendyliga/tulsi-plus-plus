@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 0.10.1
+<h2>Tulsi++ 0.10.1 🕌</h2>
+<h4>Improvement:</h4> 
+<ol> 
+    <li>Clean(cmd+k) will clean all derivedData build directory</li>
+</ol>
+
+----
+
 ## 0.10.0
 <h2>Tulsi++ 0.10.0 🕌</h2>
 <h4>Improvement:</h4> 
