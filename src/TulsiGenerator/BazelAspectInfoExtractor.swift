@@ -275,6 +275,7 @@ final class BazelAspectInfoExtractor: QueuedLogging {
     }
 
     func parseTulsiTargetFileImpl(_ filename: String) throws -> RuleEntry {
+      print(">>> filename", filename)
       guard let data = fileManager.contents(atPath: filename) else {
         throw ExtractorError.parsingFailed("The file could not be read")
       }
@@ -376,6 +377,8 @@ final class BazelAspectInfoExtractor: QueuedLogging {
 
       let platformType = dict["platform_type"] as? String
       let xcodeVersion = dict["xcode_version"] as? String
+      
+      print(">>>", dict["tags"])
 
       let targetProductType: PBXTarget.ProductType?
 
