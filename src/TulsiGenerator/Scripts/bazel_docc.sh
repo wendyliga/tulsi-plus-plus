@@ -21,6 +21,8 @@ set -eu
 readonly bazel_executable="$1"; shift
 readonly target="$1"; shift
 readonly config="$1"; shift
+readonly target_name="$1"; shift
+readonly docc_bundle="$1"; shift
 readonly symbol_graph_dir=/var/tmp/swift-symbol-graph
 readonly symbol_graph_arch_dir=${symbol_graph_dir}/arm64-apple-ios-simulator
 readonly output=/var/tmp
@@ -35,6 +37,8 @@ mkdir -p ${symbol_graph_arch_dir}
 )
 
 docc_exec=$(xcode-select -p)/Toolchains/XcodeDefault.xctoolchain/usr/bin/docc
+docc_output=${output}/${target_name}.doccarchive
+
 (
   set -x
 
@@ -43,12 +47,34 @@ docc_exec=$(xcode-select -p)/Toolchains/XcodeDefault.xctoolchain/usr/bin/docc
   --fallback-display-name DocC \
   --fallback-bundle-identifier com.example.DocC \
   --fallback-bundle-version 1 \
-  --output-dir ${output}/tulsi.doccarchive \
-  --additional-symbol-graph-dir ${symbol_graph_dir}
+  --output-dir ${docc_output} \
+  --additional-symbol-graph-dir ${symbol_graph_dir} \
+  ${docc_bundle}
 )
 
+# make sure exist
+mkdir -p "${BUILT_PRODUCTS_DIR}"
+(
+  set -x
+  # copy to derivedData
+  cp -r "${docc_output}" "${BUILT_PRODUCTS_DIR}/${target_name}.doccarchive"
+)
+
+# looks like ~/Library/Developer/Xcode/DerivedData/Meijer-bendrqyqislprqgnunzxygajcfho/Build/Intermediates.noindex/meijer.build/Debug-iphonesimulator/meijer.build/
+intermediates_dir=$(dirname "${CLASS_FILE_DIR}") 
+# make sure exist
+mkdir -p "${intermediates_dir}"
+
+(
+  set -x
+  cp -r "${symbol_graph_dir}" "${intermediates_dir}/swift-symbol-graph"
+)
+
+
 # clean up
-rm -rf ${symbol_graph_dir}
+rm -rf "${symbol_graph_dir}"
 
 # open docc
-open ${output}/tulsi.doccarchive
+open "${BUILT_PRODUCTS_DIR}/${target_name}.doccarchive"
+ 
+echo ✅ Grab docc at "${BUILT_PRODUCTS_DIR}/${target_name}.doccarchive"
