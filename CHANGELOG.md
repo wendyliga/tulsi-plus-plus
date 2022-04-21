@@ -5,6 +5,7 @@
 <h4>Improvement:</h4> 
 <ol> 
     <li>Add new target to generate DocC from tulsi's generated xcodeproj</li>
+    <li>Support XCFramework</li>
 </ol>
 
 ----
