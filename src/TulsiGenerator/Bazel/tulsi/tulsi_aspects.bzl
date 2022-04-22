@@ -371,10 +371,10 @@ def _collect_framework_imports(rule_attr):
     )
 
 def _collect_xcframework_imports(rule_attr):
-    """Extracts framework directories from the given rule attributes."""
+    """Extracts xcframework directories from the given rule attributes."""
     return _collect_bundle_paths(
         rule_attr,
-        ["xcframework_imports",],
+        ["xcframework_imports"],
         ".xcframework",
     )
 
