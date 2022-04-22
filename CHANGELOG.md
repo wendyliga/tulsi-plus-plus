@@ -2,9 +2,16 @@
 
 ## 0.10.1
 <h2>Tulsi++ 0.10.1 🕌</h2>
-<h4>Improvement:</h4> 
+<h4>DocC Improvement:</h4> 
+<ol> 
+    <li>Support .docc bundle</li>
+    <li>Only generate docc target when tags docc is detected on bazel rule</li>
+</ol>
+
+<h4>Other Improvement:</h4> 
 <ol> 
     <li>Clean(cmd+k) will clean all derivedData build directory</li>
+    <li>Support XCFramework</li>
 </ol>
 
 ----
@@ -14,7 +21,7 @@
 <h4>Improvement:</h4> 
 <ol> 
     <li>Add new target to generate DocC from tulsi's generated xcodeproj</li>
-    <li>Support XCFramework</li>
+    
 </ol>
 
 ----
