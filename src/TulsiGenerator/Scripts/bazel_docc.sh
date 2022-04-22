@@ -33,7 +33,7 @@ mkdir -p ${symbol_graph_arch_dir}
 (
   set -x
 
-  "${bazel_executable}" clean && "${bazel_executable}" build ${target} ${config} --nouse_action_cache --remote_upload_local_results=false
+  "${bazel_executable}" clean && "${bazel_executable}" build ${target} ${config} --define=enable_docc_generation=1 --nouse_action_cache --remote_upload_local_results=false
 )
 
 docc_exec=$(xcode-select -p)/Toolchains/XcodeDefault.xctoolchain/usr/bin/docc
