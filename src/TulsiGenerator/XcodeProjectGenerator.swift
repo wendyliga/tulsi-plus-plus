@@ -1181,7 +1181,9 @@ final class XcodeProjectGenerator {
     schemeManagementDict["SuppressBuildableAutocreation"] = [String: Any]()
 
     let runTestTargetBuildConfigPrefix = pbxTargetGeneratorType.getRunTestTargetBuildConfigPrefix()
-    for entry in info.buildRuleEntries {
+    
+    /// only create scheme for docc one
+    for entry in info.buildRuleEntries where entry.tags.contains("docc") {
       // Generate an XcodeScheme with a test action set up to allow tests to be run without Xcode
       // attempting to compile code.
       let target: PBXNativeTarget
@@ -1205,12 +1207,24 @@ final class XcodeProjectGenerator {
       let cpu = self.config.options[.ProjectGenerationPlatformConfiguration].commonValue ?? "ios_x86_64"
       let config = "\(debugConfig) --cpu=\(cpu)"
       
+      let doccBundles = entry.normalNonSourceArtifacts.filter{ $0.fullPath.contains(".docc") }
+      if doccBundles.count > 1 {
+        localizedMessageLogger.warning(
+          "XCSchemeGenerationFailed",
+          comment: "Warning shown when generation of an Xcode scheme failed for build target %1$@",
+          details: "only allow one docc on build target. will use \(doccBundles.first?.fullPath as Optional) instead.",
+          context: self.config.projectName,
+          values: entry.label.value
+        )
+      }
+      
+      let doccBundle = doccBundles.first?.fullPath ?? ""
       let label = entry.label.value
       let doccTarget = info.project.createLegacyTarget(
         target.name + "_docc",
         deploymentTarget: nil,
         buildToolPath: scriptPath,
-        buildArguments: #""\#(bazelPath)" "\#(label)" "\#(config)""#,
+        buildArguments: #""\#(bazelPath)" "\#(label)" "\#(config)" "\#(target.name)" "\#(doccBundle)" "#,
         buildWorkingDirectory: workingDirectory
       )
 

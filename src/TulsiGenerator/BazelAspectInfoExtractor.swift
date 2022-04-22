@@ -376,6 +376,7 @@ final class BazelAspectInfoExtractor: QueuedLogging {
 
       let platformType = dict["platform_type"] as? String
       let xcodeVersion = dict["xcode_version"] as? String
+      let tags = dict["tags"] as? [String] ?? []
 
       let targetProductType: PBXTarget.ProductType?
 
@@ -431,7 +432,8 @@ final class BazelAspectInfoExtractor: QueuedLogging {
                                 objCModuleMaps: objCModuleMaps,
                                 moduleName: moduleName,
                                 extensionType: extensionType,
-                                xcodeVersion: xcodeVersion)
+                                xcodeVersion: xcodeVersion,
+                                tags: tags)
       progressNotifier?.incrementValue()
       return ruleEntry
     }

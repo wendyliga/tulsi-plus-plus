@@ -68,6 +68,7 @@ _SUPPORTING_FILE_ATTRIBUTES = [
     "structured_resources",
     "storyboards",
     "xibs",
+    "docc"
 ]
 
 # List of rules whose outputs should be treated as generated sources.
@@ -951,6 +952,7 @@ def _tulsi_sources_aspect(target, ctx):
         platform_type = platform_type,
         product_type = product_type,
         xcode_version = xcode_version,
+        tags = _getattr_as_list(rule_attr, "tags"),
     )
 
     # Create an action to write out this target's info.

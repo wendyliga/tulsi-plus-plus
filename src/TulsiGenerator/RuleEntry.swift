@@ -269,6 +269,9 @@ public final class RuleEntry: RuleInfo {
 
   /// Xcode version used during the aspect run. Only set for bundled and runnable targets.
   public let xcodeVersion: String?
+  
+  /// Tags defined on bazel rules
+  public let tags: [String]
 
   /// Returns the set of non-versioned artifacts that are not source files.
   public var normalNonSourceArtifacts: [BazelFileInfo] {
@@ -352,7 +355,8 @@ public final class RuleEntry: RuleInfo {
        objCModuleMaps: [BazelFileInfo] = [],
        moduleName: String? = nil,
        extensionType: String? = nil,
-       xcodeVersion: String? = nil) {
+       xcodeVersion: String? = nil,
+       tags: [String] = []) {
 
     var checkedAttributes = [Attribute: AnyObject]()
     for (key, value) in attributes {
@@ -402,6 +406,7 @@ public final class RuleEntry: RuleInfo {
     self.swiftToolchain = swiftToolchain
     self.swiftTransitiveModules = swiftTransitiveModules
     self.xcodeVersion = xcodeVersion
+    self.tags = tags
 
     // Swift targets may have a generated Objective-C module map for their Swift generated header.
     // Unfortunately, this breaks Xcode's indexing (it doesn't really make sense to ask SourceKit
@@ -468,7 +473,8 @@ public final class RuleEntry: RuleInfo {
                    objCModuleMaps: [BazelFileInfo] = [],
                    moduleName: String? = nil,
                    extensionType: String? = nil,
-                   xcodeVersion: String? = nil) {
+                   xcodeVersion: String? = nil,
+                   tags: [String] = []) {
     self.init(label: BuildLabel(label),
               type: type,
               attributes: attributes,
@@ -498,7 +504,8 @@ public final class RuleEntry: RuleInfo {
               objCModuleMaps: objCModuleMaps,
               moduleName: moduleName,
               extensionType: extensionType,
-              xcodeVersion: xcodeVersion)
+              xcodeVersion: xcodeVersion,
+              tags: tags)
   }
 
   // MARK: Private methods
