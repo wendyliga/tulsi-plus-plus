@@ -24,7 +24,7 @@ readonly config="$1"; shift
 readonly target_name="$1"; shift
 readonly docc_bundle="$1"; shift
 readonly symbol_graph_dir=/var/tmp/swift-symbol-graph
-readonly symbol_graph_arch_dir=${symbol_graph_dir}/arm64-apple-ios-simulator
+readonly symbol_graph_arch_dir=${symbol_graph_dir}/arm64-apple-ios
 readonly output=/var/tmp
 
 # make sure directory exist
@@ -33,7 +33,7 @@ mkdir -p ${symbol_graph_arch_dir}
 (
   set -x
 
-  "${bazel_executable}" clean && "${bazel_executable}" build ${target} ${config} --swiftcopt='-Xfrontend' --swiftcopt='-emit-symbol-graph' --swiftcopt='-emit-symbol-graph-dir' --swiftcopt="${symbol_graph_arch_dir}" --nouse_action_cache --remote_upload_local_results=false
+  "${bazel_executable}" clean && "${bazel_executable}" build ${target} ${config} --nouse_action_cache --remote_upload_local_results=false
 )
 
 docc_exec=$(xcode-select -p)/Toolchains/XcodeDefault.xctoolchain/usr/bin/docc

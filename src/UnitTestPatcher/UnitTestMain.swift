@@ -47,6 +47,5 @@ final class UnitTestMain: NSObject {
     super.init()
     
     swizzleXCTSourceCodeLocationIfNeeded()
-    print(">>> hello world")
   }
 }

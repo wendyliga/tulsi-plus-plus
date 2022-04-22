@@ -1181,7 +1181,9 @@ final class XcodeProjectGenerator {
     schemeManagementDict["SuppressBuildableAutocreation"] = [String: Any]()
 
     let runTestTargetBuildConfigPrefix = pbxTargetGeneratorType.getRunTestTargetBuildConfigPrefix()
-    for entry in info.buildRuleEntries {
+    
+    /// only create scheme for docc one
+    for entry in info.buildRuleEntries where entry.tags.contains("docc") {
       // Generate an XcodeScheme with a test action set up to allow tests to be run without Xcode
       // attempting to compile code.
       let target: PBXNativeTarget
