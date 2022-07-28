@@ -40,6 +40,7 @@ final class SplashScreenWindowController: NSWindowController, NSTableViewDelegat
   @IBOutlet weak var recentDocumentTable: NSTableView!
   @objc dynamic var applicationVersion: String = ""
   @objc dynamic var recentDocumentViewControllers = [SplashScreenRecentDocumentViewController]()
+  var announcementBanner: AnnouncementBanner?
 
   override var windowNibName: NSNib.Name? {
     return "SplashScreenWindowController"
@@ -56,6 +57,8 @@ final class SplashScreenWindowController: NSWindowController, NSTableViewDelegat
 
     recentDocumentViewControllers = getRecentDocumentViewControllers()
     recentDocumentTable.reloadData()
+
+    announcementBanner = displayAnnouncementBanner()
   }
 
   @IBAction func createNewDocument(_ sender: NSButton) {
@@ -133,5 +136,36 @@ final class SplashScreenWindowController: NSWindowController, NSTableViewDelegat
     }
 
     return recentDocumentViewControllers
+  }
+
+  private func displayAnnouncementBanner() -> AnnouncementBanner? {
+    guard let view = self.window?.contentView else {
+      return nil
+    }
+
+    guard let announcementBanner = try? Announcement.getNextUnreadAnnouncement()?.createBanner()
+    else {
+      return nil
+    }
+
+    view.addSubview(announcementBanner)
+
+    // Banner view constraints
+    let bannerWidthConstraint = NSLayoutConstraint(
+      item: announcementBanner, attribute: .width, relatedBy: .equal, toItem: view,
+      attribute: .width, multiplier: 1, constant: 0)
+    let bannerCenterXConstraint = NSLayoutConstraint(
+      item: announcementBanner, attribute: .leading, relatedBy: .equal, toItem: view,
+      attribute: .leading, multiplier: 1, constant: 0)
+    let bannerTopConstraint = NSLayoutConstraint(
+      item: announcementBanner, attribute: .top, relatedBy: .equal, toItem: view,
+      attribute: .top, multiplier: 1, constant: 0)
+
+    NSLayoutConstraint.activate([
+      bannerWidthConstraint, bannerCenterXConstraint,
+      bannerTopConstraint,
+    ])
+
+    return announcementBanner
   }
 }

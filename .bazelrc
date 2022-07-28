@@ -25,3 +25,5 @@ test --test_output=all
 test --build_tests_only
 test --curses=no
 test --show_timestamps
+# This is required for re-invoking bazel in shell tests. CI adds it implicitly
+test --test_env=HOME
