@@ -24,3 +24,6 @@ src/build/
 binary/
 binary/appcast.xml
 .build/
+
+# CI collected testlogs
+/testlogs

@@ -626,7 +626,6 @@ class BazelBuildBridge(object):
       return exit_code
 
 
-
     exit_code, outputs_data = self._ExtractAspectOutputsData(outputs)
     if exit_code:
       return exit_code
