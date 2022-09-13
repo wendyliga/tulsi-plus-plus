@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.11.0
+<h2>Tulsi++ 0.11.0 </h2>
+<ol> 
+    <li>Sync with upstream</li>
+</ol>
+
+----
 ## 0.10.1
 <h2>Tulsi++ 0.10.1 🕌</h2>
 <h4>DocC Improvement:</h4> 
