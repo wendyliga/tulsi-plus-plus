@@ -13,7 +13,6 @@
 # limitations under the License.
 
 """Skylark rules supporting Tulsi.
-
 This file provides Bazel aspects used to obtain information about a given
 project and pass it back to Tulsi.
 """
@@ -157,35 +156,28 @@ def _struct_omitting_none(**kwargs):
 
 def _convert_outpath_to_symlink_path(path):
     """Converts full output paths to their tulsi-symlink equivalents.
-
     Bazel output paths are unstable, prone to change with architecture,
     platform or flag changes. Therefore we can't rely on them to supply to Xcode.
     Instead, we will root all outputs under a stable tulsi dir,
     and the bazel_build.py script will link the artifacts into the correct
     location under it.
-
     Tulsi root is located at WORKSPACE/bazel-exec-root-link/bazel-tulsi-includes/x/x/.
     The two "x" directories are stubs to match the number of path components, so
     that relative paths work with the new location. Some Bazel outputs, like
     module maps, use relative paths to reference other files in the build.
-
     The prefix of bazel-tulsi-includes is present as Bazel will clear all
     directories that don't start with 'bazel-' when it builds.
     Otherwise, upon a build failure, bazel-tulsi-includes would be removed and
     indexing and auto-completion for generated files would no longer work until
     the next successful build.
-
     In short, this method will transform
       bazel-out/ios-x86_64-min7.0/genfiles/foo
     to
       bazel-tulsi-includes/x/x/foo
-
     This is currently enabled for everything although it will only affect
     generated files.
-
     Args:
       path: path to transform
-
     Returns:
       A string that is the original path modified according to the rules.
     """
@@ -367,7 +359,7 @@ def _collect_bundle_imports(rule_attr):
 
 def _collect_framework_imports(rule_attr):
     """Extracts framework directories from the given rule attributes."""
-    return _collect_xcframework_imports(rule_attr) + _collect_bundle_paths(
+    return _collect_bundle_paths(
         rule_attr,
         ["framework_imports"],
         ".framework",
@@ -426,11 +418,9 @@ def _collect_xcdatamodeld_files(obj, attr_path):
 
 def _collect_dependencies(rule_attr, attr_name):
     """Collects Bazel targets for a dependency attr.
-
     Args:
       rule_attr: The Bazel rule.attr whose dependencies should be collected.
       attr_name: attribute name to inspect for dependencies.
-
     Returns:
       A list of the Bazel target dependencies of the given rule.
     """
@@ -443,13 +433,11 @@ def _collect_dependencies(rule_attr, attr_name):
 
 def _collect_dependency_labels(rule, filter, attr_list):
     """Collects Bazel labels for a list of dependency attributes.
-
     Args:
       rule: The Bazel rule whose dependencies should be collected.
       filter: Filter to apply when gathering dependencies.
       attr_list: List of attribute names potentially containing Bazel labels for
           dependencies of the given rule.
-
     Returns:
       A list of the Bazel labels of dependencies of the given rule.
     """
@@ -484,15 +472,12 @@ def _get_label_attr(obj, attr_path):
 
 def _getattr_as_list(obj, attr_path):
     """Returns the value at attr_path as a list.
-
     This handles normalization of attributes containing a single value for use in
     methods expecting a list of values.
-
     Args:
       obj: The struct whose attributes should be parsed.
       attr_path: Dotted path of attributes whose value should be returned in
           list form.
-
     Returns:
       A list of values for obj at attr_path or [] if the struct has
       no such attribute.
@@ -710,10 +695,8 @@ def _collect_swift_header(target):
 
 def collect_swift_version(copts):
     """Returns the value of the `-swift-version` argument, if found.
-
     Args:
         copts: The list of copts to be scanned.
-
     Returns:
         The value of the `-swift-version` argument, or None if it was not found
         in the copt list.
@@ -1008,7 +991,6 @@ def _tulsi_sources_aspect(target, ctx):
 
 def _bundle_dsym_path(apple_bundle):
     """Compute the dSYM path for the bundle.
-
     Due to b/110264170 dSYMs are not fully exposed via a provider. We instead
     rely on the fact that `rules_apple` puts them next to the bundle just like
     Xcode.
@@ -1046,20 +1028,15 @@ def _has_dsym(target):
 # rules.
 def _tags_conform_to_filter(tags, filter):
     """Mirrors Bazel tag filtering for test_suites.
-
     This makes sure that the target has all of the required tags and none of
     the excluded tags before we include them within a test_suite.
-
     For more information on filtering inside Bazel, see
     com.google.devtools.build.lib.packages.TestTargetUtils.java.
-
     Args:
       tags: all of the tags for the test target
       filter: a struct containing excluded_tags and required_tags
-
     Returns:
       True if this target passes the filter and False otherwise.
-
     """
 
     # None of the excluded tags can be present.
@@ -1122,12 +1099,9 @@ def _filter_deps(filter, deps):
 # TODO: Remove once rules_apple has been updated to include that.
 def _get_apple_clang_triplet(cc_toolchain):
     """Parses and performs normalization on Clang target triplet string reference.
-
     The C++ ToolchainInfo provider `target_gnu_system_name` field references an LLVM target triple.
     This support method parses this target triplet and normalizes information for Apple targets.
-
     See: https://clang.llvm.org/docs/CrossCompilation.html#target-triple
-
     Args:
         cc_toolchain: CcToolchainInfo provider.
     Returns:
