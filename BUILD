@@ -72,10 +72,10 @@ macos_application(
         "//src/tools/module_cache_pruner": "MacOS",
     },
     app_icons = ["//src/Tulsi:Icon"],
-    bundle_id = "com.wendyliga.TulsiPlusPlus",
+    bundle_id = "com.tokopedia.TulsiPlusPlus",
     bundle_name = "Tulsi++",
     provisioning_profile = select({
-        ":is_ci": '//src/provisioning_profile:Direct_com.wendyliga.TulsiPlusPlus.provisionprofile',
+        ":is_ci": '//src/provisioning_profile:Direct_com.tokopedia.TulsiPlusPlus.provisionprofile',
         "//conditions:default": None,
     }),
     infoplists = [":Info.plist"],
