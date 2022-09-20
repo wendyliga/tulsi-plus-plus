@@ -180,18 +180,5 @@
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.10.1/tulsi_plus_plus.dmg" length="3332039" type="application/octet-stream" sparkle:edSignature="7jdWxHZtEc9vdRi29tkIoaZeM8+v5BJYBL+L3TZPfNDBuahvD26IwfHu1yi2DZZd+3Gq+Tuk3G8GeL2zu2fYAw=="/>
         </item>
-        <item>
-            <title>0.11.0</title>
-            <pubDate>Tue, 20 Sep 2022 17:09:59 +0700</pubDate>
-            <sparkle:version>0.11.0</sparkle:version>
-            <sparkle:shortVersionString>0.11.0</sparkle:shortVersionString>
-            <description><![CDATA[<h2>Tulsi++ 0.11.0 </h2>
-<ol> 
-    <li>Sync with upstream</li>
-</ol>
-]]></description>
-            <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download//tulsi_plus_plus.dmg" length="4465834" type="application/octet-stream" sparkle:edSignature="Mo5VVgIQXPp29MnPsw9kBf9ND8Q5e/7aWNJtbwxyBt6oKqOWIY9MC+kQJA57nUD8etzb0kFo31YQ3KApcwu2Dg=="/>
-        </item>
     </channel>
 </rss>
