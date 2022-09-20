@@ -16,6 +16,7 @@ lane :certificates do
     match(
       type: "developer_id",
       keychain_name: "fastlane_match_code_sign",
+      git_branch: 'tulsi',
       keychain_password: ENV["KEYCHAIN_PASSWORD"],
       readonly: true,
       verbose: true,
@@ -26,6 +27,7 @@ lane :certificates do
       type: "developer_id",
       readonly: true,
       verbose: true,
+      git_branch: 'tulsi',
       output_path: './src/provisioning_profile'
     )
   end
