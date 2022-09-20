@@ -11,21 +11,25 @@ lane :setup do
   )
 end
 
-lane :certificates do
+lane :certificates do |options|
+  update = options[:update] || false
+
   if is_ci
     match(
       type: "developer_id",
       keychain_name: "fastlane_match_code_sign",
+      git_branch: 'tulsi',
       keychain_password: ENV["KEYCHAIN_PASSWORD"],
-      readonly: true,
+      readonly: !update,
       verbose: true,
       output_path: './src/provisioning_profile'
     )
   else
     match(
       type: "developer_id",
-      readonly: true,
+      readonly: !update,
       verbose: true,
+      git_branch: 'tulsi',
       output_path: './src/provisioning_profile'
     )
   end

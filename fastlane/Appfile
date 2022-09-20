@@ -1,4 +1,4 @@
-app_identifier "com.wendyliga.TulsiPlusPlus"
+app_identifier "com.tokopedia.TulsiPlusPlus"
 apple_id ENV["APPLE_ID"]
 
 team_name ENV["TEAM_NAME"] 
