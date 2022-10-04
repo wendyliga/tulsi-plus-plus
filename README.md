@@ -25,7 +25,7 @@
 
 Tulsi++ is steroid version of [Tulsi](https://github.com/bazelbuild/tulsi) with lots of improvement on UX side.
 
-## Difference from standart Tulsi
+## Difference from standard Tulsi
 - OTA Update 
 - Improvement to support latest Xcode
 - Distribution binary is code-signed and properly notorized by apple 
