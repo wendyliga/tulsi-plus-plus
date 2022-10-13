@@ -180,5 +180,27 @@
             <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.10.1/tulsi_plus_plus.dmg" length="3332039" type="application/octet-stream" sparkle:edSignature="7jdWxHZtEc9vdRi29tkIoaZeM8+v5BJYBL+L3TZPfNDBuahvD26IwfHu1yi2DZZd+3Gq+Tuk3G8GeL2zu2fYAw=="/>
         </item>
+        <item>
+            <title>0.12.0</title>
+            <pubDate>Thu, 13 Oct 2022 10:45:54 +0000</pubDate>
+            <sparkle:version>0.12.0</sparkle:version>
+            <sparkle:shortVersionString>0.12.0</sparkle:shortVersionString>
+            <description><![CDATA[<h2>Tulsi++ 0.12.0 </h2>
+
+<h2>⚠️ IMPORTANT:</h2>
+<h4>Tulsi++ 0.12.0 and forward will have different codesign credential. This means you need to manually remove your Old Tulsi++ and download and install it manually from <a href="https://github.com/wendyliga/tulsi-plus-plus/releases">here</a><h4>
+
+<h2>Changelog:</h2>
+<ol> 
+    <li>Use New Build System by default</li>
+    <li>Fix Xcode 14 issues</li>
+    <li>Fix New Build System Issues</li>
+    <li>Bump minimum macos version to 11.0</li>
+    <li>Sync with Upstream</li>
+</ol>
+]]></description>
+            <sparkle:minimumSystemVersion>11.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/wendyliga/tulsi-plus-plus/releases/download/0.12.0/tulsi_plus_plus.dmg" length="3283389" type="application/octet-stream" sparkle:edSignature="EXkE7fpqJb54kTP5nYvfpL4BDex7hOlpvwrK6hqstNCzxjRYKtWx89JXTqx67K5pY1ui7vGD6N8amZqLhH+EBQ=="/>
+        </item>
     </channel>
 </rss>
