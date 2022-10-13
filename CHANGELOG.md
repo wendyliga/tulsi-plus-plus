@@ -2,6 +2,11 @@
 
 ## 0.12.0
 <h2>Tulsi++ 0.12.0 </h2>
+
+<h2>⚠️ IMPORTANT:</h2>
+<h4>Tulsi++ 0.12.0 and forward will have different codesign credential. This means you need to manually remove your Old Tulsi++ and download and install it manually from <a href="https://github.com/wendyliga/tulsi-plus-plus/releases">here</a><h4>
+
+<h2>Changelog:</h2>
 <ol> 
     <li>Use New Build System by default</li>
     <li>Fix Xcode 14 issues</li>
