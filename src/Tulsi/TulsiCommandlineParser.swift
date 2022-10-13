@@ -322,6 +322,8 @@ class TulsiCommandlineParser {
         "  \(ParamAdditionalPathFilters) \"<paths>\": Space-delimited source filters to be included in the generated project.",
         "  \(ParamLogToFile): Enable logging to ~/Library/Application Support/Tulsi/*.txt.",
         "       Ignores specified verbosity; everything will be logged to file.",
+        "  \(ParamMarkAnnouncementRead): Marks an announcement as read so it will not be shown again.",
+        "    This only needs to be used once per announcement.",
         ""
     ]
     print(usage.joined(separator: "\n") + "\n")

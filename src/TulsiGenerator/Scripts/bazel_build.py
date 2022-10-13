@@ -527,8 +527,15 @@ class BazelBuildBridge(object):
                        'set.  Please file a bug against Tulsi.')
       sys.exit(1)
     arch = archs.split()[-1]
-    if self.is_simulator and arch == "arm64":
-      self.arch = "sim_" + arch
+    if self.is_simulator and arch == 'arm64':
+      self.arch = 'sim_' + arch
+    # Xcode sets the ARCHS environment variable to both x86_64 and arm64 when
+    # building for watchOS simulator. Simulators have the same architecture as
+    # the host machine so we avoid picking the wrong one here by directly
+    # looking up the host architecture.
+    elif self.platform_name == 'watchsimulator':
+      host_arch = os.uname().machine
+      self.arch = host_arch
     else:
       self.arch = arch
 
@@ -1060,6 +1067,17 @@ class BazelBuildBridge(object):
         bundle_path = self._FindEmbeddedBundleInMain(bundle_name,
                                                      bundle_extension)
         if bundle_path:
+          # Incremental installation can fail if an embedded bundle is
+          # recompiled but the Info.plist is not updated. This causes the delta
+          # bundle that Xcode actually installs to not have a bundle ID for the
+          # embedded bundle. Avoid this potential issue by always including the
+          # Info.plist in the delta bundle. For some unknown reason, this issue
+          # only occurs in iOS 16.
+          if not self.platform_name.startswith(
+              'macos') and not self.is_simulator and float(
+                  os.environ['TARGET_DEVICE_OS_VERSION']) >= 16:
+            bundle_info_plist = os.path.join(bundle_path, 'Info.plist')
+            os.utime(bundle_info_plist, None)
           self._RsyncBundle(full_name, bundle_path, output_path)
         else:
           _PrintXcodeWarning('Could not find bundle %s in main bundle. ' %
