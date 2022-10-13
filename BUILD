@@ -12,7 +12,7 @@ load("@build_bazel_rules_apple//apple:macos.bzl", "macos_application")
 
 package(default_visibility = ["//:__subpackages__"])
 
-licenses(["notice"])  # Apache 2.0
+licenses(["notice"])
 
 exports_files(["LICENSE"])
 
@@ -79,7 +79,7 @@ macos_application(
         "//conditions:default": None,
     }),
     infoplists = [":Info.plist"],
-    minimum_os_version = "10.13",
+    minimum_os_version = "11.0",
     strings = [":strings"],
     version = ":AppVersion",
     visibility = ["//visibility:public"],

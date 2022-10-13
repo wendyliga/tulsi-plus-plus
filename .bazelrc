@@ -27,3 +27,7 @@ test --curses=no
 test --show_timestamps
 # This is required for re-invoking bazel in shell tests. CI adds it implicitly
 test --test_env=HOME
+
+# Print test logs for failed tests. This makes it easier to debug without
+# having to download test logs from CI everytime.
+test --test_output=errors

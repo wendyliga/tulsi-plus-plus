@@ -1,8 +1,7 @@
-
-licenses(["notice"])  # Apache 2.0
-
-load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 load("@build_bazel_rules_apple//apple:macos.bzl", "macos_unit_test")
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+
+licenses(["notice"])
 
 swift_library(
     name = "TulsiGeneratorTestsLib",
@@ -21,6 +20,7 @@ macos_unit_test(
         "//src/tools/bazel_cache_reader": "MacOS",
         "//src/tools/module_cache_pruner": "MacOS",
     },
-    minimum_os_version = "10.13",
+    minimum_os_version = "11.0",
+    shard_count = 5,
     deps = [":TulsiGeneratorTestsLib"],
 )

@@ -1,4 +1,4 @@
-licenses(["notice"])  # Apache 2.0
+licenses(["notice"])
 
 package(default_visibility = ["//:__subpackages__"])
 
@@ -14,6 +14,6 @@ objc_library(
 
 macos_command_line_application(
     name = "bazel_cache_reader",
-    minimum_os_version = "10.13",
+    minimum_os_version = "11.0",
     deps = [":bazel_cache_reader_lib"],
 )
