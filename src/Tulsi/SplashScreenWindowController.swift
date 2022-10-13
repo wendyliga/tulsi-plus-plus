@@ -60,8 +60,6 @@ final class SplashScreenWindowController: NSWindowController, NSTableViewDelegat
     }
 
     recentDocumentViewControllers = getRecentDocumentViewControllers()
-    recentDocumentTable.reloadData()
-
     announcementBanner = displayAnnouncementBanner()
   }
 

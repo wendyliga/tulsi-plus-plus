@@ -10,7 +10,6 @@ swift_library(
     srcs = glob(["*.swift"]),
     deps = [
 	"//src/TulsiGenerator:tulsi_generator_lib",
-	"//src/UnitTestPatcher",
     ],
 )
 

@@ -80,8 +80,15 @@ final class BazelXcodeProjectPatcher {
         queue.append(contentsOf: group.children)
       } else if let file = ref as? PBXFileReference,
                 let fileURL = URL(string: file.path!, relativeTo: workspaceRootURL) {
-        self.patchFileReference(xcodeProject: xcodeProject, file: file, url: fileURL,
-                                workspaceRootURL: workspaceRootURL)
+        let parentDir = file.path!.components(separatedBy: "/").first ?? ""
+        let alwaysPatchDirectory = BazelXcodeProjectPatcher.alwaysPatchParentDirectory.contains(parentDir)
+        
+        // patch if parent directory is included on allow list `BazelXcodeProjectPatcher.alwaysPatchParentDirectory`
+        // Don't patch anything if use real path for Groups
+        if alwaysPatchDirectory || !useRealGroupsPath{
+          self.patchFileReference(xcodeProject: xcodeProject, file: file, url: fileURL,
+                                  workspaceRootURL: workspaceRootURL)
+        }
       }
     }
   }
