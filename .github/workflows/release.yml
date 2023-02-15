@@ -38,7 +38,7 @@ jobs:
         GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
       run: bundle exec fastlane certificates 
     - name: Build
-      run: make build xcode=13.0 is_ci=true     
+      run: make build xcode=14.1.0 is_ci=true     
     - name: Notorize
       env:
         APPLE_ID: ${{ secrets.APPLE_ID }} 
