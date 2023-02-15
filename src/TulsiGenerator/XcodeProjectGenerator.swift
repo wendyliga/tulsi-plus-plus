@@ -732,10 +732,14 @@ final class XcodeProjectGenerator {
   private func loadRuleEntryMap() throws -> RuleEntryMap {
     do {
       let features = BazelBuildSettingsFeatures.enabledFeatures(options: config.options)
+      
+      let buildOptions = config.options[.BazelBuildOptionsDebug]
+      buildOptions.appendProjectValue("--define=tulsi=1")
+      
       return try workspaceInfoExtractor.ruleEntriesForLabels(config.buildTargetLabels,
                                                              startupOptions: config.options[.BazelBuildStartupOptionsDebug],
                                                              extraStartupOptions: config.options[.ProjectGenerationBazelStartupOptions],
-                                                             buildOptions: config.options[.BazelBuildOptionsDebug],
+                                                             buildOptions: buildOptions,
                                                              compilationModeOption: config.options[.ProjectGenerationCompilationMode],
                                                              platformConfigOption: config.options[.ProjectGenerationPlatformConfiguration],
                                                              prioritizeSwiftOption: config.options[.ProjectPrioritizesSwift],
