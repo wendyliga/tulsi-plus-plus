@@ -11,12 +11,12 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: macos-latest
+    runs-on: macos-12
     strategy:
       matrix:
         xcode:
           - '12.5.1'
-          - '13.0'
+          - '13.1.0'
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -42,12 +42,12 @@ jobs:
       run: make build xcode=${{ matrix.xcode }} is_ci=true
   test:
     name: Test
-    runs-on: macos-latest
+    runs-on: macos-12
     strategy:
       matrix:
         xcode:
           - '12.5.1'
-          - '13.0'
+          - '13.1.0'
     steps:
     - name: Checkout
       uses: actions/checkout@v2
