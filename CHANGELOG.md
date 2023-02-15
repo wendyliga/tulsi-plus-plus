@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.12.1
+<h2>Tulsi++ 0.12.1 </h2>
+
+<h2>Changelog:</h2>
+<ol> 
+    <li>add define `tulsi`</li>
+</ol>
+
+----
+
 ## 0.12.0
 <h2>Tulsi++ 0.12.0 </h2>
 
