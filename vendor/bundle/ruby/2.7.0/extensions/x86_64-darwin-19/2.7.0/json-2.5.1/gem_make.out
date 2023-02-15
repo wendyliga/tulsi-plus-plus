@@ -1,0 +1,13 @@
+current directory: /Users/runner/work/tulsi-plus-plus/tulsi-plus-plus/vendor/bundle/ruby/2.7.0/gems/json-2.5.1/ext/json
+/Users/runner/hostedtoolcache/Ruby/2.7.7/x64/bin/ruby -I /Users/runner/hostedtoolcache/Ruby/2.7.7/x64/lib/ruby/2.7.0 -r ./siteconf20230215-1069-1ut98fw.rb extconf.rb
+creating Makefile
+
+current directory: /Users/runner/work/tulsi-plus-plus/tulsi-plus-plus/vendor/bundle/ruby/2.7.0/gems/json-2.5.1/ext/json
+make "DESTDIR=" clean
+
+current directory: /Users/runner/work/tulsi-plus-plus/tulsi-plus-plus/vendor/bundle/ruby/2.7.0/gems/json-2.5.1/ext/json
+make "DESTDIR="
+make: Nothing to be done for `all'.
+
+current directory: /Users/runner/work/tulsi-plus-plus/tulsi-plus-plus/vendor/bundle/ruby/2.7.0/gems/json-2.5.1/ext/json
+make "DESTDIR=" install
