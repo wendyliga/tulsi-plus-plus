@@ -189,7 +189,7 @@ GEM
       unf_ext
     unf_ext (0.0.7.5)
     unicode-display_width (1.4.0)
-    webrick (1.4.2)
+    webrick (1.8.1)
     word_wrap (1.0.0)
     xcodeproj (1.19.0)
       CFPropertyList (>= 2.3.3, < 4.0)
